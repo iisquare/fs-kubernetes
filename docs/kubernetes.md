@@ -15,7 +15,7 @@ K8S高可用集群安装说明，未采用独立ETCD集群。
 ### 系统环境
 [centos7.md](./centos7.md)
 
-### 共享存储
+### 共享存储和LVS
 [nfs.md](./nfs.md)
 
 ### 参考

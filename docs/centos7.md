@@ -45,6 +45,12 @@ EOF
 sysctl -p /etc/sysctl.d/k8s.conf
 ```
 
+### 修改防火墙配置
+```
+systemctl stop firewalld 
+systemctl disable firewalld
+```
+
 ### 设置Kubernetes源
 ```
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo

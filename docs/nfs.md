@@ -78,14 +78,51 @@ mount -t nfs lvs-virtual-ip:/data/nfs /path/to/mounted
 ```
 
 ### 安装keepalived
-
-
-
+- 安装
+```
+yum -y install keepalived
+```
+- 配置
+```
+ip addr # 查看网卡名称
+cp /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf.bak
+vim /etc/keepalived/keepalived.conf
+```
+其中node_host为节点名称，ens_name为网卡名称，192.168.2.77为虚拟IP地址，若state设置为MASTER则在各节点权重相同时优先选为主节点，建议每个节点的priority优先级设置为不同的值，同一集群的virtual_router_id的值必须一致。
+```
+! Configuration File for keepalived
+global_defs {
+   router_id node_host
+}
+vrrp_instance VI_1 {
+    state BACKUP
+    interface ens_name
+    virtual_router_id 50
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.2.77
+    }
+}
+```
+- 服务
+```
+systemctl start keepalived
+systemctl enable keepalived
+```
+- 日志
+```
+tail -f /var/log/messages 
+```
 
 ### 注意事项
 - 重启后，请确保当前节点与在运行节点的同步目录下的数据一致。
 - 在数据同步完成之前，请勿将未同步节点设置为虚拟IP的主节点。
-
+- 请确保集群节点之间通信正常，若出现脑裂现象（如多个节点绑定了同一个虚拟IP），可尝试修改防火墙策略。
 
 ### 参考
 - [rsync + inotify 实现文件实时双向自动同步](https://juejin.im/post/6844903989801123853)
