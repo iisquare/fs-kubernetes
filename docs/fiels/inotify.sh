@@ -23,7 +23,7 @@ monitor() {
 diffuse() {
   for key in $(echo ${!NODES[*]})
   do
-    if [${NODE_NAME} eq ${key}]; then
+    if [${NODE_NAME} -eq ${key}]; then
       continue
     fi
     line=${WATCH_PATH}
