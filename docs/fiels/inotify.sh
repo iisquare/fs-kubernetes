@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WATCH_PATH=/data/nfs
-NODES=([node74]="node74.k8s.iisquare.com" [node75]="node75.k8s.iisquare.com" [node76]="node76.k8s.iisquare.com")
+declare -A NODES=([node74]="node74.k8s.iisquare.com" [node75]="node75.k8s.iisquare.com" [node76]="node76.k8s.iisquare.com")
 NODE_NAME=`hostname`
 NODE_USER=`whoami`
 
@@ -9,7 +9,7 @@ monitor() {
   inotifywait -mrq ${WATCH_PATH} --format '%w%f' -e create,close_write,delete $1 | while read line; do
     for key in $(echo ${!NODES[*]})
     do
-      if ["${NODE_NAME}" -eq "${key}"]; then
+      if [ ${NODE_NAME} == ${key} ]; then
         continue
       fi
       if [ ! -f $line ]; then
@@ -23,7 +23,7 @@ monitor() {
 diffuse() {
   for key in $(echo ${!NODES[*]})
   do
-    if ["${NODE_NAME}" -eq "${key}"]; then
+    if [ ${NODE_NAME} == ${key} ]; then
       continue
     fi
     line=${WATCH_PATH}
