@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WATCH_PATH=/data/nfs
+WATCH_PATH=/data/nfs/
 declare -A NODES=([node74]="node74.k8s.iisquare.com" [node75]="node75.k8s.iisquare.com" [node76]="node76.k8s.iisquare.com")
 NODE_NAME=`hostname`
 NODE_USER=`whoami`
