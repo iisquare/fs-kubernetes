@@ -51,6 +51,36 @@ systemctl start inotify
 systemctl enable inotify
 ```
 
+### 安装nfs
+- 安装
+```
+yum -y install nfs-utils
+```
+- 共享
+```
+echo "/data/nfs *(rw,no_root_squash,sync)" >> /etc/exports
+exportfs -r
+exportfs
+```
+- 服务
+```
+systemctl restart rpcbind && systemctl enable rpcbind
+systemctl restart nfs && systemctl enable nfs
+```
+- 状态
+```
+rpcinfo -p localhost
+showmount -e localhost
+```
+- 客户端挂载
+```
+mount -t nfs lvs-virtual-ip:/data/nfs /path/to/mounted
+```
+
+### 安装keepalived
+
+
+
 
 ### 注意事项
 - 重启后，请确保当前节点与在运行节点的同步目录下的数据一致。
@@ -59,4 +89,5 @@ systemctl enable inotify
 
 ### 参考
 - [rsync + inotify 实现文件实时双向自动同步](https://juejin.im/post/6844903989801123853)
-
+- [kubernetes部署NFS持久存储（静态和动态）](https://www.jianshu.com/p/5e565a8049fc)
+- [Centos7.6部署k8s v1.16.4高可用集群(主备模式)](https://www.kubernetes.org.cn/6632.html)
