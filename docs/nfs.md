@@ -46,6 +46,7 @@ cd /data/nfs
 git clone https://github.com/iisquare/kubernetes
 cp /data/nfs/kubernetes/docs/fiels/inotify.service /etc/systemd/system/
 chmod 754 /etc/systemd/system/inotify.service
+systemctl daemon-reload
 systemctl start inotify
 systemctl enable inotify
 ```

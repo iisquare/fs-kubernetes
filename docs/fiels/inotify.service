@@ -1,10 +1,10 @@
-[UNIT]
+[Unit]
 Description=synchronize files with rsync.
 After=network.target
 
 [Service]
-Type=forking
-ExecStart=sh /data/nfs/kubernetes/docs/fiels/inotify.sh monitor
+Type=simple
+ExecStart=/bin/bash /data/nfs/kubernetes/docs/fiels/inotify.sh monitor
 PrivateTmp=True
 
 [Install]
