@@ -9,7 +9,7 @@ monitor() {
   inotifywait -mrq ${WATCH_PATH} --format '%w%f' -e create,close_write,delete $1 | while read line; do
     for key in $(echo ${!NODES[*]})
     do
-      if [${NODE_NAME} eq ${key}]; then
+      if [${NODE_NAME} -eq ${key}]; then
         continue
       fi
       if [ ! -f $line ]; then
