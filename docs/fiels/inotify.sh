@@ -15,6 +15,7 @@ monitor() {
       if [ ! -f $line ]; then
         line=${WATCH_PATH}
       fi
+      echo "rsync to $key(${NODES[$key]}) $line"
       rsync -avz $line --delete ${NODE_USER}@${NODES[$key]}:${line}
     done
   done
@@ -27,6 +28,7 @@ diffuse() {
       continue
     fi
     line=${WATCH_PATH}
+    echo "rsync to $key(${NODES[$key]}) $line"
     rsync -avz $line --delete ${NODE_USER}@${NODES[$key]}:${line}
   done
 }
