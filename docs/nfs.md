@@ -40,7 +40,7 @@ https://centos.pkgs.org/7/epel-x86_64/inotify-tools-3.14-9.el7.x86_64.rpm.html
 ```
 yum install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/i/inotify-tools-3.14-9.el7.x86_64.rpm
 ```
-- 部署脚本
+- 部署脚本（注意脚本中的IP需要与SSH授权的一致）
 ```
 cd /data/nfs
 git clone https://github.com/iisquare/kubernetes

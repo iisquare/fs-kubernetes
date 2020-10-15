@@ -3,13 +3,7 @@
 
 ### 增加域名解析或更改/etc/hosts文件
 ```
-192.168.2.74 node74.k8s.iisquare.com
-192.168.2.75 node75.k8s.iisquare.com
-192.168.2.76 node76.k8s.iisquare.com
 192.168.2.77 virtual77.k8s.iisquare.com
-192.168.2.78 node78.k8s.iisquare.com
-192.168.2.79 node79.k8s.iisquare.com
-192.168.2.80 node80.k8s.iisquare.com
 ```
 
 ### 禁用swap交换空间
@@ -69,15 +63,15 @@ yum -y makecache
 ### 仅主节点之间免密登录
 - 创建密钥
 ```
-ssh-keygen -t rsa -C root@node-host
+ssh-keygen -t rsa -C root@node-ip
 ```
 - 节点之间共享公有密钥
 ```
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@target-host
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@target-ip
 ```
 - 节点之间免密登录测试
 ```
-ssh root@target-host
+ssh root@target-ip
 ```
 - 查看目标机器的授权文件
 ```
