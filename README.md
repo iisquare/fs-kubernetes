@@ -1,8 +1,8 @@
 # Kubernetes
 kubernetes cluster service
 
-### ³£ÓÃÃüÁî
-- Í¨¹ıÇåµ¥´´½¨ºÍÉ¾³ı
+### å¸¸ç”¨å‘½ä»¤
+- é€šè¿‡æ¸…å•åˆ›å»ºå’Œåˆ é™¤
 ```
 kubectl create -f /path/to/template.yaml
 kubectl delete -f /path/to/template.yaml
@@ -25,18 +25,20 @@ kubectl api-resources
 kubectl api-resources --namespaced=true
 ```
 
-### Habor¹ÜÀí
-- ÉÏ´«¾µÏñ
+### Haborç®¡ç†
+- ä¸Šä¼ é•œåƒ
 ```
-# À­È¡¾µÏñ
+# æ‹‰å–é•œåƒ
 docker pull k8s.gcr.io/kubernetes-zookeeper:1.0-3.4.10
-# Éú³É±êÇ©
+# ç”Ÿæˆæ ‡ç­¾
 docker tag anjia0532/google-containers.kubernetes-zookeeper:1.0-3.4.10 harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
-# µÇÂ¼²Ö¿â
+# ç™»å½•ä»“åº“
 docker login --username=admin harbor.iisquare.com
-# ÍÆËÍ¾µÏñ
+# æ¨é€é•œåƒ
 docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
 ```
 
-### ²Î¿¼Á´½Ó
+### å‚è€ƒé“¾æ¥
 - [gcr.io_mirror](https://github.com/anjia0532/gcr.io_mirror)
+- [å°šç¡…è°·Kubernetesæ•™ç¨‹](https://www.bilibili.com/video/BV1w4411y7Go)
+- [ä¹æå¸¦ä½ è½»æ¾å®Œçˆ† istio ç³»åˆ—](https://www.bilibili.com/video/BV1vE411p7wX)
