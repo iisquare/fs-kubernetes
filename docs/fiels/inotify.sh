@@ -20,4 +20,25 @@ monitor() {
   done
 }
 
-monitor;
+diffuse() {
+  for key in $(echo ${!NODES[*]})
+  do
+    if [${NODE_NAME} eq ${key}]
+      continue
+    fi
+    line=${WATCH_PATH}
+    echo "rsync -avz $line --delete ${NODE_USER}@${NODES[$key]}:${line}"
+  done
+}
+
+case $1 in
+    "monitor")
+      monitor
+    ;;
+    "diffuse")
+      diffuse
+    ;;
+    *)
+      echo 'use [monitor|diffuse] to synchronize files.'
+    ;;
+esac
