@@ -1,0 +1,11 @@
+[UNIT]
+Description=synchronize files with rsync.
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=sh /data/nfs/kubernetes/docs/fiels/inotify.sh monitor
+PrivateTmp=True
+
+[Install]
+WantedBy=multi-user.target
