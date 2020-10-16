@@ -20,5 +20,6 @@ FILES=(
 echo "copy to ${TARGET}"
 ssh ${TARGET} "mkdir -p /etc/kubernetes/pki/etcd"
 for file in ${FILES[@]}; do
+  echo "*$file"
   scp $file ${TARGET}:$file
 done

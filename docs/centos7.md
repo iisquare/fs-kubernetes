@@ -1,6 +1,11 @@
 # CentOS Environment
 操作系统环境准备，仅主节点之间进行SSH免密登录授权。机器配置要求CPU2核+，内存2GB+；selinux是用来加强安全性的一个组件，但非常容易出错且难以定位，安装时禁用；swap在内存不足时会将部分内存数据存放到磁盘中，为性能考虑建议关掉。
 
+### 修改主机名称
+```
+hostnamectl set-hostname hostname
+```
+
 ### 增加域名解析或更改/etc/hosts文件
 ```
 192.168.2.77 virtual77

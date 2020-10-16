@@ -18,12 +18,12 @@ K8S高可用集群安装说明，未采用独立ETCD集群。
 ### 共享存储和LVS
 [nfs.md](./nfs.md)
 
-### 安装K8S
+### 安装K8S-LVS主节点
 - 查看版本
 ```
 yum list kubelet --showduplicates | sort -r
 ```
-- 管理节点工具安装
+- 工具安装
 ```
 yum install -y kubelet-1.18.9 kubeadm-1.18.9 kubectl-1.18.9
 systemctl enable kubelet && systemctl start kubelet
@@ -82,7 +82,7 @@ kubeadm join 192.168.2.77:6443 --token wwxdsz.9lcdmiqy53u8292f \
 ```
 - 加载环境变量用于执行kubectl命令
 ```
-scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
+# scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
 source ~/.bash_profile
 ```
@@ -92,7 +92,38 @@ kubectl get nodes
 kubectl get po -o wide -n kube-system
 ```
 
+### 加入工作节点
+- 工具安装
+```
+yum install -y kubelet-1.18.9 kubeadm-1.18.9 kubectl-1.18.9
+```
+- 加入集群
+```
+kubeadm join 192.168.2.77:6443 --token wwxdsz.9lcdmiqy53u8292f \
+    --discovery-token-ca-cert-hash sha256:7d71515e92af012f187ce26b12470741ad602ddc604bd8ff41a783435bca2c85
+```
 
+### 重置集群节点
+- 下线集群节点
+```
+kubectl drain node-name
+kubectl delete node node-name
+```
+- 移除etcd集群（若为独立集群可忽略）
+```
+docker exec -it $(docker ps -f name=etcd_etcd -q) /bin/sh
+etcdctl --endpoints 127.0.0.1:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key member list
+etcdctl --endpoints 127.0.0.1:2379 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key member remove etcd-node-id
+```
+- 重置过期Token
+```
+kubeadm token create
+kubeadm token list
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+```
+- 重置并重新加入
 
 ### 参考
 - [Centos7.6部署k8s v1.16.4高可用集群(主备模式)](https://www.kubernetes.org.cn/6632.html)
+- [将 master 节点服务器从 k8s 集群中移除并重新加入](https://www.cnblogs.com/dudu/p/12173867.html)
+- [kubeadm 生成的token过期后，集群增加节点](https://blog.csdn.net/mailjoin/article/details/79686934)
