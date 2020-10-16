@@ -78,6 +78,7 @@ showmount -e localhost
 ```
 - 客户端挂载
 ```
+yum -y install nfs-utils
 mount -t nfs lvs-virtual-ip:/data/nfs /path/to/mounted
 ```
 
