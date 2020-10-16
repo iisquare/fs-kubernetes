@@ -50,6 +50,10 @@ systemctl daemon-reload
 systemctl start inotify
 systemctl enable inotify
 ```
+- 日志
+```
+journalctl -u inotify
+```
 
 ### 安装nfs
 - 安装
