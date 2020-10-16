@@ -69,6 +69,29 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
+### 加入control plane节点
+- 通过主节点颁发证书
+```
+sh /data/nfs/kubernetes/docs/fiels/cert-master.sh target-ip
+```
+- 加入集群
+```
+kubeadm join 192.168.2.77:6443 --token wwxdsz.9lcdmiqy53u8292f \
+  --discovery-token-ca-cert-hash sha256:7d71515e92af012f187ce26b12470741ad602ddc604bd8ff41a783435bca2c85 \
+  --control-plane 
+```
+- 加载环境变量用于执行kubectl命令
+```
+scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+source ~/.bash_profile
+```
+- 查看状态
+```
+kubectl get nodes
+kubectl get po -o wide -n kube-system
+```
+
 
 
 ### 参考
