@@ -12,6 +12,9 @@ metadata:
   namespace: lvs-nfs
   name: nfs-client-provisioner
 spec:
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
   replicas: 1
   strategy:
     type: Recreate
