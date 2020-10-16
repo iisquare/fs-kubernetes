@@ -78,7 +78,7 @@ ssh root@target-ip
 cat /root/.ssh/authorized_keys
 ```
 
-### 仅工作节点上安装Docker
+### 安装Docker
 - 安装依赖
 ```
 yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -106,8 +106,7 @@ systemctl status docker
 tee /etc/docker/daemon.json <<-'EOF'
 {
   "registry-mirrors": [
-    "https://hub-mirror.c.163.com",
-    "https://harbor.k8s.iisquare.com" # 私有仓库
+    "https://hub-mirror.c.163.com"
   ]
 }
 EOF
