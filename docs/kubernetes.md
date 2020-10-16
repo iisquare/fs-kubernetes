@@ -82,7 +82,6 @@ kubeadm join 192.168.2.77:6443 --token wwxdsz.9lcdmiqy53u8292f \
 ```
 - 加载环境变量用于执行kubectl命令
 ```
-# scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
 source ~/.bash_profile
 ```
@@ -101,6 +100,29 @@ yum install -y kubelet-1.18.9 kubeadm-1.18.9 kubectl-1.18.9
 ```
 kubeadm join 192.168.2.77:6443 --token wwxdsz.9lcdmiqy53u8292f \
     --discovery-token-ca-cert-hash sha256:7d71515e92af012f187ce26b12470741ad602ddc604bd8ff41a783435bca2c85
+```
+
+### 加入管理客户端节点
+- 配置kubernetes源
+- 安装kubectl
+```
+yum install -y kubectl-1.18.9
+```
+- 命令补全
+```
+yum -y install bash-completion
+source /etc/profile.d/bash_completion.sh
+```
+- 拷贝授权文件
+```
+scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+source ~/.bash_profile
+```
+- 环境变量
+```
+echo "source <(kubectl completion bash)" >> ~/.bash_profile
+source ~/.bash_profile
 ```
 
 ### 重置集群节点
