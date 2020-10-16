@@ -35,7 +35,17 @@ source ~/.bash_profile
 yum install -y kubelet-1.18.9
 systemctl enable kubelet && systemctl start kubelet
 ```
-
+- 版本确认
+```
+docker --version
+kubelet --version
+kubectl version
+kubeadm version
+```
+- 初始化主节点
+```
+kubeadm init --config=/data/nfs/kubernetes/docs/fiels/kubeadm-config.yaml
+```
 
 
 

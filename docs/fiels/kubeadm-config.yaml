@@ -1,6 +1,6 @@
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
-kubernetesVersion: v1.16.4
+kubernetesVersion: v1.18.9
 apiServer:
   certSANs: # 签发kube-apiserver所在节点认证
   - node74
