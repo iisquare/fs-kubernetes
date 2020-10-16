@@ -1,0 +1,16 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: v1.16.4
+apiServer:
+  certSANs: # 签发kube-apiserver所在节点认证
+  - node74
+  - 192.168.2.74
+  - node75
+  - 192.168.2.75
+  - node76
+  - 192.168.2.76
+  - virtual77
+  - 192.168.2.77
+controlPlaneEndpoint: "192.168.2.77:6443"
+networking:
+  podSubnet: "10.244.0.0/16"

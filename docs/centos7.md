@@ -3,7 +3,7 @@
 
 ### 增加域名解析或更改/etc/hosts文件
 ```
-192.168.2.77 virtual77.k8s.iisquare.com
+192.168.2.77 virtual77
 ```
 
 ### 禁用swap交换空间
