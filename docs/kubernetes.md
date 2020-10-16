@@ -30,11 +30,6 @@ systemctl enable kubelet && systemctl start kubelet
 echo "source <(kubectl completion bash)" >> ~/.bash_profile
 source ~/.bash_profile
 ```
-- 工作节点工具安装
-```
-yum install -y kubelet-1.18.9
-systemctl enable kubelet && systemctl start kubelet
-```
 - 版本确认
 ```
 docker --version
@@ -42,9 +37,36 @@ kubelet --version
 kubectl version
 kubeadm version
 ```
+- 手动导入镜像
+```
+kubeadm config images list --kubernetes-version=1.18.9
+docker pull xxx-name-version
+docker save -o k8s.tar xxx-id yyy-id
+docker load < k8s-1.18.9.tar
+docker tag xxx-id xxx-name-version
+```
 - 初始化主节点
 ```
+# 可通过--image-repository=参数指定镜像地址
 kubeadm init --config=/data/nfs/kubernetes/docs/fiels/kubeadm-config.yaml
+```
+- 记录kubeadm的输出信息
+- 失败重置
+```
+kubeadm reset
+rm -rf $HOME/.kube/config
+```
+- 加载环境变量
+```
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+source ~/.bash_profile
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+```
+- 安装[flannel](https://github.com/coreos/flannel/)网络
+```
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 
