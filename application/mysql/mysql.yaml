@@ -21,7 +21,7 @@ spec:
         - name: mysql-config
           mountPath: "/etc/mysql"
         - name: mysql-data
-          mountPath: /var/lib/mysql
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
@@ -56,7 +56,7 @@ spec:
         - name: mysql-config
           mountPath: "/etc/mysql"
         - name: mysql-data
-          mountPath: /var/lib/mysql
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
@@ -91,7 +91,7 @@ spec:
         - name: mysql-config
           mountPath: "/etc/mysql"
         - name: mysql-data
-          mountPath: /var/lib/mysql
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
