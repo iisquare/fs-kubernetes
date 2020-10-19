@@ -1,5 +1,6 @@
 [mysqld]
 server-id=79
+skip-log-bin
 binlog-ignore-db=mysql
 binlog-ignore-db=test
 binlog-ignore-db=information_schema
