@@ -1,0 +1,13 @@
+[mysqld]
+server-id=78
+log-bin=mysql-bin
+binlog_format=MIXED
+expire_log_days=7
+transaction-isolation=READ-COMMITTED
+
+wait_timeout=10
+max_connections=2000
+long_query_time=2
+slow-query-log=on
+slow-query-log-file=/var/lib/mysql/slow-query.log
+log-queries-not-using-indexes

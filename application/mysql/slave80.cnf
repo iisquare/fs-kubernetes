@@ -1,0 +1,13 @@
+[mysqld]
+server-id=80
+binlog-ignore-db=mysql
+binlog-ignore-db=test
+binlog-ignore-db=information_schema
+# binlog-do-db=fix-db
+
+wait_timeout=10
+max_connections=2000
+long_query_time=2
+slow-query-log=on
+slow-query-log-file=/var/lib/mysql/slow-query.log
+log-queries-not-using-indexes

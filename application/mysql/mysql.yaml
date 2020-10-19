@@ -1,0 +1,104 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mysql-master78
+  namespace: svr-app
+  labels:
+    app: mysql
+spec:
+  nodeName: node78
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
+        - name: mysql-config
+          mountPath: "/etc/mysql"
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: redis-config
+      configMap:
+        name: mysql
+        items:
+          - key: "master78.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mysql-slave79
+  namespace: svr-app
+  labels:
+    app: mysql
+spec:
+  nodeName: node79
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
+        - name: mysql-config
+          mountPath: "/etc/mysql"
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: redis-config
+      configMap:
+        name: mysql
+        items:
+          - key: "slave79.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mysql-slave80
+  namespace: svr-app
+  labels:
+    app: mysql
+spec:
+  nodeName: node80
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
+        - name: mysql-config
+          mountPath: "/etc/mysql"
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: redis-config
+      configMap:
+        name: mysql
+        items:
+          - key: "slave80.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql
