@@ -3,7 +3,7 @@
 ### 前置要求
 - 创建命名空间
 ```
-kubectl create ns lvs-nfs
+kubectl create ns lvs-app
 ```
 
 ### 参考链接

@@ -9,7 +9,7 @@ parameters:
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  namespace: lvs-nfs
+  namespace: lvs-app
   name: nfs-client-provisioner
 spec:
   selector:
