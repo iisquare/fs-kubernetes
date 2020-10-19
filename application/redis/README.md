@@ -6,11 +6,11 @@
 ### 如何使用
 - 创建命名空间
 ```
-kubectl create ns svr-redis
+kubectl create ns svr-app
 ```
 - 导入配置文件
 ```
-kubectl create configmap svr-redis --from-file=redis.conf
+kubectl create configmap redis --from-file=redis.conf -n svr-app
 ```
 - 应用配置清单
 ```
