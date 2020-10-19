@@ -5,15 +5,15 @@ metadata:
   namespace: svr-redis
 spec:
   type: NodePort
-  ports:
-  - port: 16379
-    protocol: TCP
-    targetPort: 6379
   selector:
     app: redis
+  ports:
+    - port: 16379
+      protocol: TCP
+      targetPort: 6379
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-master74
   namespace: svr-redis
@@ -49,8 +49,8 @@ spec:
       hostPath:
         path: /data/k8s-pv/redis
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-master75
   namespace: svr-redis
@@ -86,8 +86,8 @@ spec:
       hostPath:
         path: /data/k8s-pv/redis
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-master76
   namespace: svr-redis
@@ -123,8 +123,8 @@ spec:
       hostPath:
         path: /data/k8s-pv/redis
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-slave78
   namespace: svr-redis
@@ -160,8 +160,8 @@ spec:
       hostPath:
         path: /data/k8s-pv/redis
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-slave79
   namespace: svr-redis
@@ -197,8 +197,8 @@ spec:
       hostPath:
         path: /data/k8s-pv/redis
 ---
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
   name: redis-slave80
   namespace: svr-redis
