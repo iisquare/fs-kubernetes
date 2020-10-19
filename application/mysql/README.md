@@ -37,6 +37,48 @@ start slave;
 show slave status\G;
 ```
 
+### 从库初始化-强一致性
+- 主库禁止写入
+```
+flush tables with read lock;
+```
+- 主库导出数据
+```
+mysqldump -uroot -pmysql --all-databases > mysql.sql;
+```
+- 从库导入数据
+```
+stop slave;
+source mysql.sql;
+show master status;
+CHANGE MASTER TO ...
+start slave;
+show slave status\G;
+```
+- 主库恢复写入
+```
+unlock tables;
+```
+
+### 命令参考
+- 状态查看
+```
+show master status;
+show binlog events;
+show binlog events in 'mysql-bin.000002';
+```
+- 清理日志
+```
+reset master;
+reset slave;
+purge master logs before '2012-03-30 17:20:00';
+purge master logs to 'mysql-bin.000002';
+```
+- 刷新日志
+```
+flush logs;
+show binary logs;
+```
+
 ### 参考链接
-- [在K8S上搭建Redis集群](https://juejin.im/post/6844903806719754254)
-- [redis Waiting for the cluster to join](https://my.oschina.net/chrisforbt/blog/2980875)
+- [MySQL主从复制(Master-Slave)实践](https://www.cnblogs.com/gl-developer/p/6170423.html)
