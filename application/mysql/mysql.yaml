@@ -10,9 +10,6 @@ spec:
   containers:
     - name: mysql
       image: mysql:8.0.21
-      env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: admin888
       ports:
         - name: server
           containerPort: 3306
@@ -50,9 +47,6 @@ spec:
   containers:
     - name: mysql
       image: mysql:8.0.21
-      env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: admin888
       ports:
         - name: server
           containerPort: 3306
@@ -90,9 +84,6 @@ spec:
   containers:
     - name: mysql
       image: mysql:8.0.21
-      env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: admin888
       ports:
         - name: server
           containerPort: 3306
