@@ -22,6 +22,8 @@ spec:
           mountPath: "/etc/mysql"
         - name: mysql-data
           mountPath: /var/lib/mysql
+        - name: mysql-files
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
@@ -32,6 +34,9 @@ spec:
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
 ---
 kind: Pod
 apiVersion: v1
@@ -57,6 +62,8 @@ spec:
           mountPath: "/etc/mysql"
         - name: mysql-data
           mountPath: /var/lib/mysql
+        - name: mysql-files
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
@@ -67,6 +74,9 @@ spec:
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
 ---
 kind: Pod
 apiVersion: v1
@@ -92,6 +102,8 @@ spec:
           mountPath: "/etc/mysql"
         - name: mysql-data
           mountPath: /var/lib/mysql
+        - name: mysql-files
+          mountPath: /var/lib/mysql-files
   volumes:
     - name: mysql-config
       configMap:
@@ -102,3 +114,6 @@ spec:
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
