@@ -6,6 +6,12 @@
 - 配置清单没有采用StatefulSet方式，直接采用Pod部署以方便单节点修改
 
 ### 如何使用
+- 清理
+```
+kubectl delete -f mysql.yaml
+kubectl delete configmaps mysql -n svr-app
+rm -rf /data/k8s-pv/mysql
+```
 - 创建命名空间
 ```
 kubectl create ns svr-app
