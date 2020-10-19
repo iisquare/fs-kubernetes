@@ -24,10 +24,15 @@ kubectl create configmap mysql --from-file=master78.cnf --from-file=slave79.cnf 
 ```
 kubectl create -f mysql.yaml
 ```
+- 修改加密规则
+```
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'admin888';
+FLUSH PRIVILEGES; 
+```
 - 主节点授权
 ```
-CREATE USER 'replicate'@'*' IDENTIFIED BY 'slave-password';
-GRANT REPLICATION SLAVE ON *.* TO 'replicate'@'*';
+CREATE USER 'replicate'@'%' IDENTIFIED WITH mysql_native_password BY 'slave-password';
+GRANT REPLICATION SLAVE ON *.* TO 'replicate'@'%';
 flush privileges;
 SHOW MASTER STATUS;
 ```
@@ -38,7 +43,7 @@ CHANGE MASTER TO
   MASTER_USER='replicate',
   MASTER_PASSWORD='slave-password',
   MASTER_LOG_FILE='mysql-bin.000003',
-  MASTER_LOG_POS=73;
+  MASTER_LOG_POS=1340;
 start slave;
 show slave status\G;
 ```

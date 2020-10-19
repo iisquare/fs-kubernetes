@@ -1,10 +1,6 @@
 [mysqld]
 server-id=79
 skip-log-bin
-binlog-ignore-db=mysql
-binlog-ignore-db=test
-binlog-ignore-db=information_schema
-# binlog-do-db=fix-db
 
 wait_timeout=10
 max_connections=2000

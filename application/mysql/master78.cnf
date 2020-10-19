@@ -5,6 +5,11 @@ binlog_format=MIXED
 binlog_expire_logs_seconds=604800
 transaction-isolation=READ-COMMITTED
 
+binlog-ignore-db=mysql
+binlog-ignore-db=test
+binlog-ignore-db=information_schema
+# binlog-do-db=fix-db
+
 wait_timeout=10
 max_connections=2000
 long_query_time=2
