@@ -40,11 +40,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
@@ -77,11 +77,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
@@ -114,11 +114,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
@@ -151,11 +151,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
@@ -188,11 +188,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
@@ -225,11 +225,11 @@ spec:
           name: redis-data
   volumes:
     - name: redis-config
-        configMap:
-          name: "svr-redis"
-          items:
-            - key: "redis.conf"
-              path: "redis.conf"
+      configMap:
+        name: "svr-redis"
+        items:
+          - key: "redis.conf"
+            path: "redis.conf"
     - name: redis-data
       hostPath:
         path: /data/k8s-pv/redis
