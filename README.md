@@ -23,6 +23,19 @@ kubectl get ingress --all-namespaces
 ```
 kubectl api-resources
 kubectl api-resources --namespaced=true
+kubectl explain service --recursive
+```
+- 节点标签
+```
+kubectl get node --show-labels=true
+kubectl label nodes <node_name> key1=val1 key2=val2 # add
+kubectl label nodes <node_name> key1- key2- # delete
+```
+- ConfigMap
+```
+kubectl create configmap <map-name> --from-file=/path/to/file
+kubectl describe configmaps <map-name>
+kubectl get configmaps <map-name> -o yaml
 ```
 
 ### Habor管理

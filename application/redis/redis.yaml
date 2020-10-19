@@ -1,0 +1,235 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svr-redis
+  namespace: svr-redis
+spec:
+  type: NodePort
+  ports:
+  - port: 16379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-master74
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node74
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-master75
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node75
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-master76
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node76
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-slave78
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node78
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-slave79
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node79
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-slave80
+  namespace: svr-redis
+  labels:
+    app: redis
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: node80
+  containers:
+    - image: redis:6.0.8
+      command:
+        - "redis-server"
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+          - "--protected-mode"
+          - "no"
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+      volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+        - mountPath: /data
+          name: redis-data
+  volumes:
+    - name: redis-config
+        configMap:
+          name: "svr-redis"
+          items:
+            - key: "redis.conf"
+              path: "redis.conf"
+    - name: redis-data
+      hostPath:
+        path: /data/k8s-pv/redis
