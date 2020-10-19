@@ -2,10 +2,8 @@
 server-id=78
 log-bin=mysql-bin
 binlog_format=MIXED
-expire_logs_days=7
+binlog_expire_logs_seconds=604800
 transaction-isolation=READ-COMMITTED
-
-secure_file_priv=/var/lib/mysql
 
 wait_timeout=10
 max_connections=2000
