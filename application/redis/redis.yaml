@@ -23,13 +23,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node74
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
@@ -60,13 +61,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node75
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
@@ -97,13 +99,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node76
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
@@ -134,13 +137,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node78
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
@@ -171,13 +175,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node79
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
@@ -208,13 +213,14 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: node80
   containers:
-    - image: redis:6.0.8
+    - name: redis
+      image: redis:6.0.8
       command:
         - "redis-server"
-        args:
-          - "/usr/local/etc/redis/redis.conf"
-          - "--protected-mode"
-          - "no"
+      args:
+        - "/usr/local/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
       ports:
         - containerPort: 6379
           protocol: TCP
