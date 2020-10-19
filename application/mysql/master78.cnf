@@ -2,7 +2,7 @@
 server-id=78
 log-bin=mysql-bin
 binlog_format=MIXED
-expire_log_days=7
+expire_logs_days=7
 transaction-isolation=READ-COMMITTED
 
 secure_file_priv=/var/lib/mysql
