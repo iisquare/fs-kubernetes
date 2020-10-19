@@ -95,6 +95,7 @@ kubectl get po -o wide -n kube-system
 - 工具安装
 ```
 yum install -y kubelet-1.18.9 kubeadm-1.18.9 kubectl-1.18.9
+systemctl enable kubelet && systemctl start kubelet
 ```
 - 加入集群
 ```

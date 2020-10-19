@@ -9,6 +9,12 @@ hostnamectl set-hostname hostname
 ### 增加域名解析或更改/etc/hosts文件
 ```
 192.168.2.77 virtual77
+192.168.2.74 node74
+192.168.2.75 node75
+192.168.2.76 node76
+192.168.2.78 node78
+192.168.2.79 node79
+192.168.2.80 node80
 ```
 
 ### 禁用swap交换空间
