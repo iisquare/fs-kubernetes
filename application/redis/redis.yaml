@@ -16,6 +16,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
@@ -57,6 +59,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
@@ -98,6 +102,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
@@ -139,6 +145,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
@@ -180,6 +188,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
@@ -221,6 +231,8 @@ spec:
         - "/usr/local/etc/redis/redis.conf"
         - "--protected-mode"
         - "no"
+        - "--appendonly"
+        - "yes"
       ports:
         - name: server
           containerPort: 6379
