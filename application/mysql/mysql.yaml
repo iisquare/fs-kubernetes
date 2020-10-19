@@ -23,7 +23,7 @@ spec:
         - name: mysql-data
           mountPath: /var/lib/mysql
   volumes:
-    - name: redis-config
+    - name: mysql-config
       configMap:
         name: mysql
         items:
@@ -58,7 +58,7 @@ spec:
         - name: mysql-data
           mountPath: /var/lib/mysql
   volumes:
-    - name: redis-config
+    - name: mysql-config
       configMap:
         name: mysql
         items:
@@ -93,7 +93,7 @@ spec:
         - name: mysql-data
           mountPath: /var/lib/mysql
   volumes:
-    - name: redis-config
+    - name: mysql-config
       configMap:
         name: mysql
         items:
