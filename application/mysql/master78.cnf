@@ -5,9 +5,11 @@ binlog_format=MIXED
 expire_log_days=7
 transaction-isolation=READ-COMMITTED
 
+secure_file_priv=/var/lib/mysql
+
 wait_timeout=10
 max_connections=2000
 long_query_time=2
 slow-query-log=on
-slow-query-log-file=/var/lib/mysql-files/logs/slow-query.log
+slow-query-log-file=/var/lib/mysql/slow-query.log
 log-queries-not-using-indexes
