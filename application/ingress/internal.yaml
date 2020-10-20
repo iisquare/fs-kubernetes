@@ -44,6 +44,10 @@ spec:
         app.kubernetes.io/component: controller
         ingress-affinity: ingress-nginx-controller-internal
     spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

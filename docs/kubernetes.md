@@ -41,7 +41,9 @@ kubeadm version
 ```
 kubeadm config images list --kubernetes-version=1.18.9
 docker pull xxx-name-version
-docker save -o k8s.tar xxx-id yyy-id
+docker save -o k8s-1.18.9.tar xxx-id yyy-id
+tar -czvf k8s-1.18.9.tar.gz k8s-1.18.9.tar
+tar -xzvf k8s-1.18.9.tar.gz
 docker load < k8s-1.18.9.tar
 docker tag xxx-id xxx-name-version
 ```

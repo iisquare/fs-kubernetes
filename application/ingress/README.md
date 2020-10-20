@@ -9,6 +9,10 @@
 ### 安装说明
 - 下载[部署文件](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.2/deploy/static/provider/cloud/deploy.yaml)
 - NodePort方式参考[Bare-metal](https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.2/deploy/static/provider/baremetal/deploy.yaml)
+- 导入镜像
+```
+docker tag 4b26fa2d90ae k8s.gcr.io/ingress-nginx/controller:v0.40.2
+```
 - 拆分部署文件并安装
   - namespace：命名空间
   - rbac：权限控制

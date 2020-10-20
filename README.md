@@ -31,6 +31,14 @@ kubectl get node --show-labels=true
 kubectl label nodes <node_name> key1=val1 key2=val2 # add
 kubectl label nodes <node_name> key1- key2- # delete
 ```
+- 污点和容忍度
+```
+kubectl get nodes -o json | jq '.items[].spec.taints'
+# effect:NoSchedule | PreferNoSchedule | NoExecute
+kubectl taint node <node-name> key=value:<effect> # add
+kubectl taint node <node-name> key- # delete
+kubectl taint node <node-name> key:<effect>- # delete
+```
 - ConfigMap
 ```
 kubectl create configmap <map-name> --from-file=/path/to/file
