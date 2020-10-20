@@ -53,7 +53,7 @@ spec:
                   operator: In
                   values:
                     - node78
-                    - node77
+                    - node79
                     - node80
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
