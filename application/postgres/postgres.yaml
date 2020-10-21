@@ -13,6 +13,8 @@ spec:
       env:
         - name: POSTGRES_PASSWORD
           value: admin888
+      args:
+        - "-c 'config_file=/etc/postgresql/postgresql.conf'"
       ports:
         - name: server
           containerPort: 5432
@@ -48,6 +50,8 @@ spec:
       env:
         - name: POSTGRES_PASSWORD
           value: admin888
+      args:
+        - "-c 'config_file=/etc/postgresql/postgresql.conf'"
       ports:
         - name: server
           containerPort: 5432
@@ -85,6 +89,8 @@ spec:
       env:
         - name: POSTGRES_PASSWORD
           value: admin888
+      args:
+        - "-c 'config_file=/etc/postgresql/postgresql.conf'"
       ports:
         - name: server
           containerPort: 5432

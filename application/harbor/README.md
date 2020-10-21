@@ -14,6 +14,12 @@ hostname: localhost
 ```
 ./install.sh
 ```
+- 导出表结构到外部数据库
+```
+pg_dump -U postgres -f /path/to/file <db_name>
+docker cp <database-id>:/path/to/dump.sql ./
+psql -d <db_name> -f /path/to/file postgres
+```
 
 ### 安装说明
 - 导入镜像
@@ -54,8 +60,8 @@ helm install svr-harbor harbor/harbor --version 1.5.0 \
   --set database.type=external \
   --set database.external.host=192.168.2.78 \
   --set database.external.port=5432 \
-  --set database.external.username=harbor \
-  --set database.external.password=harbor \
+  --set database.external.username=postgres \
+  --set database.external.password=admin888 \
   --set redis.type=external \
   --set redis.external.addr=192.168.2.77:6379 \
 ```
@@ -63,7 +69,6 @@ helm install svr-harbor harbor/harbor --version 1.5.0 \
 ```
 helm uninstall svr-harbor
 ```
-
 
 ### Habor管理
 - 上传镜像
