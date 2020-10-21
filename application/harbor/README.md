@@ -1,27 +1,8 @@
 # harbor
 仓库文件目前保存在NFS中，若熟悉Ceph运维，可迁移到更合适的方案上。
 
-### 独立安装-非K8S节点
-- 下载并解压[harbor-offline-installer-v2.1.0.tgz](https://github.com/goharbor/harbor/releases/tag/v2.1.0)
-- 修改配置文件
-```
-cp harbor.yml.tmpl harbor.yml
-vim harbor.yml
-hostname: localhost
-# 注释掉https相关配置
-```
-- 执行安装脚本
-```
-./install.sh
-```
-- 导出表结构到外部数据库
-```
-pg_dump -U postgres -f /path/to/file <db_name>
-docker cp <database-id>:/path/to/dump.sql ./
-psql -d <db_name> -f /path/to/file postgres
-```
-
 ### 安装说明
+- 下载并解压[harbor-offline-installer-v2.1.0.tgz](https://github.com/goharbor/harbor/releases/tag/v2.1.0)
 - 导入镜像
 ```
 docker load -i ./harbor.v2.1.0.tar.gz
@@ -57,13 +38,6 @@ helm install svr-harbor harbor/harbor --version 1.5.0 \
   --set persistence.persistentVolumeClaim.redis.subPath=redis \
   --set externalURL=harbor.iisquare.com \
   --set harborAdminPassword=admin888 \
-  --set database.type=external \
-  --set database.external.host=192.168.2.78 \
-  --set database.external.port=5432 \
-  --set database.external.username=postgres \
-  --set database.external.password=admin888 \
-  --set redis.type=external \
-  --set redis.external.addr=192.168.2.77:6379 \
 ```
 - 卸载
 ```
