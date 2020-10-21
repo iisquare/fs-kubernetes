@@ -2,7 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: lvs-nfs-storage
-provisioner: lvs-nfs/nfs-client-provisioner
+provisioner: lvs-app/nfs-client-provisioner
 parameters:
   archiveOnDelete: "false"
 ---
