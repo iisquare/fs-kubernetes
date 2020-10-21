@@ -1,4 +1,5 @@
 # harbor
+仓库文件目前保存在NFS中，若熟悉Ceph运维，可迁移到更合适的方案上。
 
 ### 独立安装-非K8S节点
 - 下载并解压[harbor-offline-installer-v2.1.0.tgz](https://github.com/goharbor/harbor/releases/tag/v2.1.0)
@@ -52,12 +53,11 @@ helm install svr-harbor harbor/harbor --version 1.5.0 \
   --set harborAdminPassword=admin888 \
   --set database.type=external \
   --set database.external.host=192.168.2.78 \
-  --set database.external.port=3306 \
+  --set database.external.port=5432 \
   --set database.external.username=harbor \
   --set database.external.password=harbor \
   --set redis.type=external \
-  --set redis.external.addr=192.168.2.74:6379,192.168.2.75:6379,192.168.2.76:6379 \
-  --set redis.external.sentinelMasterSet= \
+  --set redis.external.addr=192.168.2.77:6379 \
 ```
 - 卸载
 ```

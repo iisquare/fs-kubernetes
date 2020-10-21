@@ -21,9 +21,9 @@ kubectl create -f redis.yaml
 - 初始化集群
 ```
 redis-cli --cluster create 192.168.2.74:6379 192.168.2.75:6379 192.168.2.76:6379
-redis-cli --cluster add-node 192.168.2.78:6379 192.168.2.74:6379 --cluster-slave --cluster-master-id 2ba0fac1a5842651dca7114b485787ab57f6a423
-redis-cli --cluster add-node 192.168.2.79:6379 192.168.2.75:6379 --cluster-slave --cluster-master-id c22f3049632464b281b6214ea6e398693f8d6507
-redis-cli --cluster add-node 192.168.2.80:6379 192.168.2.76:6379 --cluster-slave --cluster-master-id 2dd4f0a55d21707d311338417676d67fdca9ad41
+redis-cli --cluster add-node 192.168.2.78:6379 192.168.2.74:6379 --cluster-slave --cluster-master-id 2f871fe865c1ca38214d564a2dc89ee04d2e4127
+redis-cli --cluster add-node 192.168.2.79:6379 192.168.2.75:6379 --cluster-slave --cluster-master-id 1da75d2b05eab4fc8ad30d6bb7b88f156bae9d94
+redis-cli --cluster add-node 192.168.2.80:6379 192.168.2.76:6379 --cluster-slave --cluster-master-id 1ce0c48a2fa0ee4e1dabafd92b83ab3291c9ebc8
 ```
 - 客户端连接
 ```
