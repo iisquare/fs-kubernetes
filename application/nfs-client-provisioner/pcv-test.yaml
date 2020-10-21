@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lvs-nfs-test
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: lvs-nfs-storage
+  resources:
+    requests:
+      storage: 1Mi

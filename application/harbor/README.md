@@ -17,7 +17,10 @@ kubectl edit pv nfs-pv-harbor
 ```
 helm repo add harbor https://helm.goharbor.io
 # Version:1.5.0, App Version:2.1.0
-helm install svr-harbor harbor/harbor --version 1.5.0 \
+helm install nfs harbor/harbor \
+  --version 1.5.0 \
+  --create-namespace \
+  --namespace lvs-app \
   --set expose.type=ingress \
   --set expose.tls.enabled=false \
   --set expose.ingress.hosts.core=harbor.iisquare.com \
@@ -25,23 +28,21 @@ helm install svr-harbor harbor/harbor --version 1.5.0 \
   --set expose.ingress.annotations.'kubernetes\.io/ingress\.class'=nginx-internal \
   --set internalTLS.enabled=false \
   --set persistence.enabled=true \
-  --set persistence.persistentVolumeClaim.registry.storageClass=nfs-harbor \
-  --set persistence.persistentVolumeClaim.registry.subPath=registry \
-  --set persistence.persistentVolumeClaim.registry.size=100Gi \
-  --set persistence.persistentVolumeClaim.chartmuseum.storageClass=nfs-harbor \
-  --set persistence.persistentVolumeClaim.chartmuseum.subPath=chartmuseum \
-  --set persistence.persistentVolumeClaim.jobservice.storageClass=nfs-harbor \
-  --set persistence.persistentVolumeClaim.jobservice.subPath=jobservice \
-  --set persistence.persistentVolumeClaim.database.storageClass=nfs-harbor \
-  --set persistence.persistentVolumeClaim.database.subPath=database \
-  --set persistence.persistentVolumeClaim.redis.storageClass=nfs-harbor \
-  --set persistence.persistentVolumeClaim.redis.subPath=redis \
+  --set persistence.persistentVolumeClaim.registry.storageClass=lvs-nfs-storage \
+  --set persistence.persistentVolumeClaim.registry.size=50Gi \
+  --set persistence.persistentVolumeClaim.chartmuseum.storageClass=lvs-nfs-storage \
+  --set persistence.persistentVolumeClaim.jobservice.storageClass=lvs-nfs-storage \
+  --set persistence.persistentVolumeClaim.database.storageClass=lvs-nfs-storage \
+  --set persistence.persistentVolumeClaim.redis.storageClass=lvs-nfs-storage \
+  --set persistence.persistentVolumeClaim.trivy.storageClass=lvs-nfs-storage \
   --set externalURL=harbor.iisquare.com \
   --set harborAdminPassword=admin888 \
 ```
 - 卸载
 ```
-helm uninstall svr-harbor
+helm uninstall nfs -n lvs-app
+kubectl get pvc -n lvs-app
+kubectl delete pvc --all -n lvs-app
 ```
 
 ### Habor管理
