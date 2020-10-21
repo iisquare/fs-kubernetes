@@ -45,18 +45,10 @@ kubectl create configmap <map-name> --from-file=/path/to/file
 kubectl describe configmaps <map-name>
 kubectl get configmaps <map-name> -o yaml
 ```
-
-### Habor管理
-- 上传镜像
+- 证书管理
 ```
-# 拉取镜像
-docker pull k8s.gcr.io/kubernetes-zookeeper:1.0-3.4.10
-# 生成标签
-docker tag anjia0532/google-containers.kubernetes-zookeeper:1.0-3.4.10 harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
-# 登录仓库
-docker login --username=admin harbor.iisquare.com
-# 推送镜像
-docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
+kubeadm alpha certs check-expiration
+kubeadm alpha certs renew
 ```
 
 ### 参考链接
