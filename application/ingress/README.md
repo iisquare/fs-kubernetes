@@ -32,6 +32,10 @@ tar -chzvf iisquare.tar.gz iisquare.com
 kubectl create secret tls ingress-secret --key privkey.pem --cert fullchain.pem -n ingress-nginx
 kubectl get secrets -n ingress-nginx
 ```
+- 配置 Ingress 开启 TLS
+```
+kubectl apply -f tls.yaml
+```
 
 ### 参考
 - [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
