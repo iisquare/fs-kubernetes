@@ -2,7 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: lvs-nfs-storage
-provisioner: lvs-app/nfs-client-provisioner
+provisioner: lvs-nfs-provisioner
 parameters:
   archiveOnDelete: "false"
 ---
@@ -32,7 +32,7 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: fuseim.pri/ifs
+              value: lvs-nfs-provisioner
             - name: NFS_SERVER
               value: 192.168.2.77
             - name: NFS_PATH
