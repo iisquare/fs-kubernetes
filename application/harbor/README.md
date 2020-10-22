@@ -62,3 +62,4 @@ docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
 ### 参考
 - [Installation & Configuration Guide](https://goharbor.io/docs/2.1.0/install-config/)
 - [harbor-helm](https://github.com/goharbor/harbor-helm)
+- [expose.tls.secretName try to volume mount to core pod](https://github.com/goharbor/harbor-helm/issues/261)

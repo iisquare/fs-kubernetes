@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - k8s.iisquare.com
+    - k8s-external.iisquare.com
     secretName: ingress-secret
   rules:
-  - host: k8s.iisquare.com
+  - host: k8s-external.iisquare.com
     http:
       paths:
       - path: /
