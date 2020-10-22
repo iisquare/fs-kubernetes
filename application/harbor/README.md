@@ -23,11 +23,9 @@ helm install nfs harbor/harbor \
   --namespace lvs-app \
   --set expose.type=ingress \
   --set expose.tls.enabled=true \
-  --set expose.tls.certSource=secret \
+  --set expose.tls.certSource=none \ # use default ingress ssl certificate
   --set expose.ingress.hosts.core=harbor.iisquare.com \
-  --set expose.tls.secret.secretName=ingress-secret \
   --set expose.ingress.hosts.notary=notary.iisquare.com \
-  --set expose.tls.secret.notarySecretName=ingress-secret \
   --set expose.ingress.annotations.'kubernetes\.io/ingress\.class'=nginx-internal \
   --set internalTLS.enabled=false \
   --set persistence.enabled=true \
