@@ -15,3 +15,7 @@
 
 - 静态共享节点：Kibana、Prometheus、Grafana
 - 功能测试节点：独立容器或GPU服务
+
+### 参考
+- [Docker Hub](https://hub.docker.com/)
+- [Helm Charts](https://hub.helm.sh/)

@@ -7,23 +7,17 @@
 ```
 docker load -i ./harbor.v2.1.0.tar.gz
 ```
-- 分配NFS存储
-```
-kubectl create -f nfs-pv.yaml
-kubectl get pv
-kubectl edit pv nfs-pv-harbor
-```
 - 通过helm安装
 ```
 helm repo add harbor https://helm.goharbor.io
 # Version:1.5.0, App Version:2.1.0
-helm install nfs harbor/harbor \
+helm install svr-harbor harbor/harbor \
   --version 1.5.0 \
   --create-namespace \
   --namespace lvs-app \
   --set expose.type=ingress \
   --set expose.tls.enabled=true \
-  --set expose.tls.certSource=none \ # use default ingress ssl certificate
+  --set expose.tls.certSource=none \
   --set expose.ingress.hosts.core=harbor.iisquare.com \
   --set expose.ingress.hosts.notary=notary.iisquare.com \
   --set expose.ingress.annotations.'kubernetes\.io/ingress\.class'=nginx-internal \
@@ -41,7 +35,7 @@ helm install nfs harbor/harbor \
 ```
 - 卸载
 ```
-helm uninstall nfs -n lvs-app
+helm uninstall svr-harbor -n lvs-app
 kubectl get pvc -n lvs-app
 kubectl delete pvc --all -n lvs-app
 ```
