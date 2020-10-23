@@ -29,13 +29,22 @@ istioctl kube-inject -f <your-app-spec>.yaml | kubectl apply -f -
 ```
 istioctl manifest generate -f k8s.yaml | kubectl delete -f -
 ```
+- 安装jaeger
+```
+kubectl create -f pvc-jaeger.yaml
+kubectl create -f jaeger.yaml
+```
 - 安装Kiali
 ```
-kubectl apply -f kiali.yaml
+kubectl create -f kiali-secret.yaml
+kubectl create -f kiali.yaml
 # run again to fixed: no matches for kind "MonitoringDashboard" in version "monitoring.kiali.io/v1alpha1"
 kubectl apply -f kiali.yaml
 ```
-
+- 配置ingress
+```
+kubectl create -f ingress.yaml
+```
 
 ### 参考
 - [istio.io/latest/zh](https://istio.io/latest/zh/docs/setup/getting-started/)
