@@ -263,7 +263,7 @@ spec:
           address: ""                # example: lightstep-satellite:443
           accessToken: ""            # example: abcdefg1234567
         zipkin:
-          address: ""
+          address: "http://zipkin.istio-system:9411"
         datadog:
           address: "$(HOST_IP):8126"
         stackdriver:
