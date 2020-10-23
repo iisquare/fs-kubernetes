@@ -78,7 +78,7 @@ data:
         username_claim: sub
       openshift:
         client_id_prefix: kiali
-      strategy: anonymous
+      strategy: login
     deployment:
       accessible_namespaces:
       - '**'
@@ -126,11 +126,11 @@ data:
         auth:
           ca_file: ""
           insecure_skip_verify: false
-          password: ""
+          password: "grafana"
           token: ""
           type: none
           use_kiali_token: false
-          username: ""
+          username: "admin"
         dashboards:
         - name: Istio Service Dashboard
           variables:
@@ -141,7 +141,7 @@ data:
             namespace: var-namespace
             workload: var-workload
         enabled: true
-        in_cluster_url: http://grafana:3000
+        in_cluster_url: http://grafana.monitoring:3000
         url: ""
       istio:
         istio_identity_domain: svc.cluster.local
@@ -157,8 +157,8 @@ data:
           type: none
           use_kiali_token: false
           username: ""
-        custom_metrics_url: http://prometheus:9090
-        url: http://prometheus:9090
+        custom_metrics_url: http://prometheus-k8s.monitoring:9090
+        url: http://prometheus-k8s.monitoring:9090
       tracing:
         auth:
           ca_file: ""
