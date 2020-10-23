@@ -579,6 +579,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: SERVER_CREDENTIALS_USERNAME
+          value: admin
+        - name: SERVER_CREDENTIALS_PASSWORD
+          value: admin888
         volumeMounts:
         - name: kiali-configuration
           mountPath: "/kiali-configuration"
