@@ -171,7 +171,7 @@ data:
         enabled: true
         in_cluster_url: http://tracing/jaeger
         namespace_selector: true
-        url: "https://jaeger.iisquare.com"
+        url: "https://jaeger.iisquare.com/jaeger"
         whitelist_istio_system:
         - jaeger-query
         - istio-ingressgateway

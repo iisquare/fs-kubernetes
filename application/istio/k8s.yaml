@@ -263,7 +263,7 @@ spec:
           address: ""                # example: lightstep-satellite:443
           accessToken: ""            # example: abcdefg1234567
         zipkin:
-          address: "http://zipkin.istio-system:9411"
+          address: "zipkin.istio-system:9411"
         datadog:
           address: "$(HOST_IP):8126"
         stackdriver:
@@ -312,7 +312,7 @@ spec:
       autoscaleMax: 5
       replicaCount: 1
       image: pilot
-      traceSampling: 1.0
+      traceSampling: 100.0
       configNamespace: istio-config
       appNamespaces: []
       env: {}
@@ -358,13 +358,13 @@ spec:
         kubernetesenv:
           enabled: true
         stackdriver:
-          enabled: false
+          enabled: true
           auth:
             appCredentials: false
             apiKey: ""
             serviceAccountPath: ""
           tracer:
-            enabled: false
+            enabled: true
             sampleProbability: 1
         useAdapterCRDs: false
 
@@ -510,8 +510,8 @@ spec:
         memory:
           max_traces: 50000
         spanStorageType: badger
-        persist: false
-        storageClassName: ""
+        persist: true
+        storageClassName: "lvs-nfs-storage"
         accessMode: ReadWriteMany
       zipkin:
         hub: docker.io/openzipkin
