@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-internal-kiali
+  namespace: istio-system
+  annotations:
+    kubernetes.io/ingress.class: "nginx-internal"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: kiali.iisquare.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kiali
+          servicePort: 20001
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-internal-jaeger
+  namespace: istio-system
+  annotations:
+    kubernetes.io/ingress.class: "nginx-internal"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: jaeger.iisquare.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tracing
+          servicePort: 80
