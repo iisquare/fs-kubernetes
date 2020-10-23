@@ -128,7 +128,7 @@ data:
           insecure_skip_verify: false
           password: "grafana"
           token: ""
-          type: none
+          type: basic
           use_kiali_token: false
           username: "admin"
         dashboards:
@@ -142,7 +142,7 @@ data:
             workload: var-workload
         enabled: true
         in_cluster_url: http://grafana.monitoring:3000
-        url: ""
+        url: "https://grafana.iisquare.com"
       istio:
         istio_identity_domain: svc.cluster.local
         istio_sidecar_annotation: sidecar.istio.io/status
@@ -158,7 +158,7 @@ data:
           use_kiali_token: false
           username: ""
         custom_metrics_url: http://prometheus-k8s.monitoring:9090
-        url: http://prometheus-k8s.monitoring:9090
+        url: https://prometheus.iisquare.com
       tracing:
         auth:
           ca_file: ""
@@ -171,7 +171,7 @@ data:
         enabled: true
         in_cluster_url: http://tracing/jaeger
         namespace_selector: true
-        url: ""
+        url: "https://jaeger.iisquare.com"
         whitelist_istio_system:
         - jaeger-query
         - istio-ingressgateway
