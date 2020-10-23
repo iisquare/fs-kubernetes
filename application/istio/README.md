@@ -45,6 +45,7 @@ kubectl apply -f kiali.yaml
 ```
 kubectl create -f ingress.yaml
 ```
+- 测试用例[Bookinfo](https://istio.io/latest/zh/docs/examples/bookinfo/)
 
 ### 参考
 - [istio.io/latest/zh](https://istio.io/latest/zh/docs/setup/getting-started/)
