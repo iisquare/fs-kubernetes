@@ -1,6 +1,11 @@
 # kibana
 
 ### 如何使用
+- 清理
+```
+kubectl delete -f kibana.yaml
+kubectl delete configmaps kibana -n svr-app
+```
 - 导入配置文件
 ```
 kubectl create configmap kibana --from-file=kibana.yml --from-file=node.options -n svr-app
@@ -8,6 +13,10 @@ kubectl create configmap kibana --from-file=kibana.yml --from-file=node.options 
 - 应用配置清单
 ```
 kubectl create -f kibana.yaml
+```
+- 配置ingress
+```
+kubectl create -f ingress.yaml
 ```
 
 ### 参考链接

@@ -27,19 +27,19 @@ spec:
         app: kibana
     spec:
       containers:
-        - name: kibana
-          image: docker.elastic.co/kibana/kibana:7.9.3
-          ports:
-          - name: rest
-            containerPort: 5601
-          volumeMounts:
-          - name: kibana-config
-            mountPath: "/usr/share/kibana/config/kibana.yml"
-            subPath: kibana.yml
-          - name: kibana-config
-            mountPath: "/usr/share/kibana/config/node.options"
-            subPath: node.options
+      - name: kibana
+        image: docker.elastic.co/kibana/kibana:7.9.3
+        ports:
+        - name: rest
+          containerPort: 5601
+        volumeMounts:
+        - name: kibana-config
+          mountPath: "/usr/share/kibana/config/kibana.yml"
+          subPath: kibana.yml
+        - name: kibana-config
+          mountPath: "/usr/share/kibana/config/node.options"
+          subPath: node.options
       volumes:
       - name: kibana-config
-          configMap:
-            name: kibana
+        configMap:
+          name: kibana
