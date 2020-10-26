@@ -27,6 +27,8 @@ spec:
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
           mountPath: /usr/share/elasticsearch/logs
+        - name: elasticsearch-keystore
+          mountPath: /usr/share/elasticsearch/keystore
   volumes:
     - name: elasticsearch-config
       configMap:
@@ -44,6 +46,9 @@ spec:
     - name: elasticsearch-logs
       hostPath:
         path: /data/k8s-pv/elasticsearch/logs
+    - name: elasticsearch-keystore
+      hostPath:
+        path: /data/k8s-pv/elasticsearch/keystore
 ---
 kind: Pod
 apiVersion: v1
@@ -74,6 +79,8 @@ spec:
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
           mountPath: /usr/share/elasticsearch/logs
+        - name: elasticsearch-keystore
+          mountPath: /usr/share/elasticsearch/keystore
   volumes:
     - name: elasticsearch-config
       configMap:
@@ -91,6 +98,9 @@ spec:
     - name: elasticsearch-logs
       hostPath:
         path: /data/k8s-pv/elasticsearch/logs
+    - name: elasticsearch-keystore
+      hostPath:
+        path: /data/k8s-pv/elasticsearch/keystore
 ---
 kind: Pod
 apiVersion: v1
@@ -121,6 +131,8 @@ spec:
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
           mountPath: /usr/share/elasticsearch/logs
+        - name: elasticsearch-keystore
+          mountPath: /usr/share/elasticsearch/keystore
   volumes:
     - name: elasticsearch-config
       configMap:
@@ -138,3 +150,6 @@ spec:
     - name: elasticsearch-logs
       hostPath:
         path: /data/k8s-pv/elasticsearch/logs
+    - name: elasticsearch-keystore
+      hostPath:
+        path: /data/k8s-pv/elasticsearch/keystore

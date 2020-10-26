@@ -89,3 +89,6 @@ cluster.initial_master_nodes: ["node-78", "node-79", "node-80"]
 
 http.cors.enabled: true
 http.cors.allow-origin: "*"
+ssl.keystore.path: /data/k8s-pv/elasticsearch/keystore/ssl
+signing.keystore.path: /data/k8s-pv/elasticsearch/keystore/signing
+encryption.keystore.path: /data/k8s-pv/elasticsearch/keystore/encryption
