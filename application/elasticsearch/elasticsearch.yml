@@ -80,7 +80,7 @@ cluster.initial_master_nodes: ["node-78", "node-79", "node-80"]
 #gateway.recover_after_nodes: 3
 
 # For more information, consult the gateway mo#gateway.recover_after_nodes: 3
--------------------------- Various -----------------------------------
+# -------------------------- Various -----------------------------------
 #
 # Require explicit names when deleting indices:
 #
