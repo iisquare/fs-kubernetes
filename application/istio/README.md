@@ -38,6 +38,8 @@ kubectl create -f /opt/istio-1.7.3/samples/addons/extras/prometheus-operator.yam
 ```
 - 配置[grafana](https://istio.io/latest/docs/ops/integrations/grafana/)
 ```
+yum install epel-release
+yum install jq
 sh grafana.sh
 ```
 
