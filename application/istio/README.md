@@ -56,13 +56,45 @@ kubectl create -f kiali.yaml
 # run again to fixed: no matches for kind "MonitoringDashboard" in version "monitoring.kiali.io/v1alpha1"
 kubectl apply -f kiali.yaml
 ```
-
-### Bookinfo
 - 配置ingress
 ```
 kubectl create -f ingress.yaml
 ```
-- 测试用例[Bookinfo](https://istio.io/latest/zh/docs/examples/bookinfo/)
+
+### [Bookinfo](https://istio.io/latest/zh/docs/examples/bookinfo/)
+- 创建命名空间
+```
+kubectl create ns test-bookinfo
+```
+- 自动注入
+```
+kubectl label namespace test-bookinfo istio-injection=enabled
+```
+- 创建实例
+```
+kubectl apply -n test-bookinfo -f /opt/istio-1.7.3/samples/bookinfo/platform/kube/bookinfo.yaml
+```
+- 访问测试
+```
+kubectl get services -n test-bookinfo
+kubectl get pods -n test-bookinfo
+kubectl exec -it $(kubectl get pod -n test-bookinfo -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -n test-bookinfo -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+```
+- 配置网关
+```
+kubectl apply -n test-bookinfo -f /opt/istio-1.7.3/samples/bookinfo/networking/bookinfo-gateway.yaml
+kubectl get Gateway -n test-bookinfo
+curl -s http://istio.iisquare.com/productpage | grep -o "<title>.*</title>"
+```
+- 应用规则
+```
+kubectl apply -n test-bookinfo -f /opt/istio-1.7.3/samples/bookinfo/networking/destination-rule-all.yaml
+kubectl get destinationrules -n test-bookinfo -o yaml
+```
+- 清理
+```
+sh /opt/istio-1.7.3/samples/bookinfo/platform/kube/cleanup.sh
+```
 
 ### 参考
 - [istio.io/latest/zh](https://istio.io/latest/zh/docs/setup/getting-started/)

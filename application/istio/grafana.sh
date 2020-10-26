@@ -3,7 +3,7 @@ GRAFANA_HOST="https://grafana.iisquare.com"
 # Login credentials, if authentication is used
 GRAFANA_CRED="admin:grafana"
 # The name of the Prometheus data source to use
-GRAFANA_DATASOURCE="Prometheus"
+GRAFANA_DATASOURCE="prometheus"
 # The version of Istio to deploy
 VERSION=1.7
 # Import all Istio dashboards
