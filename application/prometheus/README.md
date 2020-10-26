@@ -6,6 +6,11 @@
 git clone https://github.com/prometheus-operator/kube-prometheus.git
 git checkout release-0.6
 ```
+- 创建命名空间
+```
+rm rm manifests/setup/0namespace-namespace.yaml
+kubectl create namespace monitoring
+```
 - 为grafana添加持久卷
 ```
 kubectl create -f pvc-grafana.yaml
@@ -48,8 +53,10 @@ vim manifests/setup/prometheus-operator-deployment.yaml
 kubectl create -f manifests/setup/
 kubectl create -f manifests/
 ```
-
-
+- 配置ingress
+```
+kubectl create -f ingress.yaml
+```
 
 ### 参考
 - [k8s安装prometheus并持久化数据](https://www.fenghong.tech/blog/kubernetes/kubernetes-promtheus-persist-storage/)
