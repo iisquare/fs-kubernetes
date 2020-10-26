@@ -19,7 +19,8 @@ spec:
       value: admin888
     ports:
     - name: server
-      containerPort: 5672
+      containerPort: 4369
+      hostPort: 4369
     - name: management
       containerPort: 15672
     volumeMounts:
@@ -51,7 +52,8 @@ spec:
       value: admin888
     ports:
     - name: server
-      containerPort: 5672
+      containerPort: 4369
+      hostPort: 4369
     - name: management
       containerPort: 15672
     volumeMounts:
@@ -83,7 +85,8 @@ spec:
       value: admin888
     ports:
     - name: server
-      containerPort: 5672
+      containerPort: 4369
+      hostPort: 4369
     - name: management
       containerPort: 15672
     volumeMounts:
