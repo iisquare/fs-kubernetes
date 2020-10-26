@@ -20,7 +20,7 @@ cluster.name: k8s-elasticsearch
 #
 # Use a descriptive name for the node:
 #
-#node.name: node-1
+node.name: node-79
 #
 # Add custom attributes to the node:
 #
@@ -89,6 +89,7 @@ cluster.initial_master_nodes: ["node-78", "node-79", "node-80"]
 
 node.master: true 
 node.data: true
+network.publish_host: 192.168.2.79
 http.cors.enabled: true
 http.cors.allow-origin: "*"
 #ssl.keystore.path: /usr/share/elasticsearch/keystore/ssl

@@ -23,7 +23,7 @@ spec:
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
+          subPath: node78.yml
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/jvm.options"
           subPath: jvm.options
@@ -75,7 +75,7 @@ spec:
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
+          subPath: node79.yml
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/jvm.options"
           subPath: jvm.options
@@ -127,7 +127,7 @@ spec:
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
+          subPath: node80.yml
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/jvm.options"
           subPath: jvm.options
