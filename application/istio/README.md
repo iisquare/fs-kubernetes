@@ -29,6 +29,19 @@ istioctl kube-inject -f <your-app-spec>.yaml | kubectl apply -f -
 ```
 istioctl manifest generate -f k8s.yaml | kubectl delete -f -
 ```
+
+### 服务监控
+- 集成prometheus
+```
+kubectl create -f prometheus.yaml
+kubectl create -f /opt/istio-1.7.3/samples/addons/extras/prometheus-operator.yaml
+```
+- 配置[grafana](https://istio.io/latest/docs/ops/integrations/grafana/)
+```
+sh grafana.sh
+```
+
+### 服务治理
 - 安装jaeger
 ```
 kubectl create -f pvc-jaeger.yaml
@@ -41,6 +54,8 @@ kubectl create -f kiali.yaml
 # run again to fixed: no matches for kind "MonitoringDashboard" in version "monitoring.kiali.io/v1alpha1"
 kubectl apply -f kiali.yaml
 ```
+
+### Bookinfo
 - 配置ingress
 ```
 kubectl create -f ingress.yaml
