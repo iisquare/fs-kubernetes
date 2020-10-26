@@ -20,7 +20,7 @@ cluster.name: k8s-elasticsearch
 #
 # Use a descriptive name for the node:
 #
-node.name: node-80
+# node.name: node-1
 #
 # Add custom attributes to the node:
 #
@@ -52,7 +52,7 @@ path.logs: /usr/share/elasticsearch/logs
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
 #
-#network.host: 192.168.0.1
+network.host: 0.0.0.0
 #
 # Set a custom port for HTTP:
 #
@@ -69,7 +69,7 @@ discovery.seed_hosts: ["192.168.2.78", "192.168.2.79", "192.168.2.80"]
 #
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 #
-cluster.initial_master_nodes: ["node-80"]
+cluster.initial_master_nodes: ["node-78", "node-79", "node-80"]
 #
 # For more information, consult the discovery and cluster formation module documentation.
 #
@@ -87,7 +87,6 @@ cluster.initial_master_nodes: ["node-80"]
 #
 #action.destructive_requires_name: true
 
-network.publish_host: 192.168.2.80
 http.cors.enabled: true
 http.cors.allow-origin: "*"
 #ssl.keystore.path: /usr/share/elasticsearch/keystore/ssl

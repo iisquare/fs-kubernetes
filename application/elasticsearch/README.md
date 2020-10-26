@@ -22,7 +22,7 @@ kubectl create ns svr-app
 ```
 - 导入配置文件
 ```
-kubectl create configmap elasticsearch --from-file=node78.yml --from-file=node79.yml --from-file=node80.yml --from-file=jvm.options --from-file=log4j2.properties -n svr-app
+kubectl create configmap elasticsearch --from-file=elasticsearch.yml --from-file=jvm.options --from-file=log4j2.properties -n svr-app
 ```
 - 应用配置清单
 ```
