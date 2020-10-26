@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  namespace: svr-app
+spec:
+  ports:
+  - port: 5601
+    name: rest
+  clusterIP: None
+  selector:
+    app: kibana
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: svr-app
+  name: kibana
+spec:
+  selector:
+    matchLabels:
+      app: kibana
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana
+          image: docker.elastic.co/kibana/kibana:7.9.3
+          ports:
+          - name: rest
+            containerPort: 5601
+          volumeMounts:
+          - name: kibana-config
+            mountPath: "/usr/share/kibana/config/kibana.yml"
+            subPath: kibana.yml
+          - name: kibana-config
+            mountPath: "/usr/share/kibana/config/node.options"
+            subPath: node.options
+      volumes:
+      - name: kibana-config
+          configMap:
+            name: kibana
