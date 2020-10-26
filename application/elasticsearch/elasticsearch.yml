@@ -89,6 +89,6 @@ cluster.initial_master_nodes: ["node-78", "node-79", "node-80"]
 
 http.cors.enabled: true
 http.cors.allow-origin: "*"
-ssl.keystore.path: /usr/share/elasticsearch/keystore/ssl
-signing.keystore.path: /usr/share/elasticsearch/keystore/signing
-encryption.keystore.path: /usr/share/elasticsearch/keystore/encryption
+#ssl.keystore.path: /usr/share/elasticsearch/keystore/ssl
+#signing.keystore.path: /usr/share/elasticsearch/keystore/signing
+#encryption.keystore.path: /usr/share/elasticsearch/keystore/encryption
