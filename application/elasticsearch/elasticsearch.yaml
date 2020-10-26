@@ -22,7 +22,14 @@ spec:
           hostPort: 9300
       volumeMounts:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config"
+          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+          subPath: elasticsearch.yml
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/jvm.options"
+          subPath: jvm.options
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+          subPath: log4j2.properties
         - name: elasticsearch-data
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
@@ -33,13 +40,6 @@ spec:
     - name: elasticsearch-config
       configMap:
         name: elasticsearch
-        items:
-          - key: "elasticsearch.yml"
-            path: "elasticsearch.yml"
-          - key: "jvm.options"
-            path: "jvm.options"
-          - key: "log4j2.properties"
-            path: "log4j2.properties"
     - name: elasticsearch-data
       hostPath:
         path: /data/k8s-pv/elasticsearch/data
@@ -74,7 +74,14 @@ spec:
           hostPort: 9300
       volumeMounts:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config"
+          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+          subPath: elasticsearch.yml
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/jvm.options"
+          subPath: jvm.options
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+          subPath: log4j2.properties
         - name: elasticsearch-data
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
@@ -85,13 +92,6 @@ spec:
     - name: elasticsearch-config
       configMap:
         name: elasticsearch
-        items:
-          - key: "elasticsearch.yml"
-            path: "elasticsearch.yml"
-          - key: "jvm.options"
-            path: "jvm.options"
-          - key: "log4j2.properties"
-            path: "log4j2.properties"
     - name: elasticsearch-data
       hostPath:
         path: /data/k8s-pv/elasticsearch/data
@@ -126,7 +126,14 @@ spec:
           hostPort: 9300
       volumeMounts:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config"
+          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+          subPath: elasticsearch.yml
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/jvm.options"
+          subPath: jvm.options
+        - name: elasticsearch-config
+          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+          subPath: log4j2.properties
         - name: elasticsearch-data
           mountPath: /usr/share/elasticsearch/data
         - name: elasticsearch-logs
@@ -137,13 +144,6 @@ spec:
     - name: elasticsearch-config
       configMap:
         name: elasticsearch
-        items:
-          - key: "elasticsearch.yml"
-            path: "elasticsearch.yml"
-          - key: "jvm.options"
-            path: "jvm.options"
-          - key: "log4j2.properties"
-            path: "log4j2.properties"
     - name: elasticsearch-data
       hostPath:
         path: /data/k8s-pv/elasticsearch/data

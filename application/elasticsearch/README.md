@@ -24,6 +24,10 @@ kubectl create configmap elasticsearch --from-file=elasticsearch.yml --from-file
 ```
 kubectl create -f elasticsearch.yaml
 ```
+- 修改目录权限
+```
+chmod -R 777 /data/k8s-pv/elasticsearch/
+```
 
 ### 参考链接
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.html)
