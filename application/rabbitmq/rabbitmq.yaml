@@ -1,0 +1,95 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: rabbitmq-node78
+  namespace: svr-app
+  labels:
+    app: rabbitmq
+spec:
+  nodeName: node78
+  containers:
+  - name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    env:
+    - name: RABBITMQ_ERLANG_COOKIE
+      value: k8s-rabbitmq
+    - name: RABBITMQ_DEFAULT_USER
+      value: admin
+    - name: RABBITMQ_DEFAULT_PASS
+      value: admin888
+    ports:
+    - name: server
+      containerPort: 5672
+    - name: management
+      containerPort: 15672
+    volumeMounts:
+    - name: rabbitmq-data
+      mountPath: /var/lib/rabbitmq/mnesia
+  volumes:
+  - name: rabbitmq-data
+    hostPath:
+      path: /data/k8s-pv/myrabbitmqsql
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: rabbitmq-node79
+  namespace: svr-app
+  labels:
+    app: rabbitmq
+spec:
+  nodeName: node79
+  containers:
+  - name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    env:
+    - name: RABBITMQ_ERLANG_COOKIE
+      value: k8s-rabbitmq
+    - name: RABBITMQ_DEFAULT_USER
+      value: admin
+    - name: RABBITMQ_DEFAULT_PASS
+      value: admin888
+    ports:
+    - name: server
+      containerPort: 5672
+    - name: management
+      containerPort: 15672
+    volumeMounts:
+    - name: rabbitmq-data
+      mountPath: /var/lib/rabbitmq/mnesia
+  volumes:
+  - name: rabbitmq-data
+    hostPath:
+      path: /data/k8s-pv/myrabbitmqsql
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: rabbitmq-node80
+  namespace: svr-app
+  labels:
+    app: rabbitmq
+spec:
+  nodeName: node80
+  containers:
+  - name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    env:
+    - name: RABBITMQ_ERLANG_COOKIE
+      value: k8s-rabbitmq
+    - name: RABBITMQ_DEFAULT_USER
+      value: admin
+    - name: RABBITMQ_DEFAULT_PASS
+      value: admin888
+    ports:
+    - name: server
+      containerPort: 5672
+    - name: management
+      containerPort: 15672
+    volumeMounts:
+    - name: rabbitmq-data
+      mountPath: /var/lib/rabbitmq/mnesia
+  volumes:
+  - name: rabbitmq-data
+    hostPath:
+      path: /data/k8s-pv/myrabbitmqsql
