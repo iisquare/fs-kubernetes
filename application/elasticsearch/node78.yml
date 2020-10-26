@@ -87,6 +87,7 @@ cluster.initial_master_nodes: ["node-78"]
 #
 #action.destructive_requires_name: true
 
+network.publish_host: 192.168.2.78
 http.cors.enabled: true
 http.cors.allow-origin: "*"
 #ssl.keystore.path: /usr/share/elasticsearch/keystore/ssl
