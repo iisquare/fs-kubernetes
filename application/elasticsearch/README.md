@@ -6,6 +6,10 @@
 - 配置清单没有采用StatefulSet方式，直接采用Pod部署以方便单节点修改
 
 ### 如何使用
+- 宿主机环境
+```
+sysctl -w vm.max_map_count=262144
+```
 - 清理
 ```
 kubectl delete -f elasticsearch.yaml
