@@ -14,4 +14,4 @@ spec:
       - path: /
         backend:
           serviceName: nebula-web
-          servicePort: 80
+          servicePort: 7000

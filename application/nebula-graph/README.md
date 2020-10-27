@@ -19,6 +19,7 @@ kubectl create -f nebula-graphd.yaml
 ```
 - 安装studio
 ```
+kubectl delete configmaps studio -n nebula-graph
 kubectl create configmap studio --from-file=nginx.conf -n nebula-graph
 kubectl create -f nebula-web.yaml
 ```
