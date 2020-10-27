@@ -20,7 +20,7 @@ kubectl -n svr-app logs rabbitmq-node78
 - 将node79和node80上加入node78
 ```
 rabbitmqctl stop_app
-rabbitmqctl join_cluster rabbit@192.168.2.78
+rabbitmqctl join_cluster rabbit@rabbitmq-node78
 rabbitmqctl start_app
 rabbitmqctl cluster_status
 ```
