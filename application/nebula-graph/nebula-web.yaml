@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nebula-web
-  namespace: svr-app
+  namespace: nebula-graph
   labels:
     app: nebula-web
 spec:
@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nebula-web
-  namespace: svr-app
+  namespace: nebula-graph
 spec:
   selector:
     matchLabels:

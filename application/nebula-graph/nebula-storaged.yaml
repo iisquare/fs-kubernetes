@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nebula-storaged
+  namespace: nebula-graph
+spec:
+  selector:
+    matchLabels:
+      app: nebula-storaged
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nebula-storaged
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - node78
+                  - node79
+                  - node80
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: "app"
+                  operator: In
+                  values:
+                  - nebula-storaged
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: nebula-storaged
+        image: vesoft/nebula-storaged:v1.1.0
+        env:
+        - name: USER
+          value: root
+        - name: TZ
+          value: UTC
+        args:
+        - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
+        - --local_ip=0.0.0.0
+        - --ws_ip=0.0.0.0
+        - --port=44500
+        - --data_path=/data
+        - --log_dir=/logs
+        - --v=0
+        - --minloglevel=0
+        ports:
+        - name: storaged
+          containerPort: 44500
+          hostPort: 44500
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 12000
+          initialDelaySeconds: 20
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        volumeMounts:
+        - name: nebula-storaged-data
+          mountPath: /data
+        - name: nebula-storaged-logs
+          mountPath: /logs
+      volumes:
+      - name: nebula-storaged-data
+        hostPath:
+          path: /data/k8s-pv/nebula-graph/storaged/data
+      - name: nebula-storaged-logs
+        hostPath:
+          path: /data/k8s-pv/nebula-graph/storaged/logs
