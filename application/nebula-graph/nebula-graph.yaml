@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nebula-graph
 spec:
-  ports：
+  ports:
   - name: graphd
     port: 3699
   selector:
@@ -57,7 +57,7 @@ spec:
         - name: TZ
           value: UTC
         args:
-        - --meta_server_addrs=nebula-metad-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-2.nebula-graph.svr-app.svc.cluster.local:45500
+        - --meta_server_addrs=nebula-graph-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-2.nebula-graph.svr-app.svc.cluster.local:45500
         - --local_ip=0.0.0.0
         - --ws_ip=0.0.0.0
         - --port=45500
@@ -86,7 +86,7 @@ spec:
         - name: TZ
           value: UTC
         args:
-        - --meta_server_addrs=nebula-metad-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-2.nebula-graph.svr-app.svc.cluster.local:45500
+        - --meta_server_addrs=nebula-graph-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-2.nebula-graph.svr-app.svc.cluster.local:45500
         - --local_ip=0.0.0.0
         - --ws_ip=0.0.0.0
         - --port=44500
@@ -115,7 +115,7 @@ spec:
         - name: TZ
           value: UTC
         args:
-        - --meta_server_addrs=nebula-metad-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-metad-2.nebula-graph.svr-app.svc.cluster.local:45500
+        - --meta_server_addrs=nebula-graph-0.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-1.nebula-graph.svr-app.svc.cluster.local:45500,nebula-graph-2.nebula-graph.svr-app.svc.cluster.local:45500
         - --ws_ip=0.0.0.0
         - --port=3699
         - --log_dir=/logs
