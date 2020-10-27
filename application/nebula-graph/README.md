@@ -6,11 +6,23 @@
 kubectl create ns nebula-graph
 ```
 - 安装metad
+```
+kubectl create -f nebula-metad.yaml
+```
 - 安装storaged
+```
+kubectl create -f nebula-storaged.yaml
+```
 - 安装graphd
+```
+kubectl create -f nebula-graphd.yaml
+```
 - 安装studio
-
-
+```
+```
+- 配置ingress
+```
+```
 
 ### 参考链接
 - [图数据库对比：Neo4j vs Nebula Graph vs HugeGraph](https://my.oschina.net/u/4169309/blog/4532482)
