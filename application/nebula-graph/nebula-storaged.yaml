@@ -54,14 +54,6 @@ spec:
         - name: storaged
           containerPort: 44500
           hostPort: 44500
-        livenessProbe:
-          httpGet:
-            path: /status
-            port: 12000
-          initialDelaySeconds: 20
-          periodSeconds: 30
-          timeoutSeconds: 10
-          failureThreshold: 3
         volumeMounts:
         - name: nebula-storaged-data
           mountPath: /data

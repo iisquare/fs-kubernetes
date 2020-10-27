@@ -52,14 +52,6 @@ spec:
         - name: graphd
           containerPort: 3699
           hostPort: 3699
-        livenessProbe:
-          httpGet:
-            path: /status
-            port: 13000
-          initialDelaySeconds: 20
-          periodSeconds: 30
-          timeoutSeconds: 10
-          failureThreshold: 3
         volumeMounts:
         - name: nebula-graphd-logs
           mountPath: /logs

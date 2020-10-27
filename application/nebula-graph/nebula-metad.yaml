@@ -54,14 +54,6 @@ spec:
         - name: metad
           containerPort: 45500
           hostPort: 45500
-        livenessProbe:
-          httpGet:
-            path: /status
-            port: 11000
-          initialDelaySeconds: 20
-          periodSeconds: 30
-          timeoutSeconds: 10
-          failureThreshold: 3
         volumeMounts:
         - name: nebula-metad-data
           mountPath: /data
