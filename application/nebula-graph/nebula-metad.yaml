@@ -15,8 +15,8 @@ spec:
       value: UTC
     args:
     - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
-    - --local_ip=192.168.2.78
-    - --ws_ip=192.168.2.78 # The candidate [0.0.0.0:45501] is not my peers
+    - --local_ip=192.168.2.78 # The candidate [0.0.0.0:45501] is not my peers
+    - --ws_ip=127.0.0.1
     - --port=45500 # the port with increment 1 used to election.
     - --data_path=/data
     - --log_dir=/logs
@@ -59,8 +59,8 @@ spec:
       value: UTC
     args:
     - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
-    - --local_ip=192.168.2.79
-    - --ws_ip=192.168.2.79 # The candidate [0.0.0.0:45501] is not my peers
+    - --local_ip=192.168.2.79 # The candidate [0.0.0.0:45501] is not my peers
+    - --ws_ip=127.0.0.1
     - --port=45500 # the port with increment 1 used to election.
     - --data_path=/data
     - --log_dir=/logs
@@ -103,8 +103,8 @@ spec:
       value: UTC
     args:
     - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
-    - --local_ip=192.168.2.80
-    - --ws_ip=192.168.2.80 # The candidate [0.0.0.0:45501] is not my peers
+    - --local_ip=192.168.2.80 # The candidate [0.0.0.0:45501] is not my peers
+    - --ws_ip=127.0.0.1
     - --port=45500 # the port with increment 1 used to election.
     - --data_path=/data
     - --log_dir=/logs
