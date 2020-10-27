@@ -19,9 +19,11 @@ kubectl create -f nebula-graphd.yaml
 ```
 - 安装studio
 ```
+kubectl create -f nebula-web.yaml
 ```
 - 配置ingress
 ```
+kubectl create -f ingress.yaml
 ```
 
 ### 参考链接
