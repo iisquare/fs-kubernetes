@@ -45,7 +45,7 @@ spec:
         - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
         - --local_ip=0.0.0.0
         - --ws_ip=0.0.0.0
-        - --port=45500
+        - --port=45499 # TODO:this port default value is 45500, but always increment 1 in reality.
         - --data_path=/data
         - --log_dir=/logs
         - --v=0
