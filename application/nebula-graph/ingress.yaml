@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-internal-nebula
+  namespace: svr-app
+  annotations:
+    kubernetes.io/ingress.class: "nginx-internal"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: nebula.iisquare.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nebula-web
+          servicePort: 7001

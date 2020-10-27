@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nebula-web
+  namespace: svr-app
+  labels:
+    app: nebula-web
+spec:
+  ports:
+  - name: studio
+    port: 7001
+  selector:
+    app: nebula-web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nebula-web
+  namespace: svr-app
+spec:
+  selector:
+    matchLabels:
+      app: nebula-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nebula-web
+    spec:
+      containers:
+      - name: nebula-http-client
+        image: vesoft/nebula-http-client:latest
+        env:
+        - name: USER
+          value: root
+      - name: nebula-graph-studio
+        image: vesoft/nebula-graph-studio:latest
+        env:
+        - name: USER
+          value: root
+        - name: UPLOAD_DIR
+          value: /upload-dir
+        volumeMounts:
+        - name: nebula-web-uploads
+          mountPath: /upload-dir
+      - name: nebula-importer
+        image: vesoft/nebula-importer:latest
+        env:
+        - name: USER
+          value: root
+        - name: UPLOAD_DIR
+          value: /upload-dir
+        args:
+        - "--port=5699"
+        - "--callback=http://localhost:7001/api/import/finish"
+        volumeMounts:
+        - name: nebula-web-uploads
+          mountPath: /upload-dir
+      volumes:
+      - name: nebula-web-uploads
+        hostPath:
+          path: /data/k8s-pv/nebula-graph/web/uploads
