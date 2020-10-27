@@ -131,7 +131,9 @@ source ~/.bash_profile
 ### 重置集群节点
 - 下线集群节点
 ```
-kubectl drain node-name
+kubectl cordon node-name # 设置为不可调度
+kubectl drain node-name # 驱逐节点上Pod
+kubectl uncordon node-name # 恢复调度
 kubectl delete node node-name
 ```
 - 移除etcd集群（若为独立集群可忽略）
