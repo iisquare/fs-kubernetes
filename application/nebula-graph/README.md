@@ -1,6 +1,12 @@
 # Nebula Graph
 
 ### 运行说明
+- 清理
+```
+kubectl delete ns nebula-graph
+rm -rf /data/k8s-pv/nebula-graph/
+kubectl get pod -n nebula-graph -o wide
+```
 - 创建命名空间
 ```
 kubectl create ns nebula-graph
