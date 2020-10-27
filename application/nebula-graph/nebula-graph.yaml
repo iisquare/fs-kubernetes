@@ -6,9 +6,7 @@ metadata:
   labels:
     app: nebula-graph
 spec:
-  ports:
-  - name: graphd
-    port: 3699
+  clusterIP: None
   selector:
     app: nebula-graph
 ---
