@@ -35,7 +35,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
       - name: nebula-graphd
-        image: vesoft/nebula-graphd:v1.1.0
+        image: vesoft/nebula-graphd:nightly
         env:
         - name: USER
           value: root

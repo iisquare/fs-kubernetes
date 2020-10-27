@@ -35,7 +35,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
       - name: nebula-storaged
-        image: vesoft/nebula-storaged:v1.1.0
+        image: vesoft/nebula-storaged:nightly
         env:
         - name: USER
           value: root
