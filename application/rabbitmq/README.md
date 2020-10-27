@@ -2,6 +2,7 @@
 
 ### 运行方式
 - 采用statefulset方式进行部署，节点异常（未手动设置不可调度状态）时pod不会主动飘移
+- 采用非headless service提供pod之间的域名解析，同时作为ingress的代理入口
 
 ### 如何使用
 - 执行安装

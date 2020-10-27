@@ -6,7 +6,10 @@ metadata:
   labels:
     app: rabbitmq
 spec:
-  clusterIP: None
+  ports:
+  - port: 15672
+    name: management
+  # clusterIP: None
   selector:
     app: rabbitmq
 ---
