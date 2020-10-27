@@ -1,5 +1,20 @@
 # k8s application
 
+### 管理备忘
+```
+  k8s.iisquare.com         dashboard token
+  harbor.iisquare.com      私有docker仓库 admin admin888
+  notary.iisquare.com      docker签名认证
+  prometheus.iisquare.com  监控采集
+  grafana.iisquare.com     监控面板 admin grafana
+  istio.iisquare.com       测试用例
+  jaeger.iisquare.com      链路跟踪
+  kiali.iisquare.com       微服务治理
+  rabbitmq.iisquare.com    消息队列 admin admin888
+  kibana.iisquare.com      搜索引擎
+  nebula.iisquare.com      图数据库 user:password@192.168.2.78:3699
+```
+
 ### 节点逻辑划分
 - 基础服务节点：Elasticsearch、ZK、Kafka、RabbitMQ、MySQL、FS
 
