@@ -1,71 +1,131 @@
-apiVersion: apps/v1
-kind: Deployment
+kind: Pod
+apiVersion: v1
 metadata:
-  name: nebula-metad
+  name: nebula-metad-78
   namespace: nebula-graph
 spec:
-  selector:
-    matchLabels:
-      app: nebula-metad
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: nebula-metad
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                  - node78
-                  - node79
-                  - node80
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                - key: "app"
-                  operator: In
-                  values:
-                  - nebula-metad
-              topologyKey: "kubernetes.io/hostname"
-      containers:
-      - name: nebula-metad
-        image: vesoft/nebula-metad:nightly
-        env:
-        - name: USER
-          value: root
-        - name: TZ
-          value: UTC
-        args:
-        - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
-        - --local_ip=0.0.0.0
-        - --ws_ip=0.0.0.0
-        - --port=45500
-        - --data_path=/data
-        - --log_dir=/logs
-        - --v=0
-        - --minloglevel=0
-        ports:
-        - name: metad
-          containerPort: 45500
-          hostPort: 45500
-        - name: elected
-          containerPort: 45501
-          hostPort: 45501
-        volumeMounts:
-        - name: nebula-metad-data
-          mountPath: /data
-        - name: nebula-metad-logs
-          mountPath: /logs
-      volumes:
-      - name: nebula-metad-data
-        hostPath:
-          path: /data/k8s-pv/nebula-graph/metad/data
-      - name: nebula-metad-logs
-        hostPath:
-          path: /data/k8s-pv/nebula-graph/metad/logs
+  nodeName: node78
+  containers:
+  - name: nebula-metad
+    image: vesoft/nebula-metad:nightly
+    env:
+    - name: USER
+      value: root
+    - name: TZ
+      value: UTC
+    args:
+    - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
+    # - --local_ip=0.0.0.0
+    - --ws_ip=192.168.2.78 # The candidate [0.0.0.0:45501] is not my peers
+    - --port=45500 # the port with increment 1 used to election.
+    - --data_path=/data
+    - --log_dir=/logs
+    - --v=0
+    - --minloglevel=0
+    ports:
+    - name: metad
+      containerPort: 45500
+      hostPort: 45500
+    - name: elected
+      containerPort: 45501
+      hostPort: 45501
+    volumeMounts:
+    - name: nebula-metad-data
+      mountPath: /data
+    - name: nebula-metad-logs
+      mountPath: /logs
+  volumes:
+  - name: nebula-metad-data
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/data
+  - name: nebula-metad-logs
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/logs
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nebula-metad-79
+  namespace: nebula-graph
+spec:
+  nodeName: node79
+  containers:
+  - name: nebula-metad
+    image: vesoft/nebula-metad:nightly
+    env:
+    - name: USER
+      value: root
+    - name: TZ
+      value: UTC
+    args:
+    - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
+    # - --local_ip=0.0.0.0
+    - --ws_ip=192.168.2.79 # The candidate [0.0.0.0:45501] is not my peers
+    - --port=45500 # the port with increment 1 used to election.
+    - --data_path=/data
+    - --log_dir=/logs
+    - --v=0
+    - --minloglevel=0
+    ports:
+    - name: metad
+      containerPort: 45500
+      hostPort: 45500
+    - name: elected
+      containerPort: 45501
+      hostPort: 45501
+    volumeMounts:
+    - name: nebula-metad-data
+      mountPath: /data
+    - name: nebula-metad-logs
+      mountPath: /logs
+  volumes:
+  - name: nebula-metad-data
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/data
+  - name: nebula-metad-logs
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/logs
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nebula-metad-80
+  namespace: nebula-graph
+spec:
+  nodeName: node80
+  containers:
+  - name: nebula-metad
+    image: vesoft/nebula-metad:nightly
+    env:
+    - name: USER
+      value: root
+    - name: TZ
+      value: UTC
+    args:
+    - --meta_server_addrs=192.168.2.78:45500,192.168.2.79:45500,192.168.2.80:45500
+    # - --local_ip=0.0.0.0
+    - --ws_ip=192.168.2.80 # The candidate [0.0.0.0:45501] is not my peers
+    - --port=45500 # the port with increment 1 used to election.
+    - --data_path=/data
+    - --log_dir=/logs
+    - --v=0
+    - --minloglevel=0
+    ports:
+    - name: metad
+      containerPort: 45500
+      hostPort: 45500
+    - name: elected
+      containerPort: 45501
+      hostPort: 45501
+    volumeMounts:
+    - name: nebula-metad-data
+      mountPath: /data
+    - name: nebula-metad-logs
+      mountPath: /logs
+  volumes:
+  - name: nebula-metad-data
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/data
+  - name: nebula-metad-logs
+    hostPath:
+      path: /data/k8s-pv/nebula-graph/metad/logs
