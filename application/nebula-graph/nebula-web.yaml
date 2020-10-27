@@ -7,8 +7,8 @@ metadata:
     app: nebula-web
 spec:
   ports:
-  - name: studio
-    port: 7001
+  - name: nginx
+    port: 80
   selector:
     app: nebula-web
 ---
@@ -56,7 +56,18 @@ spec:
         volumeMounts:
         - name: nebula-web-uploads
           mountPath: /upload-dir
+      - name: nebula-nginx
+        image: nginx:alpine
+        volumeMounts:
+        - name: nebula-web-uploads
+          mountPath: /upload-dir
+        - name: studio-config
+          mountPath: "/etc/nginx/conf.d/nebula.conf"
+          subPath: nginx.conf
       volumes:
       - name: nebula-web-uploads
         hostPath:
           path: /data/k8s-pv/nebula-graph/web/uploads
+      - name: studio-config
+        configMap:
+          name: studio
