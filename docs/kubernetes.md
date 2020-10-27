@@ -50,7 +50,7 @@ docker tag xxx-id xxx-name-version
 - 初始化主节点
 ```
 # 可通过--image-repository=参数指定镜像地址
-kubeadm init --config=/data/nfs/kubernetes/docs/fiels/kubeadm-config.yaml
+kubeadm init --config=/data/nfs/kubernetes/docs/files/kubeadm-config.yaml
 ```
 - 记录kubeadm的输出信息
 - 失败重置
@@ -74,7 +74,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 ### 加入control plane节点
 - 通过主节点颁发证书
 ```
-sh /data/nfs/kubernetes/docs/fiels/cert-master.sh target-ip
+sh /data/nfs/kubernetes/docs/files/cert-master.sh target-ip
 ```
 - 加入集群
 ```

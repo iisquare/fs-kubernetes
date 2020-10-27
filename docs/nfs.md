@@ -44,7 +44,7 @@ yum install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/i
 ```
 cd /data/nfs
 git clone https://github.com/iisquare/kubernetes
-cp /data/nfs/kubernetes/docs/fiels/inotify.service /etc/systemd/system/
+cp /data/nfs/kubernetes/docs/files/inotify.service /etc/systemd/system/
 chmod 754 /etc/systemd/system/inotify.service
 systemctl daemon-reload
 systemctl start inotify

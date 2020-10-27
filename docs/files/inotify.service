@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /data/nfs/kubernetes/docs/fiels/inotify.sh monitor
+ExecStart=/bin/bash /data/nfs/kubernetes/docs/files/inotify.sh monitor
 PrivateTmp=True
 
 [Install]
