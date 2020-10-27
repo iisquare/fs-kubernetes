@@ -23,6 +23,7 @@ spec:
       app: nebula-graph
   serviceName: nebula-graph
   replicas: 3
+  podManagementPolicy: Parallel # 并行启动和关闭
   template:
     metadata:
       labels:
