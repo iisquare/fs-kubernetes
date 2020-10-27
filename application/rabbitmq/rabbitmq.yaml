@@ -57,7 +57,7 @@ spec:
         - name: RABBITMQ_DEFAULT_PASS
           value: admin888
         - name: RABBITMQ_USE_LONGNAME
-          value: true # rabbitmq-<index>.rabbitmq.svr-app.svc.cluster.local
+          value: "true" # rabbitmq-<index>.rabbitmq.svr-app.svc.cluster.local
         ports:
         - name: amqp-tls
           containerPort: 5671

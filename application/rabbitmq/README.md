@@ -8,19 +8,19 @@
 ```
 kubectl create -f rabbitmq.yaml
 ```
-- 查看node78节点信息
+- 查看rabbitmq-0节点信息
 ```
-kubectl -n svr-app logs rabbitmq-node78
+kubectl -n svr-app logs rabbitmq-0
 # ---
-# node           : rabbit@rabbitmq-node78
+# node           : rabbit@rabbitmq-0.rabbitmq.svr-app.svc.cluster.local
 # home dir       : /var/lib/rabbitmq
 # config file(s) : /etc/rabbitmq/rabbitmq.conf
 # cookie hash    : Qr//p2qMSEvFzqV5B8CqCg==
 # log(s)         : <stdout>
-# database dir   : /var/lib/rabbitmq/mnesia/rabbit@rabbitmq-node78
+# database dir   : /var/lib/rabbitmq/mnesia/rabbit@rabbitmq-0.rabbitmq.svr-app.svc.cluster.local
 # ---
 ```
-- 将node79和node80上加入node78
+- 将rabbitmq-1和rabbitmq-2加入rabbitmq-0
 ```
 rabbitmqctl stop_app
 rabbitmqctl join_cluster rabbit@rabbitmq-0.rabbitmq.svr-app.svc.cluster.local
