@@ -33,6 +33,8 @@ kubectl create -f nebula-web.yaml
 ```
 kubectl create -f ingress.yaml
 ```
+- 登录测试[user:password@192.168.2.78:3699](http://nebula.iisquare.com/)
+
 
 ### 参考链接
 - [图数据库对比：Neo4j vs Nebula Graph vs HugeGraph](https://my.oschina.net/u/4169309/blog/4532482)
