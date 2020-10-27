@@ -1,98 +1,74 @@
-kind: Pod
 apiVersion: v1
+kind: Service
 metadata:
-  name: rabbitmq-node78
+  name: rabbitmq
   namespace: svr-app
   labels:
     app: rabbitmq
 spec:
-  nodeName: node78
-  containers:
-  - name: rabbitmq
-    image: rabbitmq:3.8.9-management
-    env:
-    - name: RABBITMQ_ERLANG_COOKIE
-      value: k8s-rabbitmq
-    - name: RABBITMQ_DEFAULT_USER
-      value: admin
-    - name: RABBITMQ_DEFAULT_PASS
-      value: admin888
-    ports:
-    - name: server
-      containerPort: 4369
-      hostPort: 4369
-    - name: management
-      containerPort: 15672
-    volumeMounts:
-    - name: rabbitmq-data
-      mountPath: /var/lib/rabbitmq/mnesia
-  volumes:
-  - name: rabbitmq-data
-    hostPath:
-      path: /data/k8s-pv/myrabbitmqsql
+  clusterIP: None
+  selector:
+    app: rabbitmq
 ---
-kind: Pod
-apiVersion: v1
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
-  name: rabbitmq-node79
+  name: rabbitmq
   namespace: svr-app
-  labels:
-    app: rabbitmq
 spec:
-  nodeName: node79
-  containers:
-  - name: rabbitmq
-    image: rabbitmq:3.8.9-management
-    env:
-    - name: RABBITMQ_ERLANG_COOKIE
-      value: k8s-rabbitmq
-    - name: RABBITMQ_DEFAULT_USER
-      value: admin
-    - name: RABBITMQ_DEFAULT_PASS
-      value: admin888
-    ports:
-    - name: server
-      containerPort: 4369
-      hostPort: 4369
-    - name: management
-      containerPort: 15672
-    volumeMounts:
-    - name: rabbitmq-data
-      mountPath: /var/lib/rabbitmq/mnesia
-  volumes:
-  - name: rabbitmq-data
-    hostPath:
-      path: /data/k8s-pv/myrabbitmqsql
----
-kind: Pod
-apiVersion: v1
-metadata:
-  name: rabbitmq-node80
-  namespace: svr-app
-  labels:
-    app: rabbitmq
-spec:
-  nodeName: node80
-  containers:
-  - name: rabbitmq
-    image: rabbitmq:3.8.9-management
-    env:
-    - name: RABBITMQ_ERLANG_COOKIE
-      value: k8s-rabbitmq
-    - name: RABBITMQ_DEFAULT_USER
-      value: admin
-    - name: RABBITMQ_DEFAULT_PASS
-      value: admin888
-    ports:
-    - name: server
-      containerPort: 4369
-      hostPort: 4369
-    - name: management
-      containerPort: 15672
-    volumeMounts:
-    - name: rabbitmq-data
-      mountPath: /var/lib/rabbitmq/mnesia
-  volumes:
-  - name: rabbitmq-data
-    hostPath:
-      path: /data/k8s-pv/myrabbitmqsql
+  selector:
+    matchLabels:
+      app: rabbitmq
+  serviceName: rabbitmq
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - node78
+                  - node79
+                  - node80
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: "app"
+                  operator: In
+                  values:
+                  - rabbitmq
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3.8.9-management
+        env:
+        - name: RABBITMQ_ERLANG_COOKIE
+          value: k8s-rabbitmq
+        - name: RABBITMQ_DEFAULT_USER
+          value: admin
+        - name: RABBITMQ_DEFAULT_PASS
+          value: admin888
+        - name: RABBITMQ_USE_LONGNAME
+          value: true # rabbitmq-<index>.rabbitmq.svr-app.svc.cluster.local
+        ports:
+        - name: amqp-tls
+          containerPort: 5671
+          hostPort: 5671
+        - name: amqp
+          containerPort: 5672
+          hostPort: 5672
+        volumeMounts:
+        - name: rabbitmq-data
+          mountPath: /var/lib/rabbitmq/mnesia
+      volumes:
+      - name: rabbitmq-data
+        hostPath:
+          path: /data/k8s-pv/rabbitmq

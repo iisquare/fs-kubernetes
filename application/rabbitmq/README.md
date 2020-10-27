@@ -1,5 +1,8 @@
 # rabbitmq
 
+### 运行方式
+- 采用statefulset方式进行部署，节点异常（未手动设置不可调度状态）时pod不会主动飘移
+
 ### 如何使用
 - 执行安装
 ```
@@ -20,7 +23,7 @@ kubectl -n svr-app logs rabbitmq-node78
 - 将node79和node80上加入node78
 ```
 rabbitmqctl stop_app
-rabbitmqctl join_cluster rabbit@rabbitmq-node78
+rabbitmqctl join_cluster rabbit@rabbitmq-0.rabbitmq.svr-app.svc.cluster.local
 rabbitmqctl start_app
 rabbitmqctl cluster_status
 ```
@@ -35,3 +38,4 @@ rabbitmqctl set_policy ha-all "^" '{"ha-mode":"all"}'
 
 ### 参考链接
 - [rabbitmq集群部署](https://my.oschina.net/attacker/blog/3222748)
+- [Clustering Guide](https://www.rabbitmq.com/clustering.html)
