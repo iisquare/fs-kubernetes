@@ -8,7 +8,10 @@
 ### 如何使用
 - 宿主机环境
 ```
-sysctl -w vm.max_map_count=262144
+sysctl -a|grep vm.max_map_count # 查看当前配置
+sysctl -w vm.max_map_count=262144 # 临时修改
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf # 持久化修改
+sysctl -p # 重新加载文件，立即生效
 ```
 - 清理
 ```
