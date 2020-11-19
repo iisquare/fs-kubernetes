@@ -25,6 +25,14 @@ redis-cli --cluster add-node 192.168.2.78:6379 192.168.2.74:6379 --cluster-slave
 redis-cli --cluster add-node 192.168.2.79:6379 192.168.2.75:6379 --cluster-slave --cluster-master-id 1da75d2b05eab4fc8ad30d6bb7b88f156bae9d94
 redis-cli --cluster add-node 192.168.2.80:6379 192.168.2.76:6379 --cluster-slave --cluster-master-id 1ce0c48a2fa0ee4e1dabafd92b83ab3291c9ebc8
 ```
+- 修改nodes.conf文件，将myself更改为节点IP地址
+```
+vim /data/k8s-pv/redis/nodes.conf
+```
+- 重启服务
+```
+kubectl replace --force -f redis.yaml
+```
 - 客户端连接
 ```
 redis-cli -c # 指定集群模式
