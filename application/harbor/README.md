@@ -52,8 +52,17 @@ docker login --username=admin harbor.iisquare.com
 # 推送镜像
 docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
 ```
+- 资源清单imagePullSecrets
+```
+kubectl create secret docker-registry regcred \
+  --docker-server=harbor.iisquare.com \
+  --docker-username=admin \
+  --docker-password=admin888 \
+  --docker-email=
+```
 
 ### 参考
 - [Installation & Configuration Guide](https://goharbor.io/docs/2.1.1/install-config/)
 - [harbor-helm](https://github.com/goharbor/harbor-helm)
 - [expose.tls.secretName try to volume mount to core pod](https://github.com/goharbor/harbor-helm/issues/261)
+- [从私有仓库拉取镜像](https://kubernetes.io/zh/docs/tasks/configure-pod-container/pull-image-private-registry/)
