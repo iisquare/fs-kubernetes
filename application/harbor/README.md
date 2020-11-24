@@ -30,7 +30,7 @@ helm install svr-harbor harbor/harbor \
   --set persistence.persistentVolumeClaim.database.storageClass=lvs-nfs-storage \
   --set persistence.persistentVolumeClaim.redis.storageClass=lvs-nfs-storage \
   --set persistence.persistentVolumeClaim.trivy.storageClass=lvs-nfs-storage \
-  --set externalURL=harbor.iisquare.com \
+  --set externalURL=https://harbor.iisquare.com \
   --set harborAdminPassword=admin888 \
 ```
 - 卸载
