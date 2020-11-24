@@ -54,7 +54,7 @@ docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
 ```
 - 资源清单imagePullSecrets
 ```
-kubectl create secret docker-registry regcred \
+kubectl create secret docker-registry harbor -n default \
   --docker-server=harbor.iisquare.com \
   --docker-username=admin \
   --docker-password=admin888 \
