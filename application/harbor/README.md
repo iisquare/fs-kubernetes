@@ -2,17 +2,17 @@
 仓库文件目前保存在NFS中，若熟悉Ceph运维，可迁移到更合适的方案上。
 
 ### 安装说明
-- 下载并解压[harbor-offline-installer-v2.1.0.tgz](https://github.com/goharbor/harbor/releases/tag/v2.1.0)
+- 下载并解压[harbor-offline-installer-v2.1.1.tgz](https://github.com/goharbor/harbor/releases/tag/v2.1.1)
 - 导入镜像
 ```
-docker load -i ./harbor.v2.1.0.tar.gz
+docker load -i ./harbor.v2.1.1.tar.gz
 ```
 - 通过helm安装
 ```
 helm repo add harbor https://helm.goharbor.io
-# Version:1.5.0, App Version:2.1.0
+# Version:1.5.1, App Version:2.1.1
 helm install svr-harbor harbor/harbor \
-  --version 1.5.0 \
+  --version 1.5.1 \
   --create-namespace \
   --namespace lvs-app \
   --set expose.type=ingress \
@@ -54,6 +54,6 @@ docker push harbor.iisquare.com/gcr/kubernetes-zookeeper:1.0-3.4.10
 ```
 
 ### 参考
-- [Installation & Configuration Guide](https://goharbor.io/docs/2.1.0/install-config/)
+- [Installation & Configuration Guide](https://goharbor.io/docs/2.1.1/install-config/)
 - [harbor-helm](https://github.com/goharbor/harbor-helm)
 - [expose.tls.secretName try to volume mount to core pod](https://github.com/goharbor/harbor-helm/issues/261)
