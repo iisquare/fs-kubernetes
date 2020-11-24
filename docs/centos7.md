@@ -15,6 +15,7 @@ hostnamectl set-hostname hostname
 192.168.2.78 node78
 192.168.2.79 node79
 192.168.2.80 node80
+192.168.2.92 node92
 ```
 
 ### 禁用swap交换空间
