@@ -1,9 +1,4 @@
-stages:
-  - single
-  - full
-
 app-name:
-  stage: single
   only:
     - web
   when: manual
@@ -11,12 +6,3 @@ app-name:
     - k8s
   script:
     - sh bin/deploy.sh app-name 1.0.0-SNAPSHOT ${CI_PIPELINE_ID}
-
-k8s-full:
-  stage: full
-  only:
-    - web
-  when: manual
-  tags:
-    - k8s
-  script: echo "done!"
