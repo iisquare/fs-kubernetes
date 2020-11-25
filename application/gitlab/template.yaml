@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: demo-java
+  name: {APP_NAME}
+spec:
+  selector:
+    matchLabels:
+      app: {APP_NAME}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {APP_NAME}
+    spec:
+      containers:
+        - name: {APP_NAME}
+          image: harbor.iisquare.com/app/{APP_NAME}:{APP_VERSION}.{CI_PIPELINE_ID}
+          ports:
+            - name: rest
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: rest
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      imagePullSecrets:
+        - name: harbor
