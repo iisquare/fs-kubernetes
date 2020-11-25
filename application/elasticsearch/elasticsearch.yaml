@@ -26,6 +26,7 @@ spec:
           port: client
         initialDelaySeconds: 5
         periodSeconds: 5
+        failureThreshold: 600
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -84,6 +85,7 @@ spec:
           port: client
         initialDelaySeconds: 5
         periodSeconds: 5
+        failureThreshold: 600
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -142,6 +144,7 @@ spec:
           port: client
         initialDelaySeconds: 5
         periodSeconds: 5
+        failureThreshold: 600
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
