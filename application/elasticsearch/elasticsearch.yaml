@@ -20,6 +20,12 @@ spec:
         - name: server
           containerPort: 9300
           hostPort: 9300
+      readinessProbe:
+        httpGet:
+          path: /_cat/health
+          port: client
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -72,6 +78,12 @@ spec:
         - name: server
           containerPort: 9300
           hostPort: 9300
+      readinessProbe:
+        httpGet:
+          path: /_cat/health
+          port: client
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -124,6 +136,12 @@ spec:
         - name: server
           containerPort: 9300
           hostPort: 9300
+      readinessProbe:
+        httpGet:
+          path: /_cat/health
+          port: client
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
         - name: elasticsearch-config
           mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
