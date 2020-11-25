@@ -10,7 +10,11 @@ binlog-ignore-db=test
 binlog-ignore-db=information_schema
 # binlog-do-db=fix-db
 
-wait_timeout=10
+wait_timeout=28800
+interactive_timeout=28800
+net_read_timeout=30
+net_write_timeout=60
+lock_wait_timeout=60
 max_connections=2000
 long_query_time=2
 slow-query-log=on
