@@ -22,8 +22,8 @@ scp -R filebeat.yml node-ip:/data/k8s-pv/filebeat/filebeat.yml
 - 应用配置清单
 ```
 kubectl create -f filebeat.yaml
-chmod -R 777 /data/k8s-pv/filebeat/
-chmod go-w /data/k8s-pv/filebeat/filebeat.yml
+chmod -R 777 /data/k8s-pv/filebeat/data /data/k8s-pv/filebeat/logs
+# chmod go-w /data/k8s-pv/filebeat/filebeat.yml
 ```
 
 ### 参考链接
