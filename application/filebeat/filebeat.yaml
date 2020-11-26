@@ -15,6 +15,10 @@ spec:
         k8s-app: filebeat
     spec:
       terminationGracePeriodSeconds: 30
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Exists"
+          effect: "NoSchedule"
       containers:
         - name: filebeat
           image: docker.elastic.co/beats/filebeat:7.9.3
