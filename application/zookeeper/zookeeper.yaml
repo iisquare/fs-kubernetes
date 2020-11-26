@@ -12,7 +12,7 @@ spec:
       image: zookeeper:3.5.8
       env:
         - name: ZOO_MY_ID
-          value: 78
+          value: "78"
         - name: ZOO_SERVERS
           value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
       ports:
@@ -52,7 +52,7 @@ spec:
       image: zookeeper:3.5.8
       env:
         - name: ZOO_MY_ID
-          value: 79
+          value: "79"
         - name: ZOO_SERVERS
           value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
       ports:
@@ -92,7 +92,7 @@ spec:
       image: zookeeper:3.5.8
       env:
         - name: ZOO_MY_ID
-          value: 80
+          value: "80"
         - name: ZOO_SERVERS
           value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
       ports:
