@@ -24,12 +24,17 @@ spec:
           containerPort: 9092
           hostPort: 9092
       volumeMounts:
-        - name: kafka
+        - name: kafka-data
           mountPath: /kafka
+        - name: kafka-logs
+          mountPath: /opt/kafka/logs
   volumes:
-    - name: kafka
+    - name: kafka-data
       hostPath:
-        path: /data/k8s-pv/kafka
+        path: /data/k8s-pv/kafka/data
+    - name: kafka-logs
+      hostPath:
+        path: /data/k8s-pv/kafka/logs
 ---
 kind: Pod
 apiVersion: v1
@@ -57,12 +62,17 @@ spec:
           containerPort: 9092
           hostPort: 9092
       volumeMounts:
-        - name: kafka
+        - name: kafka-data
           mountPath: /kafka
+        - name: kafka-logs
+          mountPath: /opt/kafka/logs
   volumes:
-    - name: kafka
+    - name: kafka-data
       hostPath:
-        path: /data/k8s-pv/kafka
+        path: /data/k8s-pv/kafka/data
+    - name: kafka-logs
+      hostPath:
+        path: /data/k8s-pv/kafka/logs
 ---
 kind: Pod
 apiVersion: v1
@@ -90,9 +100,14 @@ spec:
           containerPort: 9092
           hostPort: 9092
       volumeMounts:
-        - name: kafka
+        - name: kafka-data
           mountPath: /kafka
+        - name: kafka-logs
+          mountPath: /opt/kafka/logs
   volumes:
-    - name: kafka
+    - name: kafka-data
       hostPath:
-        path: /data/k8s-pv/kafka
+        path: /data/k8s-pv/kafka/data
+    - name: kafka-logs
+      hostPath:
+        path: /data/k8s-pv/kafka/logs
