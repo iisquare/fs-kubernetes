@@ -1,0 +1,86 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kafka-node78
+  namespace: svr-app
+  labels:
+    app: kafka
+spec:
+  nodeName: node78
+  containers:
+    - name: kafka
+      image: wurstmeister/kafka:2.12-2.5.0
+      env:
+        - name: KAFKA_BROKER_ID
+          value: "78"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181"
+      ports:
+        - name: broker
+          containerPort: 9092
+          hostPort: 9092
+      volumeMounts:
+        - name: kafka
+          mountPath: /kafka
+  volumes:
+    - name: kafka
+      hostPath:
+        path: /data/k8s-pv/kafka
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kafka-node79
+  namespace: svr-app
+  labels:
+    app: kafka
+spec:
+  nodeName: node79
+  containers:
+    - name: kafka
+      image: wurstmeister/kafka:2.12-2.5.0
+      env:
+        - name: KAFKA_BROKER_ID
+          value: "79"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181"
+      ports:
+        - name: broker
+          containerPort: 9092
+          hostPort: 9092
+      volumeMounts:
+        - name: kafka
+          mountPath: /kafka
+  volumes:
+    - name: kafka
+      hostPath:
+        path: /data/k8s-pv/kafka
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kafka-node80
+  namespace: svr-app
+  labels:
+    app: kafka
+spec:
+  nodeName: node80
+  containers:
+    - name: kafka
+      image: wurstmeister/kafka:2.12-2.5.0
+      env:
+        - name: KAFKA_BROKER_ID
+          value: "80"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181"
+      ports:
+        - name: broker
+          containerPort: 9092
+          hostPort: 9092
+      volumeMounts:
+        - name: kafka
+          mountPath: /kafka
+  volumes:
+    - name: kafka
+      hostPath:
+        path: /data/k8s-pv/kafka

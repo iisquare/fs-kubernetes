@@ -1,0 +1,23 @@
+# kafka
+
+### 运行方式
+- 通过绑定节点挂载本地硬盘方式运行
+- 节点之间通过宿主机IP进行通信，不再单独绑定服务
+- 配置清单没有采用StatefulSet方式，直接采用Pod部署以方便单节点修改
+
+### 如何使用
+- 清理
+```
+kubectl delete -f kafka.yaml
+rm -rf /data/k8s-pv/kafka
+```
+- 创建命名空间
+```
+kubectl create ns svr-app
+```
+- 应用配置清单
+```
+kubectl create -f kafka.yaml
+```
+
+### 参考链接
