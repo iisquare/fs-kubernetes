@@ -1,0 +1,119 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: zookeeper-node78
+  namespace: svr-app
+  labels:
+    app: zookeeper
+spec:
+  nodeName: node78
+  containers:
+    - name: zookeeper
+      image: zookeeper:3.5.8
+      env:
+        - name: ZOO_MY_ID
+          value: 78
+        - name: ZOO_SERVERS
+          value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
+      ports:
+        - name: server
+          containerPort: 2888
+          hostPort: 2888
+        - name: elect
+          containerPort: 3888
+          hostPort: 3888
+        - name: client
+          containerPort: 2181
+          hostPort: 2181
+      volumeMounts:
+        - name: zookeeper-data
+          mountPath: /data
+        - name: zookeeper-logs
+          mountPath: /datalog
+  volumes:
+    - name: zookeeper-data
+      hostPath:
+        path: /data/k8s-pv/zookeeper/data
+    - name: zookeeper-logs
+      hostPath:
+        path: /data/k8s-pv/zookeeper/logs
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: zookeeper-node79
+  namespace: svr-app
+  labels:
+    app: zookeeper
+spec:
+  nodeName: node79
+  containers:
+    - name: zookeeper
+      image: zookeeper:3.5.8
+      env:
+        - name: ZOO_MY_ID
+          value: 79
+        - name: ZOO_SERVERS
+          value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
+      ports:
+        - name: server
+          containerPort: 2888
+          hostPort: 2888
+        - name: elect
+          containerPort: 3888
+          hostPort: 3888
+        - name: client
+          containerPort: 2181
+          hostPort: 2181
+      volumeMounts:
+        - name: zookeeper-data
+          mountPath: /data
+        - name: zookeeper-logs
+          mountPath: /datalog
+  volumes:
+    - name: zookeeper-data
+      hostPath:
+        path: /data/k8s-pv/zookeeper/data
+    - name: zookeeper-logs
+      hostPath:
+        path: /data/k8s-pv/zookeeper/logs
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: zookeeper-node80
+  namespace: svr-app
+  labels:
+    app: zookeeper
+spec:
+  nodeName: node80
+  containers:
+    - name: zookeeper
+      image: zookeeper:3.5.8
+      env:
+        - name: ZOO_MY_ID
+          value: 80
+        - name: ZOO_SERVERS
+          value: "server.78=192.168.2.78:2888:3888;2181 server.79=192.168.2.79:2888:3888;2181 server.80=192.168.2.80:2888:3888;2181"
+      ports:
+        - name: server
+          containerPort: 2888
+          hostPort: 2888
+        - name: elect
+          containerPort: 3888
+          hostPort: 3888
+        - name: client
+          containerPort: 2181
+          hostPort: 2181
+      volumeMounts:
+        - name: zookeeper-data
+          mountPath: /data
+        - name: zookeeper-logs
+          mountPath: /datalog
+  volumes:
+    - name: zookeeper-data
+      hostPath:
+        path: /data/k8s-pv/zookeeper/data
+    - name: zookeeper-logs
+      hostPath:
+        path: /data/k8s-pv/zookeeper/logs

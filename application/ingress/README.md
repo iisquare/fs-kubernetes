@@ -19,6 +19,10 @@ docker tag 4b26fa2d90ae k8s.gcr.io/ingress-nginx/controller:v0.40.2
   - webhook：作业
   - internal：测试请求入口（node74、node75、node76、virtual77）
   - external：真实请求入口(node78、node79、node80)
+- 修改宿主机日志目录权限
+```
+chmod 777 -R /data/k8s-logs/ingress-nginx
+```
 
 ### 配置TLS
 - 打包认证文件
