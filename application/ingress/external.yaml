@@ -138,6 +138,8 @@ spec:
             - name: webhook-cert
               mountPath: /usr/local/certificates/
               readOnly: true
+            - name: nginx-logs
+              mountPath: /var/log/nginx
           resources:
             requests:
               cpu: 100m
@@ -148,3 +150,6 @@ spec:
         - name: webhook-cert
           secret:
             secretName: ingress-nginx-admission
+        - name: nginx-logs
+          hostPath:
+            path: /data/k8s-logs/ingress-nginx-internal
