@@ -38,10 +38,12 @@ metadata:
 spec:
   containers:
     - name: kafka-manager
-      image: kafkamanager/kafka-manager:3.0.0.4
+      image: harbor.iisquare.com/library/kafka-manager:3.0.0.4
       env:
         - name: ZK_HOSTS
           value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
       ports:
         - name: web
           containerPort: 9000
+  imagePullSecrets:
+    - name: harbor

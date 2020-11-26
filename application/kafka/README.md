@@ -20,7 +20,34 @@ kubectl create ns svr-app
 ```
 kubectl create -f kafka.yaml
 ```
-- 运行kafka-manager管理面板
+
+### 安装kafka-manager管理面板
+- 下载并导出docker image
+```
+docker pull kafkamanager/kafka-manager:3.0.0.4
+docker images
+docker save -o docker.io/kafkamanager/kafka-manager kafka-manager-3.0.0.4.tar 14a7c1e556f7
+docker save -o kafka-manager-3.0.0.4.tar 14a7c1e556f7
+tar -czvf kafka-manager-3.0.0.4.tar.gz kafka-manager-3.0.0.4.tar
+```
+- 导入docker image并推送到harbor
+```
+tar -xzvf kafka-manager-3.0.0.4.tar.gz
+docker images
+docker load < kafka-manager-3.0.0.4.tar
+docker images
+docker tag 14a7c1e556f7 harbor.iisquare.com/library/kafka-manager:3.0.0.4
+docker push harbor.iisquare.com/library/kafka-manager:3.0.0.4
+```
+- 配置harbor的secret，确保k8s可正常拉取私有仓库中的镜像
+```
+kubectl create secret docker-registry harbor -n svr-app \
+  --docker-server=harbor.iisquare.com \
+  --docker-username=admin \
+  --docker-password=admin888 \
+  --docker-email=
+```
+- 应用配置清单
 ```
 kubectl create -f kafka-manager.yaml
 ```
