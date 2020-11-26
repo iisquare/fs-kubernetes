@@ -25,6 +25,10 @@ kubectl create -f filebeat.yaml
 chmod -R 777 /data/k8s-pv/filebeat/data /data/k8s-pv/filebeat/logs
 # chmod go-w /data/k8s-pv/filebeat/filebeat.yml
 ```
+- 日志权限
+```
+chmod +r /data/k8s-pv/mysql/data/slow-query.log 
+```
 
 ### 参考链接
 - [Filebeat Reference Directory layout](https://www.elastic.co/guide/en/beats/filebeat/current/directory-layout.html)
