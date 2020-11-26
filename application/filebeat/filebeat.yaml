@@ -18,20 +18,20 @@ spec:
       containers:
         - name: filebeat
           image: docker.elastic.co/beats/filebeat:7.9.3
-        volumeMounts:
-        - name: filebeat
-          mountPath: /usr/share/filebeat/filebeat.yml
-        - name: filebeat-data
-          mountPath: /usr/share/filebeat/data
-        - name: filebeat-logs
-          mountPath: /usr/share/filebeat/logs
-  volumes:
-  - name: filebeat
-    hostPath:
-      path: /data/k8s-pv/filebeat/filebeat.yml
-  - name: filebeat-data
-    hostPath:
-      path: /data/k8s-pv/filebeat/data
-  - name: filebeat-logs
-    hostPath:
-      path: /data/k8s-pv/filebeat/logs
+          volumeMounts:
+          - name: filebeat
+            mountPath: /usr/share/filebeat/filebeat.yml
+          - name: filebeat-data
+            mountPath: /usr/share/filebeat/data
+          - name: filebeat-logs
+            mountPath: /usr/share/filebeat/logs
+      volumes:
+      - name: filebeat
+        hostPath:
+          path: /data/k8s-pv/filebeat/filebeat.yml
+      - name: filebeat-data
+        hostPath:
+          path: /data/k8s-pv/filebeat/data
+      - name: filebeat-logs
+        hostPath:
+          path: /data/k8s-pv/filebeat/logs

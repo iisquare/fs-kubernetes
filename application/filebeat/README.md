@@ -16,7 +16,8 @@ kubectl create ns log-app
 ```
 - 创建配置文件
 ```
-scp -R filebeat.yml node-ip:/data/k8s-logs/filebeat/filebeat.yml
+mkdir -p /data/k8s-pv/filebeat
+scp -R filebeat.yml node-ip:/data/k8s-pv/filebeat/filebeat.yml
 ```
 - 应用配置清单
 ```
