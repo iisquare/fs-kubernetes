@@ -27,7 +27,7 @@ spec:
   ports:
   - port: 9000
     name: web
-  # clusterIP: None
+  clusterIP: None
   selector:
     app: kafka-manager
 ---
