@@ -1,0 +1,18 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /data/k8s-logs/ingress-nginx/access.log
+- type: log
+  paths:
+    - /data/k8s-pv/mysql/data/slow-query.log
+
+output.kafka:
+  hosts: ["192.168.2.78:9092", "192.168.2.79:9092", "192.168.2.80:9092"]
+
+  topic: 'k8s-logs'
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
