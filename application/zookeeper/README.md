@@ -20,4 +20,14 @@ kubectl create ns svr-app
 kubectl create -f zookeeper.yaml
 ```
 
+### 注意事项
+- 自身节点的ZOO_SERVERS需要配置为0.0.0.0，否则会绑定端口失败
+```
+java.net.BindException: Cannot assign requested address (Bind failed)
+        at java.base/java.net.PlainSocketImpl.socketBind(Native Method)
+        at java.base/java.net.AbstractPlainSocketImpl.bind(Unknown Source)
+        at java.base/java.net.ServerSocket.bind(Unknown Source)
+        at java.base/java.net.ServerSocket.bind(Unknown Source)
+```
+
 ### 参考链接
