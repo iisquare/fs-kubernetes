@@ -10,6 +10,7 @@
 ```
 kubectl delete -f kafka.yaml
 rm -rf /data/k8s-pv/kafka
+./bin/zkCli.sh deleteall /kafka
 ```
 - 创建命名空间
 ```
@@ -18,6 +19,10 @@ kubectl create ns svr-app
 - 应用配置清单
 ```
 kubectl create -f kafka.yaml
+```
+- 运行kafka-manager管理面板
+```
+kubectl create -f kafka-manager.yaml
 ```
 
 ### 参考链接
