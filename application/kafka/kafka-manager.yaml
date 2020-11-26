@@ -24,7 +24,10 @@ metadata:
   labels:
     app: kafka-manager
 spec:
-  clusterIP: None
+  ports:
+  - port: 9000
+    name: web
+  # clusterIP: None
   selector:
     app: kafka-manager
 ---
