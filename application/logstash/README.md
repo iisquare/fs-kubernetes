@@ -9,6 +9,7 @@
 - 清理
 ```
 kubectl delete -f logstash.yaml
+kubectl delete configmaps logstash-config -n log-app
 kubectl delete configmaps logstash-pipeline -n log-app
 rm -rf /data/k8s-pv/logstash
 ```
@@ -18,6 +19,7 @@ kubectl create ns log-app
 ```
 - 导入配置文件
 ```
+kubectl create configmap logstash-config --from-file=config -n log-app
 kubectl create configmap logstash-pipeline --from-file=pipeline -n log-app
 ```
 - 应用配置清单
