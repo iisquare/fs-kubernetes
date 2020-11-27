@@ -3,6 +3,7 @@
 ### 运行方式
 - Filebeat收集宿主机日志并写入到Kafka中
 - Logstash读取Kafka中的日志，格式化并写入到Elasticsearch中
+- 消费offset通过kafka的group_id进行记录，不再单独持久化logstash的data文件
 
 ### 如何使用
 - 清理

@@ -19,17 +19,7 @@ spec:
           volumeMounts:
           - name: logstash-pipeline
             mountPath: /usr/share/logstash/pipeline
-          - name: logstash-data
-            mountPath: /usr/share/logstash/data
-          - name: logstash-logs
-            mountPath: /usr/share/logstash/logs
       volumes:
       - name: logstash-pipeline
         configMap:
           name: logstash-pipeline
-      - name: logstash-data
-        hostPath:
-          path: /data/k8s-pv/logstash/data
-      - name: logstash-logs
-        hostPath:
-          path: /data/k8s-pv/logstash/logs
