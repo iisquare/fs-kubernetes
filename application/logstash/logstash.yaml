@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: log-app
+  name: logstash
+spec:
+  selector:
+    matchLabels:
+      app: logstash
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+        - name: logstash
+          image: logstash:7.9.3
+          volumeMounts:
+          - name: logstash
+            mountPath: /usr/share/logstash/config/logstash.yml
+          - name: logstash-data
+            mountPath: /usr/share/logstash/data
+          - name: logstash-logs
+            mountPath: /usr/share/logstash/logs
+      volumes:
+      - name: logstash
+        configMap:
+          name: logstash
+          items:
+            - key: "logstash.yml"
+              path: "logstash.yml"
+      - name: logstash-data
+        hostPath:
+          path: /data/k8s-pv/logstash/data
+      - name: logstash-logs
+        hostPath:
+          path: /data/k8s-pv/logstash/logs

@@ -1,0 +1,18 @@
+input{
+    kafka {
+        group_id => "k8s"
+        topic_id => "k8s-logs"
+        zk_connect => "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
+   }
+}
+
+
+
+output {
+    elasticsearch {
+        hosts => `["192.168.2.78:9200","192.168.2.78:9200","192.168.2.80:9200"]`
+        protocol => "http"
+        index => "logstash-k8s-access-%{+YYYY.MM}"
+        template_name => "logstash-k8s-access"
+    }
+}

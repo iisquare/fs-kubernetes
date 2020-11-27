@@ -1,7 +1,7 @@
 filebeat.inputs:
 - type: log
   paths:
-    - /data/k8s-logs/ingress-nginx/access.log
+    - /data/k8s-pv/ingress-nginx/logs/access.log
 - type: log
   paths:
     - /data/k8s-pv/mysql/data/slow-query.log
