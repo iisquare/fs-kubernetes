@@ -30,5 +30,17 @@ kubectl create -f logstash.yaml
 $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $request_length $request_time [$proxy_upstream_name] [$proxy_alternative_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
 ```
 
+### 模板管理
+- 创建模板
+```
+PUT _index_template/template_xxx
+```
+- 删除模板
+```
+DELETE _index_template/template_xxx
+```
+
+
 ### 参考链接
 - [NGINX Ingress Controller ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
+- [Elasticsearch Reference Index templates](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/index-templates.html)

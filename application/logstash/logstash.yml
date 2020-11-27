@@ -9,10 +9,29 @@ input{
 
 
 output {
-    elasticsearch {
-        hosts => `["192.168.2.78:9200","192.168.2.78:9200","192.168.2.80:9200"]`
-        protocol => "http"
-        index => "logstash-k8s-access-%{+YYYY.MM}"
-        template_name => "logstash-k8s-access"
+    if [source] == "/data/k8s-pv/ingress-nginx/logs/access.log" {
+        elasticsearch {
+            hosts => `["192.168.2.78:9200","192.168.2.78:9200","192.168.2.80:9200"]`
+            protocol => "http"
+            index => "logstash-k8s-access-%{+YYYY.MM}"
+            manage_template => false
+            template_name => "logstash-k8s-access"
+        }
+    } else if [source] == "/data/k8s-pv/mysql/data/slow-query.log" {
+        elasticsearch {
+            hosts => `["192.168.2.78:9200","192.168.2.78:9200","192.168.2.80:9200"]`
+            protocol => "http"
+            index => "logstash-k8s-mysql-%{+YYYY.MM}"
+            manage_template => false
+            template_name => "logstash-k8s-mysql"
+        }
+    } else {
+        elasticsearch {
+            hosts => `["192.168.2.78:9200","192.168.2.78:9200","192.168.2.80:9200"]`
+            protocol => "http"
+            index => "logstash-k8s-message-%{+YYYY.MM}"
+            manage_template => false
+            template_name => "logstash-k8s-message"
+        }
     }
 }
