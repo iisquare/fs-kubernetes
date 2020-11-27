@@ -48,3 +48,5 @@ DELETE _index_template/template_xxx
 - [NGINX Ingress Controller ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
 - [Elasticsearch Reference Index templates](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/index-templates.html)
 - [Logstash Reference Filter plugins](https://www.elastic.co/guide/en/logstash/7.x/filter-plugins.html)
+- [grok-patterns](https://github.com/logstash-plugins/logstash-patterns-core/blob/master/patterns/grok-patterns)
+- [Grok Debugger](https://grokdebug.herokuapp.com/)
