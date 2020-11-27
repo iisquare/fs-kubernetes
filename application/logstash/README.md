@@ -17,7 +17,7 @@ kubectl create ns log-app
 ```
 - 导入配置文件
 ```
-kubectl create configmap logstash --from-file=logstash.yml -n log-app
+kubectl create configmap logstash --from-file=config --from-file=pipeline -n log-app
 ```
 - 应用配置清单
 ```
