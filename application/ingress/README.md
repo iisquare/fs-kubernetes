@@ -21,7 +21,7 @@ docker tag 4b26fa2d90ae k8s.gcr.io/ingress-nginx/controller:v0.40.2
   - external：真实请求入口(node78、node79、node80)
 - 修改宿主机日志目录权限
 ```
-chmod 777 -R /data/k8s-logs/ingress-nginx
+chmod 777 -R /data/k8s-pv/ingress-nginx/logs
 ```
 
 ### 配置TLS

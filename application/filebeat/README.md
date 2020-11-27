@@ -2,13 +2,13 @@
 
 ### 运行方式
 - 采用DaemonSet在每台宿主机上运行一个filebeat副本
-- 通过挂载宿主机/data/k8s-logs/filebeat/filebeat.yml读取配置
+- 通过挂载宿主机/data/k8s-pv/filebeat/filebeat.yml读取配置
 
 ### 如何使用
 - 清理
 ```
 kubectl delete -f filebeat.yaml
-rm -rf /data/k8s-pv/filebeat
+rm -rf /data/k8s-pv/filebeat/data/* /data/k8s-pv/filebeat/logs/*
 ```
 - 创建命名空间
 ```

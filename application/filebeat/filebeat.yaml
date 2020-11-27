@@ -31,10 +31,6 @@ spec:
             mountPath: /usr/share/filebeat/logs
           - name: k8s-pv
             mountPath: /data/k8s-pv
-          - name: k8s-data
-            mountPath: /data/k8s-data
-          - name: k8s-logs
-            mountPath: /data/k8s-logs
       volumes:
       - name: filebeat
         hostPath:
@@ -48,9 +44,3 @@ spec:
       - name: k8s-pv
         hostPath:
           path: /data/k8s-pv
-      - name: k8s-data
-        hostPath:
-          path: /data/k8s-data
-      - name: k8s-logs
-        hostPath:
-          path: /data/k8s-logs

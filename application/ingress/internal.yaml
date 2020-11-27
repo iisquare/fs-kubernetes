@@ -157,4 +157,4 @@ spec:
             secretName: ingress-nginx-admission
         - name: nginx-logs
           hostPath:
-            path: /data/k8s-logs/ingress-nginx
+            path: /data/k8s-pv/ingress-nginx/logs
