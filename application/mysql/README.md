@@ -93,3 +93,4 @@ show binary logs;
 
 ### 参考链接
 - [MySQL主从复制(Master-Slave)实践](https://www.cnblogs.com/gl-developer/p/6170423.html)
+- [MySQL慢查询日志总结](https://www.cnblogs.com/kerrycode/p/5593204.html)
