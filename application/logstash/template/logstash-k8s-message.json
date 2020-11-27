@@ -10,8 +10,23 @@
         "message": {
           "type": "text"
         },
+        "@version": {
+          "type": "long"
+        },
         "@timestamp": {
           "type": "date"
+        },
+        "log_offset": {
+          "type": "long"
+        },
+        "log_filepath": {
+          "type": "keyword"
+        },
+        "log_timestamp": {
+          "type": "date"
+        },
+        "log_hostname": {
+          "type": "keyword"
         }
       }
     }
