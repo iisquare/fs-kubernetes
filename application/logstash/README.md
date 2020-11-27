@@ -47,3 +47,4 @@ DELETE _index_template/template_xxx
 ### 参考链接
 - [NGINX Ingress Controller ConfigMaps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)
 - [Elasticsearch Reference Index templates](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/index-templates.html)
+- [Logstash Reference Filter plugins](https://www.elastic.co/guide/en/logstash/7.x/filter-plugins.html)
