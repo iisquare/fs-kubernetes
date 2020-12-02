@@ -13,6 +13,7 @@
   rabbitmq.iisquare.com    消息队列 admin admin888
   kibana.iisquare.com      搜索引擎
   nebula.iisquare.com      图数据库 user:password@192.168.2.78:3699
+  kafka.iisquare.com       消息队列
 ```
 
 ### 节点逻辑划分
@@ -30,6 +31,9 @@
 
 - 静态共享节点：Kibana、Prometheus、Grafana
 - 功能测试节点：独立容器或GPU服务
+
+### 注意事项
+- 当节点内存不足，Container不断被系统Kill掉，对应的Pod可能会被直接删除，采用kind: Pod方式部署的应用将无法被拉起。
 
 ### 参考
 - [Docker Hub](https://hub.docker.com/)
