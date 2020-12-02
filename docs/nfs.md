@@ -81,6 +81,11 @@ showmount -e localhost
 yum -y install nfs-utils
 mount -t nfs lvs-virtual-ip:/data/nfs /path/to/mounted
 ```
+- 开机自动挂载
+```
+vim /etc/fstab
+192.168.2.77:/data/nfs /data/nfs  nfs  defaults,_netdev  1  1
+```
 
 ### 安装keepalived
 - 安装
@@ -133,3 +138,4 @@ tail -f /var/log/messages
 - [rsync + inotify 实现文件实时双向自动同步](https://juejin.im/post/6844903989801123853)
 - [kubernetes部署NFS持久存储（静态和动态）](https://www.jianshu.com/p/5e565a8049fc)
 - [Centos7.6部署k8s v1.16.4高可用集群(主备模式)](https://www.kubernetes.org.cn/6632.html)
+- [NFS配置及开机自动挂载](https://www.cnblogs.com/heruiguo/p/7998260.html)

@@ -1,0 +1,10 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.2.77 virtual77
+192.168.2.74 node74
+192.168.2.75 node75
+192.168.2.76 node76
+192.168.2.78 node78
+192.168.2.79 node79
+192.168.2.80 node80
+192.168.2.92 node92
