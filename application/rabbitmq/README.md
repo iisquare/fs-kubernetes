@@ -30,7 +30,8 @@ rabbitmqctl cluster_status
 ```
 - 移除节点
 ```
-rabbitmqctl reset
+rabbitmqctl forget_cluster_node rabbit@rabbitmq-1.rabbitmq.svr-app.svc.cluster.local # at master
+rabbitmqctl reset # at node
 ```
 - 镜像队列
 ```
