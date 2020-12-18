@@ -11,6 +11,7 @@ sudo -E docker build \
   -t harbor.iisquare.com/app/${APP_NAME}:${APP_VERSION}.${CI_PIPELINE_ID} \
   --build-arg APP_NAME=${APP_NAME} --build-arg APP_VERSION=${APP_VERSION} --no-cache .
 sudo -E docker push harbor.iisquare.com/app/${APP_NAME}:${APP_VERSION}.${CI_PIPELINE_ID}
+sudo -E docker rmi harbor.iisquare.com/app/${APP_NAME}:${APP_VERSION}.${CI_PIPELINE_ID}
 cp bin/template.yaml bin/template-${APP_NAME}.yaml
 sed -i "s/{APP_NAME}/${APP_NAME}/g" bin/template-${APP_NAME}.yaml
 sed -i "s/{CI_PIPELINE_ID}/${CI_PIPELINE_ID}/g" bin/template-${APP_NAME}.yaml
