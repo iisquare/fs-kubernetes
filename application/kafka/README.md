@@ -54,3 +54,4 @@ kubectl create -f kafka-manager.yaml
 
 ### 参考链接
 - [使用Docker部署Kafka时的网络应该如何配置](https://xinze.fun/2019/11/11/%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Kafka%E6%97%B6%E7%9A%84%E7%BD%91%E7%BB%9C%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE/)
+- [start-kafka.sh](https://github.com/wurstmeister/kafka-docker/blob/master/start-kafka.sh#L43-L45)

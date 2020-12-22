@@ -28,6 +28,8 @@ spec:
               value: "PLAINTEXT://:9092"
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
+            - name: KAFKA_LOG_DIRS
+              value: /kafka/kafka-logs
           ports:
             - name: broker
               containerPort: 9092
@@ -75,6 +77,8 @@ spec:
               value: "PLAINTEXT://:9092"
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
+            - name: KAFKA_LOG_DIRS
+              value: /kafka/kafka-logs
           ports:
             - name: broker
               containerPort: 9092
@@ -122,6 +126,8 @@ spec:
               value: "PLAINTEXT://:9092"
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
+            - name: KAFKA_LOG_DIRS
+              value: /kafka/kafka-logs
           ports:
             - name: broker
               containerPort: 9092
