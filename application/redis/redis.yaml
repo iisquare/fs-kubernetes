@@ -1,257 +1,311 @@
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-master74
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-master74
 spec:
-  nodeName: node74
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-master74
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-master74
+    spec:
+      nodeName: node74
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-master75
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-master75
 spec:
-  nodeName: node75
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-master75
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-master75
+    spec:
+      nodeName: node75
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-master76
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-master76
 spec:
-  nodeName: node76
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-master76
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-master76
+    spec:
+      nodeName: node76
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-slave78
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-slave78
 spec:
-  nodeName: node78
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-slave78
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-slave78
+    spec:
+      nodeName: node78
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-slave79
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-slave79
 spec:
-  nodeName: node79
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-slave79
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-slave79
+    spec:
+      nodeName: node79
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: redis-slave80
   namespace: svr-app
   labels:
-    app: redis
+    app: redis-slave80
 spec:
-  nodeName: node80
-  containers:
-    - name: redis
-      image: redis:6.0.8
-      command:
-        - "redis-server"
-      args:
-        - "/usr/local/etc/redis/redis.conf"
-        - "--protected-mode"
-        - "no"
-        - "--appendonly"
-        - "yes"
-      ports:
-        - name: server
-          containerPort: 6379
-          hostPort: 6379
-        - name: cluster
-          containerPort: 16379
-          hostPort: 16379
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: redis-slave80
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-slave80
+    spec:
+      nodeName: node80
+      containers:
+        - name: redis
+          image: redis:6.0.8
+          command:
+            - "redis-server"
+          args:
+            - "/usr/local/etc/redis/redis.conf"
+            - "--protected-mode"
+            - "no"
+            - "--appendonly"
+            - "yes"
+          ports:
+            - name: server
+              containerPort: 6379
+              hostPort: 6379
+            - name: cluster
+              containerPort: 16379
+              hostPort: 16379
+          volumeMounts:
+            - name: redis-config
+              mountPath: "/usr/local/etc/redis"
+            - mountPath: /data
+              name: redis-data
+      volumes:
         - name: redis-config
-          mountPath: "/usr/local/etc/redis"
-        - mountPath: /data
-          name: redis-data
-  volumes:
-    - name: redis-config
-      configMap:
-        name: redis
-        items:
-          - key: "redis.conf"
-            path: "redis.conf"
-    - name: redis-data
-      hostPath:
-        path: /data/k8s-pv/redis
+          configMap:
+            name: redis
+            items:
+              - key: "redis.conf"
+                path: "redis.conf"
+        - name: redis-data
+          hostPath:
+            path: /data/k8s-pv/redis

@@ -1,176 +1,221 @@
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: elasticsearch-node78
   namespace: svr-app
   labels:
-    app: elasticsearch
+    app: elasticsearch-node78
 spec:
-  nodeName: node78
-  containers:
-    - name: elasticsearch
-      image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
-      env:
-        - name: node.name
-          value: node-78
-      ports:
-        - name: client
-          containerPort: 9200
-          hostPort: 9200
-        - name: server
-          containerPort: 9300
-          hostPort: 9300
-      readinessProbe:
-        httpGet:
-          path: /_cat/health
-          port: client
-        initialDelaySeconds: 5
-        periodSeconds: 5
-        failureThreshold: 600
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: elasticsearch-node78
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elasticsearch-node78
+    spec:
+      nodeName: node78
+      containers:
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+          env:
+            - name: node.name
+              value: node-78
+          ports:
+            - name: client
+              containerPort: 9200
+              hostPort: 9200
+            - name: server
+              containerPort: 9300
+              hostPort: 9300
+          readinessProbe:
+            httpGet:
+              path: /_cat/health
+              port: client
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 600
+          volumeMounts:
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+              subPath: elasticsearch.yml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/jvm.options"
+              subPath: jvm.options
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+              subPath: log4j2.properties
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/plugins/analysis-ik-online/IKAnalyzer.cfg.xml"
+              subPath: IKAnalyzer.cfg.xml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/jdk/conf/security/java.policy"
+              subPath: java.policy
+            - name: elasticsearch-data
+              mountPath: /usr/share/elasticsearch/data
+            - name: elasticsearch-logs
+              mountPath: /usr/share/elasticsearch/logs
+            - name: elasticsearch-keystore
+              mountPath: /usr/share/elasticsearch/keystore
+      volumes:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/jvm.options"
-          subPath: jvm.options
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
-          subPath: log4j2.properties
+          configMap:
+            name: elasticsearch
         - name: elasticsearch-data
-          mountPath: /usr/share/elasticsearch/data
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/data
         - name: elasticsearch-logs
-          mountPath: /usr/share/elasticsearch/logs
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/logs
         - name: elasticsearch-keystore
-          mountPath: /usr/share/elasticsearch/keystore
-  volumes:
-    - name: elasticsearch-config
-      configMap:
-        name: elasticsearch
-    - name: elasticsearch-data
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/data
-    - name: elasticsearch-logs
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/logs
-    - name: elasticsearch-keystore
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/keystore
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/keystore
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: elasticsearch-node79
   namespace: svr-app
   labels:
-    app: elasticsearch
+    app: elasticsearch-node79
 spec:
-  nodeName: node79
-  containers:
-    - name: elasticsearch
-      image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
-      env:
-        - name: node.name
-          value: node-79
-      ports:
-        - name: client
-          containerPort: 9200
-          hostPort: 9200
-        - name: server
-          containerPort: 9300
-          hostPort: 9300
-      readinessProbe:
-        httpGet:
-          path: /_cat/health
-          port: client
-        initialDelaySeconds: 5
-        periodSeconds: 5
-        failureThreshold: 600
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: elasticsearch-node79
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elasticsearch-node79
+    spec:
+      nodeName: node79
+      containers:
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+          env:
+            - name: node.name
+              value: node-79
+          ports:
+            - name: client
+              containerPort: 9200
+              hostPort: 9200
+            - name: server
+              containerPort: 9300
+              hostPort: 9300
+          readinessProbe:
+            httpGet:
+              path: /_cat/health
+              port: client
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 600
+          volumeMounts:
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+              subPath: elasticsearch.yml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/jvm.options"
+              subPath: jvm.options
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+              subPath: log4j2.properties
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/plugins/analysis-ik-online/IKAnalyzer.cfg.xml"
+              subPath: IKAnalyzer.cfg.xml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/jdk/conf/security/java.policy"
+              subPath: java.policy
+            - name: elasticsearch-data
+              mountPath: /usr/share/elasticsearch/data
+            - name: elasticsearch-logs
+              mountPath: /usr/share/elasticsearch/logs
+            - name: elasticsearch-keystore
+              mountPath: /usr/share/elasticsearch/keystore
+      volumes:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/jvm.options"
-          subPath: jvm.options
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
-          subPath: log4j2.properties
+          configMap:
+            name: elasticsearch
         - name: elasticsearch-data
-          mountPath: /usr/share/elasticsearch/data
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/data
         - name: elasticsearch-logs
-          mountPath: /usr/share/elasticsearch/logs
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/logs
         - name: elasticsearch-keystore
-          mountPath: /usr/share/elasticsearch/keystore
-  volumes:
-    - name: elasticsearch-config
-      configMap:
-        name: elasticsearch
-    - name: elasticsearch-data
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/data
-    - name: elasticsearch-logs
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/logs
-    - name: elasticsearch-keystore
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/keystore
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/keystore
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: elasticsearch-node80
   namespace: svr-app
   labels:
-    app: elasticsearch
+    app: elasticsearch-node80
 spec:
-  nodeName: node80
-  containers:
-    - name: elasticsearch
-      image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
-      env:
-        - name: node.name
-          value: node-80
-      ports:
-        - name: client
-          containerPort: 9200
-          hostPort: 9200
-        - name: server
-          containerPort: 9300
-          hostPort: 9300
-      readinessProbe:
-        httpGet:
-          path: /_cat/health
-          port: client
-        initialDelaySeconds: 5
-        periodSeconds: 5
-        failureThreshold: 600
-      volumeMounts:
+  selector:
+    matchLabels:
+      app: elasticsearch-node80
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elasticsearch-node80
+    spec:
+      nodeName: node80
+      containers:
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+          env:
+            - name: node.name
+              value: node-80
+          ports:
+            - name: client
+              containerPort: 9200
+              hostPort: 9200
+            - name: server
+              containerPort: 9300
+              hostPort: 9300
+          readinessProbe:
+            httpGet:
+              path: /_cat/health
+              port: client
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 600
+          volumeMounts:
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
+              subPath: elasticsearch.yml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/jvm.options"
+              subPath: jvm.options
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
+              subPath: log4j2.properties
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/plugins/analysis-ik-online/IKAnalyzer.cfg.xml"
+              subPath: IKAnalyzer.cfg.xml
+            - name: elasticsearch-config
+              mountPath: "/usr/share/elasticsearch/jdk/conf/security/java.policy"
+              subPath: java.policy
+            - name: elasticsearch-data
+              mountPath: /usr/share/elasticsearch/data
+            - name: elasticsearch-logs
+              mountPath: /usr/share/elasticsearch/logs
+            - name: elasticsearch-keystore
+              mountPath: /usr/share/elasticsearch/keystore
+      volumes:
         - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/elasticsearch.yml"
-          subPath: elasticsearch.yml
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/jvm.options"
-          subPath: jvm.options
-        - name: elasticsearch-config
-          mountPath: "/usr/share/elasticsearch/config/log4j2.properties"
-          subPath: log4j2.properties
+          configMap:
+            name: elasticsearch
         - name: elasticsearch-data
-          mountPath: /usr/share/elasticsearch/data
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/data
         - name: elasticsearch-logs
-          mountPath: /usr/share/elasticsearch/logs
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/logs
         - name: elasticsearch-keystore
-          mountPath: /usr/share/elasticsearch/keystore
-  volumes:
-    - name: elasticsearch-config
-      configMap:
-        name: elasticsearch
-    - name: elasticsearch-data
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/data
-    - name: elasticsearch-logs
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/logs
-    - name: elasticsearch-keystore
-      hostPath:
-        path: /data/k8s-pv/elasticsearch/keystore
+          hostPath:
+            path: /data/k8s-pv/elasticsearch/keystore

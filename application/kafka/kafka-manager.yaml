@@ -31,22 +31,31 @@ spec:
   selector:
     app: kafka-manager
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: kafka-manager
   namespace: svr-app
   labels:
     app: kafka-manager
 spec:
-  containers:
-    - name: kafka-manager
-      image: harbor.iisquare.com/library/kafka-manager:3.0.0.4
-      env:
-        - name: ZK_HOSTS
-          value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
-      ports:
-        - name: web
-          containerPort: 9000
-  imagePullSecrets:
-    - name: harbor
+  selector:
+    matchLabels:
+      app: kafka-manager
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-manager
+    spec:
+      containers:
+        - name: kafka-manager
+          image: harbor.iisquare.com/library/kafka-manager:3.0.0.4
+          env:
+            - name: ZK_HOSTS
+              value: "192.168.2.78:2181,192.168.2.79:2181,192.168.2.80:2181/kafka"
+          ports:
+            - name: web
+              containerPort: 9000
+      imagePullSecrets:
+        - name: harbor
