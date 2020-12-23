@@ -50,6 +50,10 @@ kubectl get configmaps <map-name> -o yaml
 kubeadm alpha certs check-expiration
 kubeadm alpha certs renew
 ```
+- 端口转发（临时调试）
+```
+kubectl port-forward --address 0.0.0.0 -n <namespace> <pod-name> <port>:<port>
+```
 
 ### 参考链接
 - [gcr.io_mirror](https://github.com/anjia0532/gcr.io_mirror)

@@ -1,4 +1,5 @@
 # spark on kubernetes
+通过挂载NFS本地目录，将作业历史写入到共享目录中；启动独立的history-server，用于监控业务运行状态；临时调试可采用port-forward查看对应的作业，作业执行完成后web-ui不可用。
 
 ### 使用说明
 - 下载并安装spark，根据官方预编译版本和hadoop发行说明，推荐采用scala2.12.x和hadoop2.7.x
