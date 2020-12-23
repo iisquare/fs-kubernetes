@@ -16,6 +16,7 @@ spec:
         app: elasticsearch-node78
     spec:
       nodeName: node78
+      terminationGracePeriodSeconds: 0
       containers:
         - name: elasticsearch
           image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
@@ -90,6 +91,7 @@ spec:
         app: elasticsearch-node79
     spec:
       nodeName: node79
+      terminationGracePeriodSeconds: 0
       containers:
         - name: elasticsearch
           image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
@@ -164,6 +166,7 @@ spec:
         app: elasticsearch-node80
     spec:
       nodeName: node80
+      terminationGracePeriodSeconds: 0
       containers:
         - name: elasticsearch
           image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
