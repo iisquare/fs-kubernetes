@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-history
+  namespace: spark
+spec:
+  ports:
+  - port: 18080
+    name: web
+  clusterIP: None
+  selector:
+    app: spark-history
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: spark
+  name: spark-history
+spec:
+  selector:
+    matchLabels:
+      app: spark-history
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spark-history
+    spec:
+      containers:
+      - name: spark-history
+        image: harbor.iisquare.com/library/spark:2.4.7
+        env:
+        - name: SPARK_NO_DAEMONIZE
+          value: "true"
+        ports:
+        - name: web
+          containerPort: 18080
+        command: ["/opt/spark/sbin/start-history-server.sh"]
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: config
+          mountPath: /opt/spark/conf
+      volumes:
+      - name: data
+        hostPath:
+          path: /data/nfs/spark
+      - name: config
+        configMap:
+          name: spark-history

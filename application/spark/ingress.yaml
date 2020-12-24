@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-internal-spark
+  namespace: spark
+  annotations:
+    kubernetes.io/ingress.class: "nginx-internal"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: spark.iisquare.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: spark-history
+          servicePort: 18080

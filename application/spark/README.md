@@ -17,6 +17,7 @@ sed -i 's/http:\/\/\(deb\|security\)\.debian\.org/https:\/\/mirrors\.tuna\.tsing
 - 构建镜像
 ```
 docker pull openjdk:8-jdk-slim # 3.x is 8-jre-slim
+docker rmi harbor.iisquare.com/library/spark:2.4.7
 ./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 2.4.7 build
 ./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 2.4.7 push
 ```
@@ -25,6 +26,15 @@ docker pull openjdk:8-jdk-slim # 3.x is 8-jre-slim
 kubectl create ns spark
 kubectl create serviceaccount spark -n spark
 kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=spark:spark --namespace=spark
+```
+- 挂载NFS共享文件
+```
+mkdir -p /data/nfs/spark/spark-events
+```
+- 作业配置（镜像中不含conf目录，在提交作业时通过configmap挂载）
+```
+vim conf/spark-defaults.conf
+vim conf/spark-env.sh
 ```
 - 作业测试
 ```
@@ -38,9 +48,34 @@ kubectl cluster-info
     --conf spark.kubernetes.namespace=spark \
     --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
     --conf spark.kubernetes.container.image=harbor.iisquare.com/library/spark:2.4.7 \
+    --conf spark.kubernetes.driver.volumes.hostPath.data.mount.path=/data \
+    --conf spark.kubernetes.driver.volumes.hostPath.data.mount.readOnly=false \
+    --conf spark.kubernetes.driver.volumes.hostPath.data.options.path=/data/nfs/spark \
+    --conf spark.kubernetes.executor.volumes.hostPath.data.mount.path=/data \
+    --conf spark.kubernetes.executor.volumes.hostPath.data.mount.readOnly=false \
+    --conf spark.kubernetes.executor.volumes.hostPath.data.options.path=/data/nfs/spark \
     local:///opt/spark/examples/jars/spark-examples_2.11-2.4.7.jar
 ```
+- 临时查看运行中的作业
+```
+kubectl port-forward --address 0.0.0.0 -n spark <pod-name> 4040:4040
+```
 
+### 历史作业
+- 清理
+```
+kubectl delete -f spark-history.yaml
+kubectl delete configmaps spark-history -n spark
+```
+- 导入配置文件
+```
+kubectl create configmap spark-history --from-file=conf -n spark
+```
+- 应用配置清单
+```
+kubectl create -f spark-history.yaml
+```
 
 ### 参考链接
 - [Running Spark on Kubernetes](https://spark.apache.org/docs/2.4.7/running-on-kubernetes.html)
+- [在Docker中运行Spark历史记录服务器以查看AWS Glue作业](https://stackoom.com/question/3yLOH/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CSpark%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A5%E6%9F%A5%E7%9C%8BAWS-Glue%E4%BD%9C%E4%B8%9A)

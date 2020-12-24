@@ -16,6 +16,6 @@ docker tag cd08b38dfcae openjdk:8-jre-slim
 ```
 - 调试运行镜像
 ```
-docker run -p 80:80 -p 8080:8080 -it --entrypoint /bin/bash name:version
+docker run -it --entrypoint /bin/bash name:version
 ```
 
