@@ -99,6 +99,4 @@ args:
 - [报错：The connection to the server localhost:8080 was refused](https://blog.csdn.net/M82_A1/article/details/99671934)
 - [GitLab持续集成--配置Runner](https://blog.csdn.net/frankcheng5143/article/details/79838414)
 - [CentOS下sudo免密配置](https://www.jianshu.com/p/22effba56f7e)
-- [Why are my Docker ARGs empty?](https://benkyriakou.com/posts/docker-args-empty)
 - [Intellij IDEA基于Springboot的远程调试](https://blog.csdn.net/wo541075754/article/details/75008617)
-- [为容器设置启动时要执行的命令和参数](https://kubernetes.io/zh/docs/tasks/inject-data-application/define-command-argument-container/#notes)

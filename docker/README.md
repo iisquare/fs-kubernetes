@@ -1,6 +1,6 @@
 # Docker for Kubernetes
 
-### 常用命令
+## 常用命令
 - 转移镜像
 ```
 docker pull openjdk:8
@@ -19,3 +19,6 @@ docker tag cd08b38dfcae openjdk:8-jre-slim
 docker run -it --entrypoint /bin/bash name:version
 ```
 
+## 参考
+- [为容器设置启动时要执行的命令和参数](https://kubernetes.io/zh/docs/tasks/inject-data-application/define-command-argument-container/#notes)
+- [Why are my Docker ARGs empty?](https://benkyriakou.com/posts/docker-args-empty)
