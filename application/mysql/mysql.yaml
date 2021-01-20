@@ -1,146 +1,125 @@
-kind: Deployment
-apiVersion: apps/v1
+kind: Pod
+apiVersion: v1
 metadata:
   name: mysql-master78
   namespace: svr-app
   labels:
-    app: mysql-master78
+    app: mysql
 spec:
-  selector:
-    matchLabels:
-      app: mysql-master78
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mysql-master78
-    spec:
-      nodeName: node78
-      containers:
-        - name: mysql
-          image: mysql:8.0.21
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: admin888
-          ports:
-            - name: server
-              containerPort: 3306
-              hostPort: 3306
-          volumeMounts:
-            - name: mysql-config
-              mountPath: "/etc/mysql"
-            - name: mysql-data
-              mountPath: /var/lib/mysql
-            - name: mysql-files
-              mountPath: /var/lib/mysql-files
-      volumes:
+  nodeName: node78
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
         - name: mysql-config
-          configMap:
-            name: mysql
-            items:
-              - key: "master78.cnf"
-                path: "my.cnf"
+          mountPath: "/etc/mysql"
         - name: mysql-data
-          hostPath:
-            path: /data/k8s-pv/mysql/data
+          mountPath: /var/lib/mysql
         - name: mysql-files
-          hostPath:
-            path: /data/k8s-pv/mysql/files
+          mountPath: /var/lib/mysql-files
+  volumes:
+    - name: mysql-config
+      configMap:
+        name: mysql
+        items:
+          - key: "master78.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql/data
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
 ---
-kind: Deployment
-apiVersion: apps/v1
+kind: Pod
+apiVersion: v1
 metadata:
   name: mysql-slave79
   namespace: svr-app
   labels:
-    app: mysql-slave79
+    app: mysql
 spec:
-  selector:
-    matchLabels:
-      app: mysql-slave79
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mysql-slave79
-    spec:
-      nodeName: node79
-      containers:
-        - name: mysql
-          image: mysql:8.0.21
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: admin888
-          ports:
-            - name: server
-              containerPort: 3306
-              hostPort: 3306
-          volumeMounts:
-            - name: mysql-config
-              mountPath: "/etc/mysql"
-            - name: mysql-data
-              mountPath: /var/lib/mysql
-            - name: mysql-files
-              mountPath: /var/lib/mysql-files
-      volumes:
+  nodeName: node79
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
         - name: mysql-config
-          configMap:
-            name: mysql
-            items:
-              - key: "slave79.cnf"
-                path: "my.cnf"
+          mountPath: "/etc/mysql"
         - name: mysql-data
-          hostPath:
-            path: /data/k8s-pv/mysql/data
+          mountPath: /var/lib/mysql
         - name: mysql-files
-          hostPath:
-            path: /data/k8s-pv/mysql/files
+          mountPath: /var/lib/mysql-files
+  volumes:
+    - name: mysql-config
+      configMap:
+        name: mysql
+        items:
+          - key: "slave79.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql/data
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
 ---
-kind: Deployment
-apiVersion: apps/v1
+kind: Pod
+apiVersion: v1
 metadata:
   name: mysql-slave80
   namespace: svr-app
   labels:
-    app: mysql-slave80
+    app: mysql
 spec:
-  selector:
-    matchLabels:
-      app: mysql-slave80
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mysql-slave80
-    spec:
-      nodeName: node80
-      containers:
-        - name: mysql
-          image: mysql:8.0.21
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: admin888
-          ports:
-            - name: server
-              containerPort: 3306
-              hostPort: 3306
-          volumeMounts:
-            - name: mysql-config
-              mountPath: "/etc/mysql"
-            - name: mysql-data
-              mountPath: /var/lib/mysql
-            - name: mysql-files
-              mountPath: /var/lib/mysql-files
-      volumes:
+  nodeName: node80
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mysql
+      image: mysql:8.0.21
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin888
+      ports:
+        - name: server
+          containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
         - name: mysql-config
-          configMap:
-            name: mysql
-            items:
-              - key: "slave80.cnf"
-                path: "my.cnf"
+          mountPath: "/etc/mysql"
         - name: mysql-data
-          hostPath:
-            path: /data/k8s-pv/mysql/data
+          mountPath: /var/lib/mysql
         - name: mysql-files
-          hostPath:
-            path: /data/k8s-pv/mysql/files
+          mountPath: /var/lib/mysql-files
+  volumes:
+    - name: mysql-config
+      configMap:
+        name: mysql
+        items:
+          - key: "slave80.cnf"
+            path: "my.cnf"
+    - name: mysql-data
+      hostPath:
+        path: /data/k8s-pv/mysql/data
+    - name: mysql-files
+      hostPath:
+        path: /data/k8s-pv/mysql/files
