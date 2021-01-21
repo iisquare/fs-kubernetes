@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rbd-provisioner
+  namespace: ceph
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rbd-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rbd-provisioner
+    spec:
+      serviceAccount: rbd-provisioner
+      containers:
+      - name: rbd-provisioner
+        image: "quay.io/external_storage/rbd-provisioner:latest"
+        env:
+        - name: PROVISIONER_NAME
+          value: ceph.com/rbd
+        volumeMounts:
+        - name: ceph-etc
+          mountPath: /etc/ceph
+      volumes:
+      - name: ceph-etc
+        hostPath:
+          path: /data/nfs/ceph/etc

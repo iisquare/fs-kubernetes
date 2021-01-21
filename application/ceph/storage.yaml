@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ceph-storage
+  namespace: ceph
+spec:
+  selector:
+    matchLabels:
+      app: ceph-storage
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: ceph-storage
+    spec:
+      hostNetwork: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - node78
+                  - node79
+                  - node80
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: "app"
+                  operator: In
+                  values:
+                  - ceph-storage
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: ceph-storage
+        image: ceph/daemon:v4.0.17-stable-4.0-nautilus-centos-7
+        args: ["osd_directory"]
+        securityContext:
+          privileged: true
+        env:
+        - name: OSD_BLUESTORE
+          value: "1"
+        volumeMounts:
+        - name: ceph-etc
+          mountPath: /etc/ceph
+        - name: ceph-lib
+          mountPath: /var/lib/ceph
+        - name: ceph-osd
+          mountPath: /var/lib/ceph/osd
+      volumes:
+      - name: ceph-etc
+        hostPath:
+          path: /data/nfs/ceph/etc
+      - name: ceph-lib
+        hostPath:
+          path: /data/nfs/ceph/lib
+      - name: ceph-osd
+        hostPath:
+          path: /data/osd

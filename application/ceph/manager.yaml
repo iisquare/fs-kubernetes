@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ceph-manager
+  namespace: ceph
+spec:
+  selector:
+    matchLabels:
+      app: ceph-manager
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: ceph-manager
+    spec:
+      hostNetwork: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - node78
+                  - node79
+                  - node80
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: "app"
+                  operator: In
+                  values:
+                  - ceph-manager
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: ceph-manager
+        image: ceph/daemon:v4.0.17-stable-4.0-nautilus-centos-7
+        args: ["mgr"]
+        ports:
+        - name: dashboard
+          containerPort: 16789
+        volumeMounts:
+        - name: ceph-etc
+          mountPath: /etc/ceph
+        - name: ceph-lib
+          mountPath: /var/lib/ceph
+      volumes:
+      - name: ceph-etc
+        hostPath:
+          path: /data/nfs/ceph/etc
+      - name: ceph-lib
+        hostPath:
+          path: /data/nfs/ceph/lib

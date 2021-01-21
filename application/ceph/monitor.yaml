@@ -1,0 +1,113 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ceph-monitor-node78
+  namespace: ceph
+  labels:
+    app: ceph-monitor
+spec:
+  hostNetwork: true
+  nodeName: node78
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+  - name: ceph-monitor
+    image: ceph/daemon:v4.0.17-stable-4.0-nautilus-centos-7
+    args: ["mon"]
+    env:
+    - name: MON_IP
+      value: 192.168.2.78
+    - name: CEPH_PUBLIC_NETWORK
+      value: 192.168.2.0/24
+    ports:
+    - name: monitor
+      containerPort: 6789
+      hostPort: 6789
+    volumeMounts:
+    - name: ceph-etc
+      mountPath: /etc/ceph
+    - name: ceph-lib
+      mountPath: /var/lib/ceph
+  volumes:
+  - name: ceph-etc
+    hostPath:
+      path: /data/nfs/ceph/etc
+  - name: ceph-lib
+    hostPath:
+      path: /data/nfs/ceph/lib
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ceph-monitor-node79
+  namespace: ceph
+  labels:
+    app: ceph-monitor
+spec:
+  hostNetwork: true
+  nodeName: node79
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+  - name: ceph-monitor
+    image: ceph/daemon:v4.0.17-stable-4.0-nautilus-centos-7
+    args: ["mon"]
+    env:
+    - name: MON_IP
+      value: 192.168.2.79
+    - name: CEPH_PUBLIC_NETWORK
+      value: 192.168.2.0/24
+    ports:
+    - name: monitor
+      containerPort: 6789
+      hostPort: 6789
+    volumeMounts:
+    - name: ceph-etc
+      mountPath: /etc/ceph
+    - name: ceph-lib
+      mountPath: /var/lib/ceph
+  volumes:
+  - name: ceph-etc
+    hostPath:
+      path: /data/nfs/ceph/etc
+  - name: ceph-lib
+    hostPath:
+      path: /data/nfs/ceph/lib
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ceph-monitor-node80
+  namespace: ceph
+  labels:
+    app: ceph-monitor
+spec:
+  hostNetwork: true
+  nodeName: node80
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+  - name: ceph-monitor
+    image: ceph/daemon:v4.0.17-stable-4.0-nautilus-centos-7
+    args: ["mon"]
+    env:
+    - name: MON_IP
+      value: 192.168.2.80
+    - name: CEPH_PUBLIC_NETWORK
+      value: 192.168.2.0/24
+    ports:
+    - name: monitor
+      containerPort: 6789
+      hostPort: 6789
+    volumeMounts:
+    - name: ceph-etc
+      mountPath: /etc/ceph
+    - name: ceph-lib
+      mountPath: /var/lib/ceph
+  volumes:
+  - name: ceph-etc
+    hostPath:
+      path: /data/nfs/ceph/etc
+  - name: ceph-lib
+    hostPath:
+      path: /data/nfs/ceph/lib
