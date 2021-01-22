@@ -1,0 +1,50 @@
+# logrotate
+
+## 运行方式
+- 默认每天06:25被/etc/cron.daily/logrotate脚本触发。
+- 默认/etc/logrotate.conf配置中包含了/etc/logrotate.d目录。
+- 日志切分后，需要通知日志进程重新打开日志文件。
+- 在create模式下，先移动日志文件，inode不变，后创建同名文件，日志程序重启前日志写入原inode文件。
+- 在copytruncate模式下，先将日志内容拷贝到其他文件，之后清空原日志文件，存在时间空挡，可能会丢失日志。
+- 在copytruncate模式下，由于inode始终不变，但日志行数发生变化，可能导致日志收集程序异常。
+
+## 常用命令
+- 脚本验证
+```
+logrotate -d -f /etc/logrotate.d/nginx
+```
+- 手动执行
+```
+logrotate -f /etc/logrotate.d/nginx
+```
+- 文件权限
+```
+r=4, w=2, x=1
+rwx = 4 + 2 + 1 = 7
+rw = 4 + 2 = 6
+rx = 4 +1 = 5
+```
+
+## 服务配置
+- Nginx: vim /etc/logrotate.d/nginx
+```
+/data/k8s-pv/ingress-nginx/logs/*.log {
+  su root root
+  daily
+  missingok
+  rotate 52
+  compress
+  delaycompress
+  notifempty
+  create
+  sharedscripts
+  postrotate
+    CID=`docker ps|grep k8s_controller_ingress-nginx-controller|awk '{print $1}'`
+    PID=`docker exec ${CID} cat /tmp/nginx.pid`
+    docker exec ${CID} kill -USR1 ${PID}
+  endscript
+}
+```
+
+## 参考
+- [logrotate学习使用](https://www.jianshu.com/p/a29c84a5d1ac)
