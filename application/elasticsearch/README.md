@@ -16,16 +16,16 @@ sysctl -p # 重新加载文件，立即生效
 - 清理
 ```
 kubectl delete -f elasticsearch.yaml
-kubectl delete configmaps elasticsearch -n svr-app
+kubectl delete configmaps elasticsearch -n app-svr
 rm -rf /data/k8s-pv/elasticsearch
 ```
 - 创建命名空间
 ```
-kubectl create ns svr-app
+kubectl create ns app-svr
 ```
 - 导入配置文件
 ```
-kubectl create configmap elasticsearch --from-file=elasticsearch.yml --from-file=jvm.options --from-file=log4j2.properties -n svr-app
+kubectl create configmap elasticsearch --from-file=elasticsearch.yml --from-file=jvm.options --from-file=log4j2.properties -n app-svr
 ```
 - 应用配置清单
 ```

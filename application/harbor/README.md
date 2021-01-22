@@ -14,7 +14,7 @@ helm repo add harbor https://helm.goharbor.io
 helm install svr-harbor harbor/harbor \
   --version 1.5.1 \
   --create-namespace \
-  --namespace lvs-app \
+  --namespace app-lvs \
   --set expose.type=ingress \
   --set expose.tls.enabled=true \
   --set expose.tls.certSource=none \
@@ -35,9 +35,9 @@ helm install svr-harbor harbor/harbor \
 ```
 - 卸载
 ```
-helm uninstall svr-harbor -n lvs-app
-kubectl get pvc -n lvs-app
-kubectl delete pvc --all -n lvs-app
+helm uninstall svr-harbor -n app-lvs
+kubectl get pvc -n app-lvs
+kubectl delete pvc --all -n app-lvs
 ```
 
 ### Habor管理

@@ -13,7 +13,7 @@ rm -rf /data/k8s-pv/zookeeper
 ```
 - 创建命名空间
 ```
-kubectl create ns svr-app
+kubectl create ns app-svr
 ```
 - 应用配置清单
 ```

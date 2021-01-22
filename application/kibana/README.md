@@ -4,11 +4,11 @@
 - 清理
 ```
 kubectl delete -f kibana.yaml
-kubectl delete configmaps kibana -n svr-app
+kubectl delete configmaps kibana -n app-svr
 ```
 - 导入配置文件
 ```
-kubectl create configmap kibana --from-file=kibana.yml --from-file=node.options -n svr-app
+kubectl create configmap kibana --from-file=kibana.yml --from-file=node.options -n app-svr
 ```
 - 应用配置清单
 ```

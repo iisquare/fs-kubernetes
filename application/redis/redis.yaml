@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-master74
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:
@@ -47,7 +47,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-master75
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:
@@ -92,7 +92,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-master76
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:
@@ -137,7 +137,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-slave78
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:
@@ -182,7 +182,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-slave79
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:
@@ -227,7 +227,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: redis-slave80
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: redis
 spec:

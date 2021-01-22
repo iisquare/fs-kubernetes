@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: mysql-master78
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: mysql
 spec:
@@ -44,7 +44,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: mysql-slave79
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: mysql
 spec:
@@ -86,7 +86,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: mysql-slave80
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: mysql
 spec:

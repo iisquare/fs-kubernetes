@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: filebeat
-  namespace: log-app
+  namespace: app-log
   labels:
     k8s-app: filebeat
 spec:

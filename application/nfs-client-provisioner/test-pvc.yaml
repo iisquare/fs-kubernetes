@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: lvs-nfs-test
-  namespace: lvs-app
+  namespace: app-lvs
 spec:
   accessModes:
     - ReadWriteMany

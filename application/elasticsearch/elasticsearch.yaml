@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: elasticsearch-node78
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: elasticsearch
 spec:
@@ -63,7 +63,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: elasticsearch-node79
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: elasticsearch
 spec:
@@ -124,7 +124,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: elasticsearch-node80
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: elasticsearch
 spec:

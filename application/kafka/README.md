@@ -14,7 +14,7 @@ rm -rf /data/k8s-pv/kafka
 ```
 - 创建命名空间
 ```
-kubectl create ns svr-app
+kubectl create ns app-svr
 ```
 - 应用配置清单
 ```
@@ -41,7 +41,7 @@ docker push harbor.iisquare.com/library/kafka-manager:3.0.0.4
 ```
 - 配置harbor的secret，确保k8s可正常拉取私有仓库中的镜像
 ```
-kubectl create secret docker-registry harbor -n svr-app \
+kubectl create secret docker-registry harbor -n app-svr \
   --docker-server=harbor.iisquare.com \
   --docker-username=admin \
   --docker-password=admin888 \

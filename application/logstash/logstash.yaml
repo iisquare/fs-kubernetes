@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  namespace: log-app
+  namespace: app-log
   name: logstash
 spec:
   selector:

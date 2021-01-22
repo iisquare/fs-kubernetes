@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: zookeeper-node78
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: zookeeper
 spec:
@@ -44,7 +44,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: zookeeper-node79
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: zookeeper
 spec:
@@ -86,7 +86,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: zookeeper-node80
-  namespace: svr-app
+  namespace: app-svr
   labels:
     app: zookeeper
 spec:

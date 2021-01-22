@@ -9,18 +9,18 @@
 - 清理
 ```
 kubectl delete -f logstash.yaml
-kubectl delete configmaps logstash-config -n log-app
-kubectl delete configmaps logstash-pipeline -n log-app
+kubectl delete configmaps logstash-config -n app-log
+kubectl delete configmaps logstash-pipeline -n app-log
 rm -rf /data/k8s-pv/logstash
 ```
 - 创建命名空间
 ```
-kubectl create ns log-app
+kubectl create ns app-log
 ```
 - 导入配置文件
 ```
-kubectl create configmap logstash-config --from-file=config -n log-app
-kubectl create configmap logstash-pipeline --from-file=pipeline -n log-app
+kubectl create configmap logstash-config --from-file=config -n app-log
+kubectl create configmap logstash-pipeline --from-file=pipeline -n app-log
 ```
 - 应用配置清单
 ```
@@ -36,7 +36,7 @@ $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$
 ### 数据示例
 - ingress-nginx-access-log
 ```
-192.168.0.139 - - [27/Nov/2020:10:04:38 +0000] "GET /api/v2.0/projects?page=1&page_size=15 HTTP/2.0" 200 760 "https://harbor.iisquare.com/harbor/projects" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" 50 1.279 [lvs-app-svr-harbor-harbor-core-80] [] 10.244.4.100:8080 760 1.279 200 e0726b2e0c22976ac8ccd04d52d7c83b
+192.168.0.139 - - [27/Nov/2020:10:04:38 +0000] "GET /api/v2.0/projects?page=1&page_size=15 HTTP/2.0" 200 760 "https://harbor.iisquare.com/harbor/projects" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" 50 1.279 [app-lvs-svr-harbor-harbor-core-80] [] 10.244.4.100:8080 760 1.279 200 e0726b2e0c22976ac8ccd04d52d7c83b
 ```
 - mysql-slow-query-log
 ```

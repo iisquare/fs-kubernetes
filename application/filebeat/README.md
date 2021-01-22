@@ -12,7 +12,7 @@ rm -rf /data/k8s-pv/filebeat/data/* /data/k8s-pv/filebeat/logs/*
 ```
 - 创建命名空间
 ```
-kubectl create ns log-app
+kubectl create ns app-log
 ```
 - 创建配置文件
 ```

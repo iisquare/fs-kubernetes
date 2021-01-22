@@ -9,16 +9,16 @@
 - 清理
 ```
 kubectl delete -f mysql.yaml
-kubectl delete configmaps mysql -n svr-app
+kubectl delete configmaps mysql -n app-svr
 rm -rf /data/k8s-pv/mysql
 ```
 - 创建命名空间
 ```
-kubectl create ns svr-app
+kubectl create ns app-svr
 ```
 - 导入配置文件
 ```
-kubectl create configmap mysql --from-file=master78.cnf --from-file=slave79.cnf --from-file=slave80.cnf -n svr-app
+kubectl create configmap mysql --from-file=master78.cnf --from-file=slave79.cnf --from-file=slave80.cnf -n app-svr
 ```
 - 应用配置清单
 ```
