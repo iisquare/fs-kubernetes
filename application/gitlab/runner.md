@@ -54,7 +54,7 @@ cat /root/.docker/config.json
 ### 准备待部署项目的Dockerfile文件
 ### 配置harbor的secret，确保k8s可正常拉取私有仓库中的镜像
 ```
-kubectl create secret docker-registry harbor -n demo-java \
+kubectl create secret docker-registry harbor -n test-java \
   --docker-server=harbor.iisquare.com \
   --docker-username=admin \
   --docker-password=admin888 \
@@ -63,7 +63,7 @@ kubectl create secret docker-registry harbor -n demo-java \
 ### 准备待部署项目的资源清单，确保imagePullSecrets与上述参数一致且在同一命名空间下
 ```
 metadata:
-  namespace: demo-java
+  namespace: test-java
 spec:
   template:
     spec:

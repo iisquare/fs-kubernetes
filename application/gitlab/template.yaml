@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  namespace: demo-java
+  namespace: test-java
   name: {APP_NAME}
 spec:
   selector:
