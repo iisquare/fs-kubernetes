@@ -151,7 +151,32 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outfor
 ```
 - 重置并重新加入
 
+### 更新证书
+- 查看证书过期时间
+```
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text |grep ' Not '
+kubeadm alpha certs check-expiration
+```
+- 更新证书过期时间
+```
+kubeadm alpha certs renew all
+```
+- 分发同步证书
+```
+sh /data/nfs/kubernetes/docs/files/cert-master.sh target-ip
+```
+- 验证证书过期时间
+
+### 强制启用交换分区
+```
+vim /etc/sysconfig/kubelet
+KUBELET_EXTRA_ARGS="--fail-swap-on=false"
+#kubeadm init with --ignore-preflight-errors=Swap
+```
+
 ### 参考
 - [Centos7.6部署k8s v1.16.4高可用集群(主备模式)](https://www.kubernetes.org.cn/6632.html)
 - [将 master 节点服务器从 k8s 集群中移除并重新加入](https://www.cnblogs.com/dudu/p/12173867.html)
 - [kubeadm 生成的token过期后，集群增加节点](https://blog.csdn.net/mailjoin/article/details/79686934)
+- [k8s过期证书解决方案](https://blog.51cto.com/zyxjohn/2471985)
+- [部署k8s不关闭swap](https://blog.csdn.net/qq_42362811/article/details/103362514)
