@@ -40,6 +40,10 @@ kubectl get secrets -n ingress-nginx
 ```
 kubectl apply -f tls.yaml
 ```
+- 替换secret
+```
+kubectl create secret tls ingress-secret --key privkey.pem --cert fullchain.pem -n ingress-nginx --dry-run=client|kubectl replace -f -
+```
 
 ### 参考
 - [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
