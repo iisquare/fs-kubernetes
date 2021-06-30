@@ -58,4 +58,5 @@ kubectl port-forward --address 0.0.0.0 -n <namespace> <pod-name> <port>:<port>
 ### 参考链接
 - [gcr.io_mirror](https://github.com/anjia0532/gcr.io_mirror)
 - [尚硅谷Kubernetes教程](https://www.bilibili.com/video/BV1w4411y7Go)
+- [尚硅谷Kubernetes教程新版](https://www.bilibili.com/video/BV1GT4y1A756)
 - [九析带你轻松完爆 istio 系列](https://www.bilibili.com/video/BV1vE411p7wX)
