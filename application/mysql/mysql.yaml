@@ -21,7 +21,7 @@ spec:
           hostPort: 3306
       volumeMounts:
         - name: mysql-config
-          mountPath: "/etc/mysql"
+          mountPath: "/etc/mysql/conf.d"
         - name: mysql-data
           mountPath: /var/lib/mysql
         - name: mysql-files
@@ -32,7 +32,7 @@ spec:
         name: mysql
         items:
           - key: "master78.cnf"
-            path: "my.cnf"
+            path: "mysql.cnf"
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql/data
@@ -63,7 +63,7 @@ spec:
           hostPort: 3306
       volumeMounts:
         - name: mysql-config
-          mountPath: "/etc/mysql"
+          mountPath: "/etc/mysql/conf.d"
         - name: mysql-data
           mountPath: /var/lib/mysql
         - name: mysql-files
@@ -74,7 +74,7 @@ spec:
         name: mysql
         items:
           - key: "slave79.cnf"
-            path: "my.cnf"
+            path: "mysql.cnf"
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql/data
@@ -105,7 +105,7 @@ spec:
           hostPort: 3306
       volumeMounts:
         - name: mysql-config
-          mountPath: "/etc/mysql"
+          mountPath: "/etc/mysql/conf.d"
         - name: mysql-data
           mountPath: /var/lib/mysql
         - name: mysql-files
@@ -116,7 +116,7 @@ spec:
         name: mysql
         items:
           - key: "slave80.cnf"
-            path: "my.cnf"
+            path: "mysql.cnf"
     - name: mysql-data
       hostPath:
         path: /data/k8s-pv/mysql/data
