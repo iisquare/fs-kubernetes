@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: app-svr
+  labels:
+    name: mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None
+  selector:
+    app: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: app-svr
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  serviceName: mongo
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - node78
+                      - node79
+                      - node80
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - mongo
+              topologyKey: "kubernetes.io/hostname"
+      terminationGracePeriodSeconds: 10
+      dnsConfig:
+        searches:
+          - mongo.app-svr.svc.cluster.local
+          - app-svr.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: mongo
+          image: mongo:4.4.6
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: admin888
+          command:
+            - mongod
+            - "--replSet"
+            - k8s
+            - "--bind_ip_all"
+          ports:
+            - name: server
+              containerPort: 27017
+              hostPort: 27017
+          volumeMounts:
+            - name: mongo-db
+              mountPath: /data/db
+      volumes:
+        - name: mongo-db
+          hostPath:
+            path: /data/k8s-pv/mongo
