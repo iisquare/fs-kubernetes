@@ -1,82 +1,144 @@
+kind: Pod
 apiVersion: v1
-kind: Service
 metadata:
-  name: mongo
+  name: mongo-node78
   namespace: app-svr
   labels:
-    name: mongo
-spec:
-  ports:
-    - port: 27017
-      targetPort: 27017
-  clusterIP: None
-  selector:
     app: mongo
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: mongo
-  namespace: app-svr
 spec:
-  selector:
-    matchLabels:
-      app: mongo
-  serviceName: mongo
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: mongo
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - node78
-                      - node79
-                      - node80
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - mongo
-              topologyKey: "kubernetes.io/hostname"
-      terminationGracePeriodSeconds: 10
-      dnsConfig:
-        searches:
-          - mongo.app-svr.svc.cluster.local
-          - app-svr.svc.cluster.local
-          - svc.cluster.local
-          - cluster.local
-      containers:
-        - name: mongo
-          image: mongo:4.4.6
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: root
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: admin888
-          command:
-            - mongod
-            - "--replSet"
-            - k8s
-            - "--bind_ip_all"
-          ports:
-            - name: server
-              containerPort: 27017
-              hostPort: 27017
-          volumeMounts:
-            - name: mongo-db
-              mountPath: /data/db
-      volumes:
-        - name: mongo-db
-          hostPath:
-            path: /data/k8s-pv/mongo
+  nodeName: node78
+  hostNetwork: true
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mongo
+      image: mongo:4.4.6
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: admin888
+      command:
+        - mongod
+        - "--replSet"
+        - rs0
+        - "--bind_ip"
+        - "192.168.2.78"
+        - "--auth"
+        - "--keyFile"
+        - "/etc/mongodb-keyfile"
+      ports:
+        - name: server
+          containerPort: 27017
+          hostPort: 27017
+      volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+        - name: mongo-config
+          mountPath: "/etc/mongodb-keyfile"
+          subPath: mongodb-keyfile
+  volumes:
+    - name: mongo-data
+      hostPath:
+        path: /data/k8s-pv/mongo/data
+    - name: mongo-config
+      configMap:
+        name: mongo
+        defaultMode: 0600
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mongo-node79
+  namespace: app-svr
+  labels:
+    app: mongo
+spec:
+  nodeName: node79
+  hostNetwork: true
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mongo
+      image: mongo:4.4.6
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: admin888
+      command:
+        - mongod
+        - "--replSet"
+        - rs0
+        - "--bind_ip"
+        - "192.168.2.79"
+        - "--auth"
+        - "--keyFile"
+        - "/etc/mongodb-keyfile"
+      ports:
+        - name: server
+          containerPort: 27017
+          hostPort: 27017
+      volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+        - name: mongo-config
+          mountPath: "/etc/mongodb-keyfile"
+          subPath: mongodb-keyfile
+  volumes:
+    - name: mongo-data
+      hostPath:
+        path: /data/k8s-pv/mongo/data
+    - name: mongo-config
+      configMap:
+        name: mongo
+        defaultMode: 0600
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mongo-node80
+  namespace: app-svr
+  labels:
+    app: mongo
+spec:
+  nodeName: node80
+  hostNetwork: true
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: mongo
+      image: mongo:4.4.6
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: admin888
+      command:
+        - mongod
+        - "--replSet"
+        - rs0
+        - "--bind_ip"
+        - "192.168.2.80"
+        - "--auth"
+        - "--keyFile"
+        - "/etc/mongodb-keyfile"
+      ports:
+        - name: server
+          containerPort: 27017
+          hostPort: 27017
+      volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+        - name: mongo-config
+          mountPath: "/etc/mongodb-keyfile"
+          subPath: mongodb-keyfile
+  volumes:
+    - name: mongo-data
+      hostPath:
+        path: /data/k8s-pv/mongo/data
+    - name: mongo-config
+      configMap:
+        name: mongo
+        defaultMode: 0600
+---
