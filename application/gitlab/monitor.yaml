@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: jvm-monitor
+  namespace: monitoring
+spec:
+  podMetricsEndpoints:
+  - interval: 15s
+    path: /actuator/prometheus
+    port: rest
+  namespaceSelector:
+    matchNames:
+    - test-java
+  selector:
+    matchLabels:
+      app: app-name

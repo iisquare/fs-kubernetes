@@ -37,4 +37,6 @@ chmod -R 777 /data/k8s-pv/elasticsearch/
 ```
 
 ### 参考链接
-- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.html)
+- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.
+html)
+- [Set up basic security for the Elastic Stackedit](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-basic-setup.html)

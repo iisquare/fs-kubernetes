@@ -41,3 +41,4 @@ redis-cli -c # 指定集群模式
 ### 参考链接
 - [在K8S上搭建Redis集群](https://juejin.im/post/6844903806719754254)
 - [redis Waiting for the cluster to join](https://my.oschina.net/chrisforbt/blog/2980875)
+- [Redis ACL](https://redis.io/topics/acl)
