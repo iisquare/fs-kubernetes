@@ -13,3 +13,7 @@ slow-query-log=on
 log_queries_not_using_indexes=0
 slow-query-log-file=/var/lib/mysql/slow-query.log
 log-queries-not-using-indexes
+
+relay_log_recovery=1
+slave-skip-errors=1062
+
