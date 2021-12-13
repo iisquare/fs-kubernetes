@@ -102,6 +102,8 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
+            - name: TZ
+              value: Asia/Shanghai
           livenessProbe:
             httpGet:
               path: /healthz
