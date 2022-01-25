@@ -26,9 +26,12 @@ spec:
       labels:
         app: spark-history
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
       containers:
       - name: spark-history
-        image: harbor.iisquare.com/library/spark:2.4.7
+        image: harbor.iisquare.com/library/spark:3.2.0
         env:
         - name: SPARK_NO_DAEMONIZE
           value: "true"
@@ -37,14 +40,19 @@ spec:
           containerPort: 18080
         command: ["/opt/spark/sbin/start-history-server.sh"]
         volumeMounts:
-        - name: data
-          mountPath: /data
+        - name: events
+          mountPath: /data/spark-events
+        - name: logs
+          mountPath: /opt/spark/logs
         - name: config
           mountPath: /opt/spark/conf
       volumes:
-      - name: data
+      - name: events
         hostPath:
-          path: /data/nfs/spark
+          path: /data/nfs/spark/events
+      - name: logs
+        hostPath:
+          path: /data/nfs/spark/logs
       - name: config
         configMap:
           name: spark-history

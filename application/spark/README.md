@@ -4,9 +4,9 @@
 ### 使用说明
 - 下载并安装spark，根据官方预编译版本和hadoop发行说明，推荐采用scala2.12.x和hadoop2.7.x
 ```
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-3.2.0/spark-3.2.0-bin-hadoop2.7.tgz
 vim /etc/bashrc
-export SPARK_HOME=/opt/spark-2.4.7-bin-hadoop2.7
+export SPARK_HOME=/opt/spark-3.2.0-bin-hadoop2.7
 ```
 - 更改国内源
 ```
@@ -17,9 +17,9 @@ sed -i 's/http:\/\/\(deb\|security\)\.debian\.org/https:\/\/mirrors\.tuna\.tsing
 - 构建镜像
 ```
 docker pull openjdk:8-jdk-slim # 3.x is 8-jre-slim
-docker rmi harbor.iisquare.com/library/spark:2.4.7
-./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 2.4.7 build
-./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 2.4.7 push
+docker rmi harbor.iisquare.com/library/spark:3.2.0
+./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 3.2.0 build
+./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 3.2.0 push
 ```
 - 环境准备
 ```
@@ -29,7 +29,7 @@ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount
 ```
 - 挂载NFS共享文件
 ```
-mkdir -p /data/nfs/spark/spark-events
+mkdir -p /data/nfs/spark/events
 ```
 - 作业配置（镜像中不含conf目录，在提交作业时通过configmap挂载）
 ```
@@ -47,14 +47,14 @@ kubectl cluster-info
     --conf spark.executor.instances=5 \
     --conf spark.kubernetes.namespace=spark \
     --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
-    --conf spark.kubernetes.container.image=harbor.iisquare.com/library/spark:2.4.7 \
+    --conf spark.kubernetes.container.image=harbor.iisquare.com/library/spark:3.2.0 \
     --conf spark.kubernetes.driver.volumes.hostPath.data.mount.path=/data \
     --conf spark.kubernetes.driver.volumes.hostPath.data.mount.readOnly=false \
     --conf spark.kubernetes.driver.volumes.hostPath.data.options.path=/data/nfs/spark \
     --conf spark.kubernetes.executor.volumes.hostPath.data.mount.path=/data \
     --conf spark.kubernetes.executor.volumes.hostPath.data.mount.readOnly=false \
     --conf spark.kubernetes.executor.volumes.hostPath.data.options.path=/data/nfs/spark \
-    local:///opt/spark/examples/jars/spark-examples_2.11-2.4.7.jar
+    local:///opt/spark/examples/jars/spark-examples_2.12-3.2.0.jar
 ```
 - 临时查看运行中的作业
 ```
@@ -77,5 +77,5 @@ kubectl create -f spark-history.yaml
 ```
 
 ### 参考链接
-- [Running Spark on Kubernetes](https://spark.apache.org/docs/2.4.7/running-on-kubernetes.html)
+- [Running Spark on Kubernetes](https://spark.apache.org/docs/3.2.0/running-on-kubernetes.html)
 - [在Docker中运行Spark历史记录服务器以查看AWS Glue作业](https://stackoom.com/question/3yLOH/%E5%9C%A8Docker%E4%B8%AD%E8%BF%90%E8%A1%8CSpark%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A5%E6%9F%A5%E7%9C%8BAWS-Glue%E4%BD%9C%E4%B8%9A)
