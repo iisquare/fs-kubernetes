@@ -18,7 +18,8 @@ sed -i 's/http:\/\/\(deb\|security\)\.debian\.org/https:\/\/mirrors\.tuna\.tsing
 ```
 docker pull openjdk:8-jdk-slim # 3.x is 8-jre-slim
 docker rmi harbor.iisquare.com/library/spark:3.2.0
-./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 3.2.0 build
+# default UID of 185, I have no name! in tty, invalid null input: name on history
+./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 3.2.0 -u 0 build
 ./bin/docker-image-tool.sh -r harbor.iisquare.com/library -t 3.2.0 push
 ```
 - 环境准备
