@@ -29,7 +29,7 @@ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount
 ```
 - 挂载NFS共享文件
 ```
-mkdir -p /data/nfs/spark/events
+mkdir -p /data/nfs/spark/spark-events
 ```
 - 作业配置（镜像中不含conf目录，在提交作业时通过configmap挂载）
 ```

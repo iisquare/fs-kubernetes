@@ -40,16 +40,16 @@ spec:
           containerPort: 18080
         command: ["/opt/spark/sbin/start-history-server.sh"]
         volumeMounts:
-        - name: events
+        - name: spark-events
           mountPath: /data/spark-events
         - name: logs
           mountPath: /opt/spark/logs
         - name: config
           mountPath: /opt/spark/conf
       volumes:
-      - name: events
+      - name: spark-events
         hostPath:
-          path: /data/nfs/spark/events
+          path: /data/nfs/spark/spark-events
       - name: logs
         hostPath:
           path: /data/nfs/spark/logs
