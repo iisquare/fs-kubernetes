@@ -36,6 +36,14 @@ mkdir -p /data/nfs/spark/spark-events
 vim conf/spark-defaults.conf
 vim conf/spark-env.sh
 ```
+- 配置harbor的secret，确保k8s可正常拉取私有仓库中的镜像
+```
+kubectl create secret docker-registry harbor -n spark \
+  --docker-server=harbor.iisquare.com \
+  --docker-username=admin \
+  --docker-password=admin888 \
+  --docker-email=
+```
 - 作业测试
 ```
 kubectl cluster-info
@@ -46,6 +54,7 @@ kubectl cluster-info
     --class org.apache.spark.examples.SparkPi \
     --conf spark.executor.instances=5 \
     --conf spark.kubernetes.namespace=spark \
+    --conf spark.kubernetes.container.image.pullSecrets=harbor
     --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
     --conf spark.kubernetes.container.image=harbor.iisquare.com/library/spark:3.2.0 \
     --conf spark.kubernetes.driver.volumes.hostPath.data.mount.path=/data \
