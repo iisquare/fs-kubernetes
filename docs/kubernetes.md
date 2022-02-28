@@ -159,20 +159,22 @@ kubeadm alpha certs check-expiration
 ```
 - 更新前备份
 ```
+rm -rf /etc/kubernetes.back
 cp -rp /etc/kubernetes /etc/kubernetes.back
+rm -rf /var/lib/kubelet.back
 cp -rp /var/lib/kubelet /var/lib/kubelet.back
 ```
 - 更新证书过期时间
 ```
 rm -f /etc/kubernetes/*.conf
 # rm -rf /var/lib/kubelet/pki/
-kubeadm alpha certs renew all --config=/data/nfs/dev-ops/docs/files/kubeadm-config.yaml
-kubeadm init phase kubeconfig all --config=/data/nfs/dev-ops/docs/files/kubeadm-config.yaml
+kubeadm alpha certs renew all --config=/data/nfs/kubernetes/docs/files/kubeadm-config.yaml
+kubeadm init phase kubeconfig all --config=/data/nfs/kubernetes/docs/files/kubeadm-config.yaml
 cp /etc/kubernetes/admin.conf ~/.kube/config
 ```
 - 顺序重启全部节点
 ```
-# docker restart $(docker ps -q)
+docker restart $(docker ps -q)
 systemctl restart kubelet
 ```
 - 更新管理节点
@@ -193,3 +195,4 @@ KUBELET_EXTRA_ARGS="--fail-swap-on=false"
 - [kubeadm 生成的token过期后，集群增加节点](https://blog.csdn.net/mailjoin/article/details/79686934)
 - [k8s过期证书解决方案](https://blog.51cto.com/zyxjohn/2471985)
 - [部署k8s不关闭swap](https://blog.csdn.net/qq_42362811/article/details/103362514)
+- [当 Kubernetes 集群证书被全部删除后，你该如何修复它？](https://z.itpub.net/article/detail/75AC8916765D4CD9980915384D705E9F)
