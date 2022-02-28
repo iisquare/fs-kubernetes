@@ -48,7 +48,6 @@ kubectl get configmaps <map-name> -o yaml
 - 证书管理
 ```
 kubeadm alpha certs check-expiration
-kubeadm alpha certs renew
 ```
 - 端口转发（临时调试）
 ```

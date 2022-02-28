@@ -157,15 +157,28 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outfor
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text |grep ' Not '
 kubeadm alpha certs check-expiration
 ```
+- 更新前备份
+```
+cp -rp /etc/kubernetes /etc/kubernetes.back
+cp -rp /var/lib/kubelet /var/lib/kubelet.back
+```
 - 更新证书过期时间
 ```
-kubeadm alpha certs renew all
+rm -f /etc/kubernetes/*.conf
+# rm -rf /var/lib/kubelet/pki/
+kubeadm alpha certs renew all --config=/data/nfs/dev-ops/docs/files/kubeadm-config.yaml
+kubeadm init phase kubeconfig all --config=/data/nfs/dev-ops/docs/files/kubeadm-config.yaml
+cp /etc/kubernetes/admin.conf ~/.kube/config
 ```
-- 分发同步证书
+- 顺序重启全部节点
 ```
-sh /data/nfs/kubernetes/docs/files/cert-master.sh target-ip
+# docker restart $(docker ps -q)
+systemctl restart kubelet
 ```
-- 验证证书过期时间
+- 更新管理节点
+```
+scp master-ip:/etc/kubernetes/admin.conf /etc/kubernetes/
+```
 
 ### 强制启用交换分区
 ```
