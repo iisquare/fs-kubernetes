@@ -35,6 +35,18 @@
 ### 注意事项
 - 当节点内存不足，Container不断被系统Kill掉，对应的Pod可能会被直接删除，采用kind: Pod方式部署的应用将无法被拉起。
 
-### 参考
+## 最佳实践
+
+### Service
+
+当Service的spec.type设置为ClusterIP类型，且spec.clusterIP值为None时，被称为"Headless Service"。此时，它并不提供负载均衡功能，也不会自动轮询访问后端Pod，仅提供DNS解析。
+```
+dig -t A <service>.<namespace>.svc.cluster.local
+```
+若需要自动处理负载均衡，则不可将spec.clusterIP设为None值，Service将过代理转发流量到后端Pod。
+若已启用负载均衡，但需要用会话粘性（Session Affinity），将同客户端的请求路由到同一个后端Pod，则可将spec.sessionAffinity设为ClientIP，通spec.sessionAffinityConfig.clientIP.timeoutSeconds设置会话停留时间。
+
+
+## 参考
 - [Docker Hub](https://hub.docker.com/)
 - [Helm Charts](https://hub.helm.sh/)
