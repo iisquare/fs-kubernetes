@@ -1,6 +1,12 @@
 # Kubernetes
 kubernetes cluster service
 
+| 服务 | 入口 | 参数 |
+| :----- | :----- | :----- |
+| docker | ENTRYPOINT | CMD |
+| docker-compose | entrypoint | command |
+| kubernetes | command | args |
+
 ### 常用命令
 - 通过清单创建和删除
 ```
