@@ -19,6 +19,10 @@ kubectl get pods -n namespace -o wide
 kubectl delete pods PODNAME -n namespace
 kubectl describe pods PODNAME -n namespace
 kubectl logs PODNAME -n namespace
+# 多容器POD日志，指定容器名称
+kubectl logs PODNAME -n namespace -c CONTAINER_NAME
+# 查看重启前的日志，对应POD所在NODE节点/var/log/pods/目录
+kubectl logs PODNAME -n namespace --previous
 docker exec -it {container-id} /bin/bash
 ```
 - Ingress
