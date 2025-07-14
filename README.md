@@ -64,6 +64,26 @@ kubeadm alpha certs check-expiration
 kubectl port-forward --address 0.0.0.0 -n <namespace> <pod-name> <port>:<port>
 ```
 
+### 常见问题
+- 排查容器异常
+```
+# 查看 Events 部分，重点关注：
+#    OOMKilled（内存溢出）
+#    Liveness/Readiness Probe Failed（健康检查失败）
+#    CrashLoopBackOff（容器持续崩溃）
+#    ImagePullBackOff（镜像拉取失败）
+kubectl describe pod <pod-name> -n <namespace>
+# 查看前一次容器日志
+kubectl logs <pod-name> -n <namespace> -p
+# Kubelet 日志（在节点上执行）
+journalctl -u kubelet --since "1 hour ago" | grep <pod-id>
+# 容器运行时日志（如 Docker）
+journalctl -u docker | grep <container-id>
+# 系统内核日志（排查 OOM）
+dmesg | grep -i "killed"
+vi /var/log/messages
+```
+
 ### 参考链接
 - [gcr.io_mirror](https://github.com/anjia0532/gcr.io_mirror)
 - [尚硅谷Kubernetes教程](https://www.bilibili.com/video/BV1w4411y7Go)
